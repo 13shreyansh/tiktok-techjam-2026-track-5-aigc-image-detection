@@ -1,0 +1,16 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+data/
+datasets/
+models/
+weights/
+checkpoints/
+outputs/
+artifacts/
+*.log
+.DS_Store
+
