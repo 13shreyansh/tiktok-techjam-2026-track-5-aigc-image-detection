@@ -450,13 +450,16 @@ The active multi-source, generator-held-out policy is in `DATA_STRATEGY.md`.
   four-image Apple MPS command returned zero in 2.533843167 seconds and produced
   the frozen 464-byte output with SHA-256
   `767096b0c1ffb963fe12947e1038f1f5b1416521aaa42d5c637532ae09419157`.
-  The complete source suite passes 209 tests with one non-failing physical-core
+  The complete source suite passes 210 tests with one non-failing physical-core
   warning.
 - Remaining external blockers are one public immutable PE checkpoint URL, a
   logged-out install/run, a public two-to-four-minute video and explicit final
-  submission review. The 716,168-byte history-free ZIP from source commit
-  `2e1b70d` passed all 209 tests after extraction and its pristine 297-file tree
+  submission review. The 717,380-byte history-free ZIP from source commit
+  `8d60257` passed all 210 tests after extraction and its pristine 298-file tree
   has zero forbidden artifacts, private locators or private-key findings. Its
   SHA-256 is
-  `38addd1edb7d3f17072672f579d70c377a16c3e495b8f81fc4331dc9fa138cec`.
-  No publication, visibility change or submission has been performed.
+  `fce1be36b11ecbea4a4dcf706244be0f55ede2fd8abbc73955ea706384aace9f`.
+  The connected GitHub application also synchronized the audited 297-file tree
+  to private remote commit `9457cc3`; readback confirmed private visibility,
+  exact `main` and all executable runner modes. No publication, visibility
+  change or submission has been performed.

@@ -62,10 +62,10 @@ is required for the public selected runtime.
 
 ## Current release blockers
 
-The final history-free source bundle is complete: source commit `2e1b70d`,
-716,168 bytes, SHA-256
-`38addd1edb7d3f17072672f579d70c377a16c3e495b8f81fc4331dc9fa138cec`;
-its pristine 297-file tree passed the safety audit and all 209 tests after a
+The final history-free source bundle is complete: source commit `8d60257`,
+717,380 bytes, SHA-256
+`fce1be36b11ecbea4a4dcf706244be0f55ede2fd8abbc73955ea706384aace9f`;
+its pristine 298-file tree passed the safety audit and all 210 tests after a
 separate extraction.
 
 1. No public immutable checkpoint URL.

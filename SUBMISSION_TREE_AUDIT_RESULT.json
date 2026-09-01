@@ -2,7 +2,7 @@
   "status": "source_tree_safe_but_distribution_blocked",
   "purpose": "Pre-publication source-tree and deliverable audit.",
   "inventory_mode": "git_tracked_tree",
-  "tracked_files": 297,
+  "tracked_files": 298,
   "required_files_present": true,
   "run_scripts_executable": {
     "run.sh": true,

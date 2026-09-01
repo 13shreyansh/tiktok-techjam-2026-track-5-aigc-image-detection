@@ -1,0 +1,32 @@
+{
+  "status": "verified_private_remote_sync",
+  "observed_date_sgt": "2026-09-01",
+  "repository_full_name": "13shreyansh/tiktok-techjam-2026-track-5-aigc-image-detection",
+  "transport": "connected_github_application",
+  "terminal_https_result": "blocked_before_remote_readback because no interactive credential was available",
+  "remote_before": {
+    "main_commit": "d0c76f2463c7808879bc73f9254dde6996b03ce7"
+  },
+  "remote_after": {
+    "visibility": "private",
+    "default_branch": "main",
+    "main_commit": "9457cc3afd29f16f432d70439cbbe26653d428b8",
+    "tree": "9f5d617f4a04ce2898b52b6cb595cbc1f8b893c0",
+    "tree_truncated": false,
+    "blob_count": 297,
+    "runner_modes": {
+      "run.sh": "100755",
+      "run_ensemble.sh": "100755",
+      "run_v12.sh": "100755"
+    }
+  },
+  "excluded": [
+    "model weights",
+    "datasets",
+    "outputs",
+    "caches",
+    "source archives",
+    "credentials"
+  ],
+  "boundary": "This is private source preservation only. It is not a public repository, checkpoint release, logged-out verification, video publication or Devpost submission."
+}

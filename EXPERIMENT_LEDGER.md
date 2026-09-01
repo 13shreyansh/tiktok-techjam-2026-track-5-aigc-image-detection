@@ -3467,13 +3467,13 @@ look like ordinary travel/event photos. Exact rows and claim boundaries are in
 ## 2026-09-01 — final history-free source export passes isolated verification
 
 The final source export was refreshed after adding the verified judge demo.
-Commit `2e1b70d4b0652fbb77e150d74f5f44e513d688b2` was exported with `git
-archive` to the ignored 716,168-byte file
-`artifacts/source/track5-source-2e1b70d.zip`. Its SHA-256 is
-`38addd1edb7d3f17072672f579d70c377a16c3e495b8f81fc4331dc9fa138cec`.
-The archive contains 297 files and no Git history.
+Commit `8d60257c3ede7d3ca3604e237ccbc8492cb8c18d` was exported with `git
+archive` to the ignored 717,380-byte file
+`artifacts/source/track5-source-8d60257.zip`. Its SHA-256 is
+`fce1be36b11ecbea4a4dcf706244be0f55ede2fd8abbc73955ea706384aace9f`.
+The archive contains 298 files and no Git history.
 
-A fresh extraction outside the repository returned zero for all **209 tests**
+A fresh extraction outside the repository returned zero for all **210 tests**
 with one non-failing physical-core warning. A separate pristine extraction was
 audited before running Python. It found all required files, executable runners,
 the selected 315,776,001-parameter PE mode, zero forbidden/oversized artifacts,

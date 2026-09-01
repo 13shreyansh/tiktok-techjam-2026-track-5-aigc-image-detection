@@ -32,17 +32,17 @@ command is not a public release or submission.
 - [x] Dataset and upstream provenance notices.
 - [x] Weight-licence statement that does not license third-party images.
 - [x] Exact frozen decision evidence and failed-attempt ledger.
-- [x] Full suite rerun after final document/runtime reconciliation: 209 passed,
+- [x] Full suite rerun after final document/runtime reconciliation: 210 passed,
   one non-failing physical-core discovery warning.
-- [x] Final tracked-tree safety audit: 297 files, zero forbidden or
+- [x] Final tracked-tree safety audit: 298 files, zero forbidden or
   oversized artifacts, zero private locators and zero key material. It remains
   distribution-blocked only by three public-link placeholders and the missing
   public checkpoint URL.
 - [x] Self-contained six-beat judge demo added and checked against the frozen
   result values, accessibility controls and recording command.
-- [x] Clean history-free source archive rebuilt from source commit `2e1b70d`,
-  SHA-256 `38addd1edb7d3f17072672f579d70c377a16c3e495b8f81fc4331dc9fa138cec`.
-  Its fresh extraction contains 297 files, passes all 209 tests and has zero
+- [x] Clean history-free source archive rebuilt from source commit `8d60257`,
+  SHA-256 `fce1be36b11ecbea4a4dcf706244be0f55ede2fd8abbc73955ea706384aace9f`.
+  Its fresh extraction contains 298 files, passes all 210 tests and has zero
   forbidden artifacts, private locators or private-key findings.
 - [x] The extracted source itself ran the exact selected local checkpoint on
   four frozen images through Apple MPS in 2.4258 seconds; all probabilities
@@ -68,7 +68,11 @@ command is not a public release or submission.
 Terminal access to the configured GitHub HTTPS remote was checked again on
 1 September SGT and failed before remote inspection with `could not read
 Username ... Device not configured`. No credential was created, exposed or
-embedded; publishing therefore requires an authorized authenticated route.
+embedded. The connected GitHub application then synchronized all 297 audited
+source blobs to remote commit `9457cc3`, and readback verified that `main`
+points there, all three runners remain executable and repository visibility is
+still **private**. `PRIVATE_REMOTE_SYNC_RESULT.json` records the exact tree and
+boundary. This is preservation, not the required public release.
 
 ## Candidate decision
 
