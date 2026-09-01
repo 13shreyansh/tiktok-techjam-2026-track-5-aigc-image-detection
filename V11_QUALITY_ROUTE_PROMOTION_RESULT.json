@@ -1,0 +1,60 @@
+{
+  "status": "rejected_on_fresh_gate",
+  "observed_on": "2026-08-31",
+  "candidate": "v11-quality-routed-multihead",
+  "fresh_gate": {
+    "rows": 1024,
+    "authentic_rows": 512,
+    "fake_rows": 512,
+    "old_source_filename_overlap": 0,
+    "old_image_sha256_overlap": 0,
+    "organizer_demo_rows": 0,
+    "manifest_sha256": "cab0d1347bcd78ba2fa8dd09caa0025a181c929ad1ce20fd245af8fd27e8d329",
+    "package_sha256": "5c68565fbf6a02242af5481e4720dd435b0145ae09306ff4fa80e00c30eeb8c9"
+  },
+  "router_threshold": 0.055,
+  "clean": {
+    "general_auc": 0.9870414733886719,
+    "routed_auc": 0.9870414733886719,
+    "route_rate": 0.0,
+    "mean_score_inversion": false
+  },
+  "noise_sigma_0_10": {
+    "general_auc": 0.789886474609375,
+    "routed_auc": 0.8057823181152344,
+    "absolute_improvement": 0.015895843505859375,
+    "route_rate": 1.0,
+    "routed_real_mean": 0.488141193985939,
+    "routed_fake_mean": 0.7665055990219116,
+    "mean_score_inversion": false
+  },
+  "predeclared_checks": {
+    "clean_auc_drop_at_most_0_002": true,
+    "noise_auc_at_least_0_70": true,
+    "noise_improvement_at_least_0_05": false,
+    "clean_route_rate_at_most_0_05": true,
+    "noise_route_rate_at_least_0_95": true,
+    "noise_mean_score_not_inverted": true,
+    "all_pass": false
+  },
+  "shared_logit_check": {
+    "v6_exact": true,
+    "v9_exact": true,
+    "v10_exact": true,
+    "maximum_absolute_logit_difference": 0.0
+  },
+  "report": {
+    "ignored_path": "outputs/audits/v11-quality-route-promotion-report.json",
+    "bytes": 3098,
+    "sha256": "724916c915903746e2e4fdd071e013b26b6b06d2eaa1167d98ef8f3a08c1e1f8"
+  },
+  "cuda_peak_allocated_bytes": 1284220928,
+  "decision": "Reject v11. The fresh noise improvement is below the frozen 0.05 minimum. Do not retune the router or rescue the candidate with this consumed gate.",
+  "retained_candidates": [
+    "75/25 v6/v9 CUDA ensemble",
+    "selected v6 single-model fallback"
+  ],
+  "fresh_gate_consumed": true,
+  "may_train_tune_calibrate_or_select_on_gate": false,
+  "hidden_score_claimed": false
+}

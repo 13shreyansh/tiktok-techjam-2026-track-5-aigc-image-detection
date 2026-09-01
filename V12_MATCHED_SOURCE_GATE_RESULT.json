@@ -1,0 +1,103 @@
+{
+  "status": "completed_returncode_zero",
+  "observed_at": "2026-08-31",
+  "gate_plan": "CIFAKE_MATCHED_SOURCE_V12_GATE_PLAN.json",
+  "evaluator_sha256": "ea1d65120274927d20678cf25583a735efb21c0eae031b68231b26695d7df70b",
+  "gate_package_sha256": "b91363fef08bceb3c72f86ca4e5d4fce8b0c0a530d79e56b431dfa8a0087d383",
+  "runtime": {
+    "gpu_per_candidate": "Tesla T4",
+    "torch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "returncodes": {
+      "pe_core": 0,
+      "dinov2_control": 0
+    }
+  },
+  "identity_separation": {
+    "v12_rows_compared": 15574,
+    "source_identity_overlap": 0,
+    "canonical_identity_overlap": 0,
+    "v12_inventory_sha256": "ec78d74e62d8e1b1f75e661f2ea3338fa95be11e96694a3ed168b463fe314fa6"
+  },
+  "results": {
+    "pe_core": {
+      "checkpoint_sha256": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+      "conditions": {
+        "clean": 0.92276,
+        "jpeg_q90": 0.932238,
+        "jpeg_q70": 0.902462,
+        "jpeg_q50": 0.8835455,
+        "jpeg_q30": 0.8846145,
+        "blur_sigma_0.5": 0.9227495,
+        "blur_sigma_1": 0.9224835,
+        "blur_sigma_2": 0.9223435,
+        "resize_0.5": 0.921213,
+        "resize_0.25": 0.923336,
+        "noise_sigma_0.02": 0.8450705,
+        "noise_sigma_0.05": 0.8028455,
+        "noise_sigma_0.10": 0.79447,
+        "brightness_0.8": 0.9222095,
+        "brightness_1.2": 0.9098465,
+        "contrast_0.8": 0.9137205,
+        "contrast_1.2": 0.913144,
+        "saturation_0.8": 0.921788,
+        "saturation_1.2": 0.917991,
+        "center_crop_80": 0.9205765
+      },
+      "clean_auc": 0.92276,
+      "pooled_robust_auc": 0.8920047825484766,
+      "official_style_score": 0.9073823912742383,
+      "worst_individual_condition_auc": 0.79447,
+      "elapsed_seconds": 674.552725315094,
+      "cuda_peak_allocated_bytes": 2895338496,
+      "passes_frozen_gate": true
+    },
+    "dinov2_control": {
+      "checkpoint_sha256": "db07f30cbc94e4972f4a8c72c95bbe5df0dcd40b2dbd494ad82dc324cc1e2b5b",
+      "conditions": {
+        "clean": 0.9138435,
+        "jpeg_q90": 0.912308,
+        "jpeg_q70": 0.9062895,
+        "jpeg_q50": 0.900211,
+        "jpeg_q30": 0.893383,
+        "blur_sigma_0.5": 0.9138475,
+        "blur_sigma_1": 0.914524,
+        "blur_sigma_2": 0.9134395,
+        "resize_0.5": 0.9129315,
+        "resize_0.25": 0.9133635,
+        "noise_sigma_0.02": 0.879571,
+        "noise_sigma_0.05": 0.8367535,
+        "noise_sigma_0.10": 0.820027,
+        "brightness_0.8": 0.9083125,
+        "brightness_1.2": 0.9125925,
+        "contrast_0.8": 0.9144445,
+        "contrast_1.2": 0.9143515,
+        "saturation_0.8": 0.911752,
+        "saturation_1.2": 0.911879,
+        "center_crop_80": 0.899519
+      },
+      "clean_auc": 0.9138435,
+      "pooled_robust_auc": 0.8993744570637119,
+      "official_style_score": 0.906608978531856,
+      "worst_individual_condition_auc": 0.820027,
+      "elapsed_seconds": 517.4771428108215,
+      "cuda_peak_allocated_bytes": 2979893760,
+      "passes_frozen_gate": true
+    }
+  },
+  "comparison": {
+    "official_style_score_delta_pe_minus_dino": 0.0007734127423823,
+    "interpretation": "Both pass the frozen within-source gate. PE has slightly higher clean AUC; DINO has higher pooled robustness and worst-condition AUC. The near tie falsifies the earlier impression that PE overwhelmingly dominates DINO.",
+    "selection_boundary": "This gate is one low-resolution CIFAKE source and cannot select a broad hidden-set winner by itself."
+  },
+  "private_preservation": {
+    "url": "https://www.kaggle.com/datasets/shreyanshag13/track5-v12-exact-checkpoints-and-gates",
+    "visibility_readback": "PRIVATE",
+    "version": 1,
+    "page_size_readback": "2.48 GB",
+    "page_file_count_readback": 10,
+    "integrity_manifest_sha256": "6bde71260d7afed2aa3d2fdb810442730f1770f74200ebf67c2c2d93a4401506",
+    "boundary": "Private preservation only; not a submission, release or publication."
+  },
+  "claim_boundary": "These are within-source low-resolution and individual-transform results. They do not establish performance on broad real photography, unseen generator families or the organizer hidden set."
+}

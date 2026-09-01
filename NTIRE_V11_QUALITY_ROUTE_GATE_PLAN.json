@@ -1,0 +1,50 @@
+{
+  "status": "consumed_once_for_frozen_v11_evaluation",
+  "purpose": "one-shot v11 quality-route promotion evaluation only",
+  "source": {
+    "repository": "deepfakesMSU/NTIRE-RobustAIGenDetection-train",
+    "revision": "700b6d08a3268b1e7a191306dec7321dd953b12f",
+    "archive_bytes": 11370161676,
+    "archive_sha256": "6d6628c983c43f1de44589151e2b3b9d33726691efbd9b0208e9f015ded9af8f",
+    "license_boundary": "No explicit reusable licence in the pinned dataset card; evaluation only and no redistribution."
+  },
+  "selection": {
+    "seed": 20260831,
+    "namespace": "quality-route-v11",
+    "policy": "lowest seeded SHA-256 rank per label after excluding every earlier NTIRE audit source filename",
+    "rows_per_label": 512,
+    "rows": 1024,
+    "old_source_filename_overlap": 0,
+    "old_image_sha256_overlap": 0,
+    "unique_image_sha256": 1024,
+    "source_filename_inventory_sha256": "a71cab43542cfbe5f95a9d14dd840bb46c94770c8b57d31e09db47493a95340d",
+    "local_manifest_sha256": "dfd3f196106544d586a3eb32c22f94d213f0ddd0f642f07d5cfc9e1fb08e2bb6",
+    "selection_report_sha256": "98a0b168e90c7f0847bef3277b6fb634aec38ab06df275b2b6c7fe3c13b862d8"
+  },
+  "kaggle_package": {
+    "bytes": 608677127,
+    "sha256": "5c68565fbf6a02242af5481e4720dd435b0145ae09306ff4fa80e00c30eeb8c9",
+    "inventory_sha256": "7b9801315bfef184820bf6eef216fd6d11e8dcaf1361387bb6fb9a536db665b6",
+    "source_bytes": 607952369,
+    "packaged_manifest_sha256": "cab0d1347bcd78ba2fa8dd09caa0025a181c929ad1ce20fd245af8fd27e8d329",
+    "organizer_demo_rows": 0
+  },
+  "evaluation": {
+    "conditions": [
+      "clean",
+      "Gaussian noise sigma 0.10 applied individually after resize/crop"
+    ],
+    "candidate_contract": "QUALITY_ROUTED_MULTIHEAD_PLAN.json",
+    "all_promotion_checks_required": true,
+    "cannot_train_tune_calibrate_or_change_router": true
+  },
+  "limitations": [
+    "Generator identities are unpublished.",
+    "Rows are fresh but come from the same NTIRE shard as an earlier audit, so this is not a new source family.",
+    "This corpus was made for another competition and does not estimate the TechJam hidden distribution."
+  ],
+  "result": "V11_QUALITY_ROUTE_PROMOTION_RESULT.json",
+  "opened_or_scored": true,
+  "may_train_tune_calibrate_or_select_on_gate": false,
+  "hidden_score_claimed": false
+}

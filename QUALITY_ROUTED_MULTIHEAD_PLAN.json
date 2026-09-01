@@ -1,0 +1,61 @@
+{
+  "status": "rejected_on_fresh_gate",
+  "frozen_at": "2026-08-31T13:43:28+08:00",
+  "hypothesis": "The rejected v10 head learned a useful low-resolution/noise direction, but a fixed probability blend diluted it. A label-blind noise detector can use v10 only for the exact severe-noise regime while preserving the verified v6/v9 path elsewhere.",
+  "shared_backbone": {
+    "model_name": "vit_pe_core_large_patch14_336",
+    "image_size": 224,
+    "identity_evidence": "BACKBONE_MULTIHEAD_IDENTITY_RESULT.json",
+    "total_parameters_with_three_heads": 315778051,
+    "under_2b_limit": true
+  },
+  "normal_path": {
+    "score": "0.75 * sigmoid(v6_head(features)) + 0.25 * sigmoid(v9_head(features))",
+    "weights_frozen_before_this_plan": true
+  },
+  "severe_noise_path": {
+    "score": "sigmoid(v10_head(features))",
+    "route_when": "haar_noise_estimate >= 0.055"
+  },
+  "router": {
+    "input": "RGB pixels after aspect-preserving resize to 224 and center crop, before normalization",
+    "statistic": "median(abs(diagonal 2x2 Haar coefficient))/0.67448975",
+    "threshold": 0.055,
+    "uses_labels": false,
+    "uses_model_scores": false,
+    "uses_filename_dimensions_or_codec": false,
+    "uses_consumed_gate_to_set_threshold": false,
+    "training_only_report_sha256": "01a5ca930cb1544bf88d28049e66ee6b3aa2e1dedb9d409fa1e75e6d5cd1eb36",
+    "training_only_rows": 1760,
+    "training_only_source_groups": 22,
+    "training_only_clean_route_rate": 0.0,
+    "training_only_sigma_0_10_route_rate": 1.0,
+    "training_only_clean_vs_sigma_0_10_auc": 1.0
+  },
+  "screen_order": [
+    "Verify shared-backbone logits reproduce the separate-model FP16 contract.",
+    "Run the frozen router on already-consumed internal, NTIRE and Community gates without changing threshold or heads.",
+    "Reject without opening a fresh gate if clean AUC drops by more than 0.002, any clean worst-pair AUC drops by more than 0.01, or sigma-0.10 AUC drops on either independent gate.",
+    "Only after all screens pass, freeze and open a byte-disjoint promotion gate."
+  ],
+  "fresh_promotion_requirements": {
+    "clean_auc_drop_from_normal_path_at_most": 0.002,
+    "noise_sigma_0_10_auc_at_least": 0.7,
+    "noise_sigma_0_10_improvement_over_normal_path_at_least": 0.05,
+    "clean_route_rate_at_most": 0.05,
+    "noise_sigma_0_10_route_rate_at_least": 0.95,
+    "noise_authentic_mean_not_above_fake_mean": true,
+    "all_checks_required": true
+  },
+  "forbidden_actions": [
+    "Do not change the 0.055 threshold using any consumed evaluation row.",
+    "Do not choose another head blend from the rejected v10 gate.",
+    "Do not train, tune, calibrate or threshold on organizer demo-only COCO or DALL-E Advanced data.",
+    "Do not claim promotion unless every predeclared check passes on a new disjoint gate."
+  ],
+  "organizer_demo_resources_used": false,
+  "fresh_gate_result": "V11_QUALITY_ROUTE_PROMOTION_RESULT.json",
+  "rejection_reason": "Noise AUC improved by 0.015895843505859375 on the fresh gate, below the predeclared 0.05 minimum; five other checks passed.",
+  "gate_is_consumed_and_cannot_be_used_to_retune": true,
+  "hidden_score_claimed": false
+}

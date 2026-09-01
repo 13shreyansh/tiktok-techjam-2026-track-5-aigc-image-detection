@@ -1,0 +1,63 @@
+{
+  "status": "verified_on_one_kaggle_t4_not_published",
+  "runner": "run_v12.sh",
+  "module": "aigc_detector.predict_v12",
+  "module_sha256": "6ede39bbf08e90f705887443f3cd6e3597138f218ce40925a4e4851473bff5d5",
+  "input": {
+    "images": 4,
+    "frozen_before_v12_inference": true,
+    "organizer_demo_rows": 0,
+    "roles": {
+      "real": 2,
+      "stable_diffusion": 1,
+      "flux_2_pro": 1
+    }
+  },
+  "blend": {
+    "return_code": 0,
+    "device": "Tesla T4",
+    "batch_size": 4,
+    "total_parameters": 619004930,
+    "elapsed_seconds": 19.423462479000136,
+    "cuda_peak_allocated_bytes": 1322263040,
+    "output_bytes": 464,
+    "output_sha256": "d37f8745b2191fe8ef788a11a22024bb068738d4ba0a1faaa8614cb1c4df7e7d",
+    "ordered": true,
+    "unique_paths": true,
+    "finite_probabilities_in_range": true,
+    "scores": [
+      0.11928189545869827,
+      0.22531403601169586,
+      0.7480887174606323,
+      0.8920299410820007
+    ]
+  },
+  "unchanged_repeat": {
+    "return_code": 0,
+    "elapsed_seconds": 20.211202197000148,
+    "cuda_peak_allocated_bytes": 1322263040,
+    "output_byte_exact": true,
+    "output_sha256": "d37f8745b2191fe8ef788a11a22024bb068738d4ba0a1faaa8614cb1c4df7e7d"
+  },
+  "pe_core_fallback": {
+    "return_code": 0,
+    "device": "Tesla T4",
+    "batch_size": 4,
+    "total_parameters": 315776001,
+    "elapsed_seconds": 11.245559420000063,
+    "cuda_peak_allocated_bytes": 1322263040,
+    "output_sha256": "280264334718a4d82e3df6bdabf46f6ebdb7d69e1e6faa265cdbec859a02ac13",
+    "scores": [
+      0.15487632155418396,
+      0.37694859504699707,
+      0.7343273162841797,
+      0.9728315472602844
+    ]
+  },
+  "failure_observed": {
+    "command": "/usr/bin/time -v ...",
+    "result": "FileNotFoundError before inference because /usr/bin/time is absent from the Kaggle image",
+    "effect_on_verified_runs": "none; elapsed time and CUDA peak allocation were recorded inside the unchanged Python runner"
+  },
+  "claim_boundary": "This verifies hashes, loading, preprocessing, inference, blending, output structure, repeatability and one-device feasibility for four frozen images. It is not an accuracy, throughput-at-scale, CPU, MPS or hidden-set claim."
+}

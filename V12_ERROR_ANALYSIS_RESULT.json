@@ -1,0 +1,89 @@
+{
+  "boundary": "The threshold is illustrative and was not selected, tuned or calibrated. ROC AUC is the organizer metric; this summary is post-selection error analysis.",
+  "clean_roc_auc": 0.9906692504882812,
+  "fake_rows": 512,
+  "highest_scoring_authentic": [
+    {
+      "image_sha256": "70927d740e1134f8e4cda71489c1ea3212623819060b3485f23aef16ba580b11",
+      "index": 224,
+      "label": 0,
+      "score": 0.975159764289856,
+      "source_filename": "8f47fa0424a6ea44f7b9.jpg"
+    },
+    {
+      "image_sha256": "15f29a2695a3daed5e4203f79f73c2a9a1ed693e5268d8101a53988d261ef5f8",
+      "index": 39,
+      "label": 0,
+      "score": 0.9504769444465637,
+      "source_filename": "c44b775ef7340d5ed443.jpg"
+    },
+    {
+      "image_sha256": "5e8685f7d1fccb8bdae858e27f7c6ea69f6b9b8ca8fc31123407fe5b1663ab09",
+      "index": 185,
+      "label": 0,
+      "score": 0.9491956830024719,
+      "source_filename": "2f71ba893eff11885652.jpg"
+    },
+    {
+      "image_sha256": "4e19c713e5d64d9526834391d92e7c417e496d9b5a4b7df3cb4ed646a9e29c59",
+      "index": 144,
+      "label": 0,
+      "score": 0.9295644164085388,
+      "source_filename": "5eb1ad06c49108fe38b9.jpg"
+    },
+    {
+      "image_sha256": "5bed4ba3cf17f8e9c4b8d815bf19664df3220495e42826ff707991c5537d290b",
+      "index": 176,
+      "label": 0,
+      "score": 0.9252561330795288,
+      "source_filename": "95fd86e3cf843212b72b.jpg"
+    }
+  ],
+  "illustrative_threshold": 0.5,
+  "lowest_scoring_ai": [
+    {
+      "image_sha256": "c086faca043fb16cff9b6cb5ef6b1716d1c18531778415c5839153f4c9e42e97",
+      "index": 883,
+      "label": 1,
+      "score": 0.3511151373386383,
+      "source_filename": "ebcb46990c7f23a5aa72.jpg"
+    },
+    {
+      "image_sha256": "af46974e8d3378148c07ab1bc8d0d31b5733f343d6cc11db5b79071f77f00b32",
+      "index": 856,
+      "label": 1,
+      "score": 0.36718302965164185,
+      "source_filename": "e25d0bbc3a5f5ef5695a.jpg"
+    },
+    {
+      "image_sha256": "37c1862992500e4f7d3e8de3c5b02dae31d25e5bb55777e1744cd7e2942f47f0",
+      "index": 639,
+      "label": 1,
+      "score": 0.3979957699775696,
+      "source_filename": "8d415ff2a8df85932cfd.jpg"
+    },
+    {
+      "image_sha256": "8e6865e58492dff4fea46abcc29086d927a9b6f2b2f4fb0e9c711e7468d60d46",
+      "index": 787,
+      "label": 1,
+      "score": 0.43053996562957764,
+      "source_filename": "e164fe9daebe1f9f3634.jpg"
+    },
+    {
+      "image_sha256": "85227a48cbf4a11d506f26ec820423113832d3f02c269c0f9e909f06444fba6b",
+      "index": 772,
+      "label": 1,
+      "score": 0.5644659996032715,
+      "source_filename": "29997349d244af25b6ba.jpg"
+    }
+  ],
+  "real_rows": 512,
+  "rows": 1024,
+  "status": "completed_error_summary",
+  "threshold_summary": {
+    "false_negative_rate": 0.0078125,
+    "false_negatives": 4,
+    "false_positive_rate": 0.314453125,
+    "false_positives": 161
+  }
+}

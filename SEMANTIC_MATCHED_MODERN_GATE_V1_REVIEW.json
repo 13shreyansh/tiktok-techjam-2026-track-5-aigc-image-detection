@@ -1,0 +1,40 @@
+{
+  "status": "rejected_before_candidate_scoring",
+  "reviewed_at": "2026-08-31T19:30:00+08:00",
+  "builder_commit": "d098cb4",
+  "gate_manifest_sha256": "bf313b802ba67cd2235cb9cc5e6f0ac347c9d040b9f6d0483a137eb78d63b5cf",
+  "gate_report_sha256": "9156b4b0f5b796768caf5a30c9fdfd77daf8353c460397aaf3b71f23c0290372",
+  "rows": 288,
+  "pairs": 144,
+  "candidate_detector_scores_read": false,
+  "build_attempts": [
+    {
+      "device": "mps",
+      "returncode": 1,
+      "result": "failed_before_feature_extraction",
+      "error": "PyTorch reported that the MPS backend requires macOS 13.0+ in the managed shell."
+    },
+    {
+      "device": "cpu",
+      "returncode": 0,
+      "elapsed_seconds": 80.7138729095459,
+      "ru_maxrss_raw": 1629175808,
+      "result": "built_not_scored"
+    }
+  ],
+  "numerical_matching": {
+    "selected_cosine_mean": 0.5162196186267667,
+    "real_pool_cosine_mean": 0.3094678223133087
+  },
+  "visual_review": {
+    "representative_prompt_groups_reviewed": 8,
+    "finding": "Several real/fake pairs were only broadly related and did not control scene content tightly enough.",
+    "examples": [
+      "prompt 23: household appliance versus transparent battery box",
+      "prompt 549: giraffes versus pyramids and camel riders",
+      "prompt 739: toy scene versus multi-panel treasure storyboard"
+    ]
+  },
+  "decision": "Do not score any candidate detector on v1. Select unused prompts by text-to-real matchability and rebuild.",
+  "boundary": "The rejection is based only on candidate-independent data QA and occurred before PE, DINO, blend or v6 scores were computed on this gate."
+}

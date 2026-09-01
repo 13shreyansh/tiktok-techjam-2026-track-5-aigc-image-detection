@@ -1,0 +1,78 @@
+{
+  "status": "verified_private_not_published",
+  "selected_runtime_mode": "pe_core",
+  "organizer_parameter_limit_exclusive": 2000000000,
+  "ensemble_total_parameters": 619004930,
+  "combined_checkpoint_bytes": 2476225646,
+  "checkpoints": {
+    "pe_core": {
+      "filename": "models/v12_pe_core.pt",
+      "model_name": "vit_pe_core_large_patch14_336",
+      "parameters": 315776001,
+      "bytes": 1263202331,
+      "sha256": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+      "distribution_url": null
+    },
+    "dinov2_control": {
+      "filename": "models/v12_dinov2.pt",
+      "model_name": "vit_large_patch14_dinov2.lvd142m",
+      "parameters": 303228929,
+      "bytes": 1213023315,
+      "sha256": "db07f30cbc94e4972f4a8c72c95bbe5df0dcd40b2dbd494ad82dc324cc1e2b5b",
+      "distribution_url": null
+    }
+  },
+  "inference_contract": {
+    "default_mode": "pe_core",
+    "selected_parameters": 315776001,
+    "selected_checkpoint_bytes": 1263202331,
+    "pe_core_probability_weight": 0.5,
+    "dinov2_probability_weight": 0.5,
+    "blend_mode_role": "optional_diagnostic_only",
+    "arithmetic": "float32_sigmoid_then_probability_blend",
+    "loading_policy": "sequential_models_to_reduce_peak_device_memory",
+    "default_batch_size": 1,
+    "image_size": 224,
+    "preprocess_mode": "short_side_crop",
+    "codec_normalization": "jpeg_q96"
+  },
+  "training_lineage": {
+    "package_inventory_sha256": "ec78d74e62d8e1b1f75e661f2ea3338fa95be11e96694a3ed168b463fe314fa6",
+    "train_rows": 13574,
+    "real_rows": 6787,
+    "fake_rows": 6787,
+    "organizer_demo_rows": 0,
+    "recorded_noncommercial_rows": 0,
+    "train_eval_byte_overlap": 0,
+    "canonicalization": "exif_transpose_center_square_resize336_jpeg_q96_subsampling0"
+  },
+  "private_preservation": {
+    "dataset_title": "Track5 V12 Exact Checkpoints and Gates",
+    "visibility_readback": "Private",
+    "recovered_checkpoint_hashes_verified_after_session_restart": true,
+    "publicly_accessible": false
+  },
+  "verified_runtime": {
+    "device": "Tesla T4",
+    "torch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "four_image_elapsed_seconds": 19.423462479000136,
+    "repeat_elapsed_seconds": 20.211202197000148,
+    "cuda_peak_allocated_bytes": 1322263040,
+    "output_byte_exact_repeat": true,
+    "output_sha256": "d37f8745b2191fe8ef788a11a22024bb068738d4ba0a1faaa8614cb1c4df7e7d"
+  },
+  "verified_selected_mps_runtime": {
+    "device": "Apple M5 Pro MPS",
+    "torch": "2.8.0",
+    "batch_size": 1,
+    "default_mode_override_present": false,
+    "four_image_elapsed_seconds": 2.533843167,
+    "output_sha256": "767096b0c1ffb963fe12947e1038f1f5b1416521aaa42d5c637532ae09419157"
+  },
+  "selection_boundary": "PE-Core-L was selected by the checksum-bound one-shot rule in NTIRE_V12_FINAL_ARBITRATION_RESULT.json. The gate is consumed and cannot authorize further weight, threshold or preprocessing search.",
+  "distribution_blockers": [
+    "PE-Core-L checkpoint has no public immutable distribution URL",
+    "logged-out public installation and run have not been verified"
+  ]
+}

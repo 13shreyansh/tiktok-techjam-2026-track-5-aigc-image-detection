@@ -1,0 +1,83 @@
+{
+  "status": "frozen_before_training_or_fresh_gate_scoring",
+  "observed_failure": {
+    "source": "CIFAR100_LOWRES_GATE_RESULT.json",
+    "v6_noise_sigma_0_10_auc": 0.44934201388888895,
+    "blend_noise_sigma_0_10_auc": 0.4739149305555556,
+    "mean_score_inversion": true,
+    "consumed_for_selection": true
+  },
+  "candidate": {
+    "name": "v10-lowres-paired",
+    "parent_data_recipe": "v9-frontier-capped",
+    "single_intervention": "add a disjoint balanced 5,000-real plus 5,000-fake CIFAKE train-only supplement and reserve 25% of each label sampling mass for the combined matched low-resolution pair",
+    "unchanged": [
+      "vit_pe_core_large_patch14_336 reconstructed at checkpoint image_size 224",
+      "frozen backbone with 1,025 trainable classifier parameters",
+      "seed 20260829",
+      "AdamW learning rate 0.001 and weight decay 0.0001",
+      "one epoch",
+      "at most one workshop-listed transform per image",
+      "15% of fake-label sampling mass for the 18-model Qwen frontier block"
+    ],
+    "training_rows": 29534,
+    "repair_manifest_sha256": "b80529e23332a181e71dc76dba100d4716e394621612447b0801c26f87a64bf9",
+    "repair_package": {
+      "bytes": 16227961,
+      "sha256": "3643b283fae9793e05ea0ef80cabc84d34dfd9128f794e73d39e46b803274f8d",
+      "inventory_sha256": "201b27679d10be78a25766863c5406822b12557ea269ec870ff9cbaca9c8d3ac",
+      "packaged_manifest_sha256": "9ef468f4b34e472d3e46fdebf58c2659a7b1cf0991720a1c6739f475bf529f6f"
+    },
+    "pre_training_data_hygiene_correction": {
+      "reason": "fail-closed checks found two byte-identical CIFAKE fake images under different training filenames and five supplement images overlapping the frozen v6 gates",
+      "action": "select the supplement only after hashing and excluding every v6 train, selection-gate and content-gate image; retain 5000 rows per label and every frozen training rule",
+      "candidate_updates_before_correction": 0,
+      "v6_train_repair_content_hash_overlap_after_correction": 0,
+      "v6_frozen_gate_repair_content_hash_overlap_after_correction": 0
+    },
+    "demo_only_rows": 0
+  },
+  "fresh_promotion_gate": {
+    "scoring_allowed_only_after_candidate_and_rules_are_frozen": true,
+    "new_cifar100_real_rows": 1000,
+    "cifar100_hash_rank_window_per_class": "[10,20)",
+    "prior_cifar100_pixel_hash_overlap": 0,
+    "new_qwen_fake_rows": 144,
+    "qwen_models": 18,
+    "qwen_prompt_ids": [85, 202, 214, 316, 489, 551, 728, 987],
+    "prior_qwen_prompt_overlap": 0,
+    "prior_qwen_pixel_hash_overlap": 0,
+    "v8_training_pixel_hash_overlap": 0,
+    "package_bytes": 146586784,
+    "package_sha256": "1dd7d460a8a9096d17499dd79cc74d7c4aa7bf0cb63a30435fd6d3e709b32cbf",
+    "inventory_sha256": "b2357d4487faad00e41084329ecbd0c52a284fd61291de675039efcccf3efac2",
+    "conditions": ["clean", "gaussian_noise_sigma_0.10"],
+    "training_tuning_calibration_thresholding_allowed": false
+  },
+  "fixed_ensemble": {
+    "v6_probability_weight": 0.75,
+    "v10_probability_weight": 0.25,
+    "no_weight_search": true
+  },
+  "promotion_rules": {
+    "fresh_gate": {
+      "clean_auc_drop_from_v6_maximum": 0.01,
+      "noise_auc_minimum": 0.60,
+      "noise_auc_improvement_over_v6_minimum": 0.05,
+      "noise_authentic_mean_must_not_exceed_fake_mean": true
+    },
+    "existing_internal_screen": {
+      "selection_clean_auc_drop_from_v6_maximum": 0.002,
+      "selection_worst_pair_auc_drop_from_v6_maximum": 0.01,
+      "content_clean_auc_drop_from_v6_maximum": 0.002,
+      "content_worst_pair_auc_drop_from_v6_maximum": 0.01
+    },
+    "after_both_pass": [
+      "full workshop individual-transform matrix",
+      "NTIRE and Community Forensics non-regression",
+      "exact one-GPU batch/arithmetic contract",
+      "under-2B and runnable packaging gates"
+    ]
+  },
+  "decision_boundary": "Reject v10 or its fixed blend if any predeclared gate fails. Never use either CIFAR-100 gate, any Qwen audit/holdout prompt, or organizer demo-only resources for learning, thresholding, calibration or blend selection."
+}

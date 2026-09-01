@@ -1,0 +1,51 @@
+{
+  "status": "frozen_before_fixed_blend_scores",
+  "frozen_at": "2026-08-31T19:00:00+08:00",
+  "purpose": "Test whether a non-tuned equal-probability blend reduces representation-specific errors on the already opened v12 CIFAKE and SID diagnostic gates.",
+  "candidates": {
+    "pe_core": {
+      "checkpoint_sha256": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+      "weight": 0.5
+    },
+    "dinov2_control": {
+      "checkpoint_sha256": "db07f30cbc94e4972f4a8c72c95bbe5df0dcd40b2dbd494ad82dc324cc1e2b5b",
+      "weight": 0.5
+    }
+  },
+  "score_rule": "0.5 * pe_probability + 0.5 * dinov2_probability",
+  "conditions": [
+    "clean",
+    "jpeg_q90",
+    "jpeg_q70",
+    "jpeg_q50",
+    "jpeg_q30",
+    "blur_sigma_0.5",
+    "blur_sigma_1",
+    "blur_sigma_2",
+    "resize_0.5",
+    "resize_0.25",
+    "noise_sigma_0.02",
+    "noise_sigma_0.05",
+    "noise_sigma_0.10",
+    "brightness_0.8",
+    "brightness_1.2",
+    "contrast_0.8",
+    "contrast_1.2",
+    "saturation_0.8",
+    "saturation_1.2",
+    "center_crop_80"
+  ],
+  "decision_rule": {
+    "status_if_cifake_official_score_at_least_best_single_minus_0.005_and_cifake_worst_condition_at_least_best_single": "representation_hedge_candidate_only",
+    "otherwise": "do_not_advance",
+    "best_single_cifake_official_score": 0.9073823912742383,
+    "best_single_cifake_worst_condition_auc": 0.820027
+  },
+  "boundaries": [
+    "The weights are fixed and are not searched on either gate.",
+    "Both gates have already been opened, so this is a diagnostic and cannot be called fresh promotion evidence.",
+    "The SID gate is source-confounded and cannot overrule the matched-source CIFAKE result.",
+    "A numerical pass does not establish hidden-set transfer and does not replace the preserved v6 fallback by itself.",
+    "No organizer demo-only data are used."
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "status": "completed_diagnostic_only",
+  "completed_date_sgt": "2026-08-31",
+  "plan": "COMMUNITY_FORENSICS_V12_AUDIT_PLAN.json",
+  "gate": {
+    "source_rows": 624,
+    "rows_scored": 593,
+    "real_rows": 281,
+    "fake_rows": 312,
+    "fake_model_variants": 78,
+    "fake_rows_per_model": 4,
+    "source_identity_overlap_found_before_scoring": 31,
+    "excluded_overlap_rows": 31,
+    "v12_train_identity_overlap_after_filter": 0,
+    "v12_eval_identity_overlap_after_filter": 0,
+    "package_sha256": "123a0e4bb8ae484a804a6a39a9f20063e62116e260fef813efe44824cc11a084",
+    "package_inventory_sha256": "5b345de1d57badd4a9bbc6b33876a29f2660c9cd173cff54aa9a379038578943",
+    "source_manifest_sha256": "2d770ff99f781320a10a9a15fa03de79d2cab40929b09fb1b4db7e759848398c",
+    "derived_disjoint_manifest_sha256": "5496fd110f73873c1d01f520ae3cf44893d3b036c3ab66f65ce4ef3ef04881d5"
+  },
+  "conditions": 20,
+  "candidates": {
+    "pe_core": {
+      "checkpoint_sha256": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+      "clean_auc": 0.9502007482434529,
+      "pooled_robust_auc": 0.9472959240675203,
+      "official_style_score": 0.9487483361554866,
+      "worst_individual_condition_auc": 0.823421388812848,
+      "clean_worst_fake_model_auc": 0.7624555160142348,
+      "pooled_worst_fake_model_auc": 0.7530522668349089,
+      "elapsed_seconds": 328.7248771,
+      "peak_cuda_allocated_bytes": 2895338496,
+      "progress_sha256": "c60df320462a7651f6b185b2e1873a43cc8f5cf77b6d0a42ae7698dfaae4b922",
+      "passed_all_frozen_floors": true
+    },
+    "dinov2_control": {
+      "checkpoint_sha256": "db07f30cbc94e4972f4a8c72c95bbe5df0dcd40b2dbd494ad82dc324cc1e2b5b",
+      "clean_auc": 0.8117643033123458,
+      "pooled_robust_auc": 0.8075648652911545,
+      "official_style_score": 0.8096645843017501,
+      "worst_individual_condition_auc": 0.7969933388082855,
+      "clean_worst_fake_model_auc": 0.5480427046,
+      "pooled_worst_fake_model_auc": 0.5506957246,
+      "elapsed_seconds": 318.181711,
+      "peak_cuda_allocated_bytes": 2979893760,
+      "progress_sha256": "a40461da67e54b58770b1f5928945cd07b16f077ceb098e60e71d4b3cd5f0e33",
+      "passed_all_frozen_floors": false,
+      "failed_floors": ["clean_auc >= 0.85"]
+    },
+    "fixed_equal_blend": {
+      "weights": {"pe_core": 0.5, "dinov2_control": 0.5},
+      "weights_searched": false,
+      "clean_auc": 0.9183319645953097,
+      "pooled_robust_auc": 0.9113349075716364,
+      "official_style_score": 0.9148334360834731,
+      "worst_individual_condition_auc": 0.84760813030386,
+      "result_sha256": "afb67ac5cb9ae22a26a1147adb1baea7f784b983ea80d552091ab05ec9b86ca9"
+    }
+  },
+  "comparison": {
+    "blend_minus_pe_clean_auc": -0.03186878364814316,
+    "blend_minus_pe_pooled_robust_auc": -0.0359610164958839,
+    "blend_minus_pe_official_style_score": -0.033914900072013476,
+    "blend_minus_pe_worst_condition_auc": 0.024186741491011965
+  },
+  "interpretation": "PE-Core-L passed every frozen floor and was materially stronger on aggregate and per-model breadth. The fixed equal blend improved the worst individual transformation but reduced all three aggregate AUC summaries. DINOv2-L failed the frozen clean floor. This previously opened, latent-diffusion-heavy gate is diagnostic only; four fakes per named model make per-model estimates high variance, and the mixed real side includes sources not eligible for submission training.",
+  "decision_boundary": "No training, calibration, threshold tuning, preprocessing tuning, candidate switching or further blend-weight search may use this consumed gate. These numbers are not hidden-set estimates."
+}

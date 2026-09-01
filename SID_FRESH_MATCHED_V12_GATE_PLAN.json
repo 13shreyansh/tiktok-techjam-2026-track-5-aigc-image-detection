@@ -1,0 +1,56 @@
+{
+  "status": "frozen_unscored",
+  "purpose": "Falsify the v12 candidates on fresh high-resolution real and synthetic images from one official SID_Set validation shard.",
+  "source": {
+    "dataset": "SID_Set",
+    "revision": "dc03ead57929879319ce30a82bfcfb8d317b10bd",
+    "shard": "validation-00001-of-00034.parquet",
+    "shard_bytes": 505844042,
+    "shard_sha256": "1447bbd98adf7eda68fca5615560c6b1de34c8e30157ff6b34ebd1e015a18042",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "selection": {
+    "rows_per_label": 284,
+    "rows": 568,
+    "policy": "lowest source SHA-256 per label after excluding every locally recorded SID JSONL identity",
+    "excluded_recorded_sid_hashes": 1883,
+    "exclusion_manifest_count": 34,
+    "canonicalization": "exif_transpose_center_square_resize336_jpeg_q96_subsampling0",
+    "train_eval_use": "evaluation only; never train, tune, calibrate or select a threshold on these rows"
+  },
+  "frozen_artifacts": {
+    "unique_source_images": 568,
+    "unique_canonical_images": 568,
+    "source_manifest_sha256": "5f0815ac6ffac25bfd7724747a53d7536ea464d600dab9a3071480e724313c7f",
+    "local_canonical_manifest_sha256": "d5480315eecea0123fb872a487420ea46fadffb4b8cc03bf51c574cae3577af3",
+    "source_derivative_inventory_sha256": "ac47657b1b87ae16eee9ac936c393f87fc21842de0faac4cf5967234c9e0fb40",
+    "packaged_manifest_sha256": "092f981ce515ee2061b9f406dd34e358cf0dc4aac5076f65675095135dcb7a27",
+    "package_inventory_sha256": "19ca0c433aa4e5cb04f8e36262ff9ea430c382987bc0c5d535d3de42e8f71ca3",
+    "package_bytes": 37168107,
+    "package_sha256": "439434c4e59b3dbbd4cbe98b9b94464f9e201a3e60cb4560dd87e11ff31f74b0",
+    "source_identity_overlap_with_v12_and_cifake_gate": 0,
+    "canonical_identity_overlap_with_v12_and_cifake_gate": 0
+  },
+  "candidates": [
+    "vit_pe_core_large_patch14_336 v12 checkpoint f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+    "vit_large_patch14_dinov2.lvd142m v12 checkpoint db07f30cbc94e4972f4a8c72c95bbe5df0dcd40b2dbd494ad82dc324cc1e2b5b"
+  ],
+  "evaluation": {
+    "evaluator_path": "scripts/kaggle_evaluate_sid_fresh_matched_v12_gate.py",
+    "evaluator_sha256": "557714af13d4cef74d07a1f30679c9f8c4968cad46f2dc55b8ff67cc72b7d837",
+    "evaluator_bytes": 13175,
+    "conditions": "clean plus the 19 individually applied workshop conditions",
+    "primary": "clean fresh same-source ROC AUC",
+    "secondary": "0.5 clean AUC + 0.5 pooled transformed AUC, worst individual condition AUC",
+    "clean_interpretation": {
+      "at_least_0.80": "useful fresh high-resolution same-source evidence, still not broad transfer proof",
+      "0.65_to_below_0.80": "material source or content dependence warning",
+      "below_0.65": "reject the representation as a trusted primary candidate"
+    },
+    "minimum_transformed_floor": 0.60
+  },
+  "organizer_demo_rows": 0,
+  "training_allowed_rows": 0,
+  "boundary": "SID_Set does not expose the exact generator identity in this extracted shard. A pass cannot establish unseen-generator-family or organizer-hidden-set performance."
+}

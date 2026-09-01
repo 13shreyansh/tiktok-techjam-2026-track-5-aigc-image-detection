@@ -1,0 +1,76 @@
+{
+  "status": "completed",
+  "completed_date_sgt": "2026-08-31",
+  "purpose": "post-score real-collection rotation diagnostic",
+  "gate": {
+    "rows": 288,
+    "real_rows": 144,
+    "fake_rows": 144,
+    "semantic_pairs": 144,
+    "prompts": 8,
+    "modern_generator_labels": 18,
+    "real_source": "Open Images V7 validation via CVDF",
+    "fake_source": "the exact 144 already-consumed Qwen Image Bench identities",
+    "training_allowed_rows": 0,
+    "organizer_demo_rows": 0,
+    "v12_rows_compared_for_identity": 15574,
+    "source_identity_overlap": 0,
+    "package_sha256": "c9862550a1476e60b13e9c262e751d3d75e8c582a71d60496c064185b63e4906",
+    "package_inventory_sha256": "ed12e13391e84770aa3296eb1db1e13d97e74fba1d65fca480bd77cac2250382",
+    "manifest_sha256": "a696d1a781dacaa66183fb96e6a4078ebdf3dd429dedb657524ddf846b3667d6"
+  },
+  "results": {
+    "pe_core": {
+      "checkpoint_sha256": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+      "clean_auc": 0.9818913966049383,
+      "paired_accuracy": 0.9930555555555556,
+      "worst_prompt_auc": 0.9197530864197532,
+      "worst_generator_auc_diagnostic_only": 0.875,
+      "pooled_robust_auc": 0.9699505563677712,
+      "official_style_score": 0.9759209764863548,
+      "worst_individual_condition_auc": 0.9397424768518519,
+      "pooled_worst_generator_auc": 0.9258173187903971,
+      "clean_auc_drop_from_coco": 0.01634837962962965,
+      "official_style_drop_from_coco": 0.0202531267633632,
+      "predeclared_source_drop_alarm_triggered": false,
+      "elapsed_seconds": 118.05634331703186,
+      "cuda_peak_allocated_bytes": 2895338496,
+      "progress_sha256": "776bf0573c24c9cccfc914f0d0acaee13791eafe6871fef3cc9874e7387e78ab"
+    },
+    "dinov2_control": {
+      "checkpoint_sha256": "db07f30cbc94e4972f4a8c72c95bbe5df0dcd40b2dbd494ad82dc324cc1e2b5b",
+      "clean_auc": 0.6538146219135803,
+      "paired_accuracy": 0.6701388888888888,
+      "worst_prompt_auc": 0.3179012345679012,
+      "worst_generator_auc_diagnostic_only": 0.515625,
+      "pooled_robust_auc": 0.6290644183252967,
+      "official_style_score": 0.6414395201194385,
+      "worst_individual_condition_auc": 0.5774739583333333,
+      "pooled_worst_generator_auc": 0.5348544744536781,
+      "clean_auc_drop_from_coco": 0.1889467592592592,
+      "official_style_drop_from_coco": 0.1857095519240962,
+      "source_dependence_alarm": true,
+      "elapsed_seconds": 102.4298083782196,
+      "cuda_peak_allocated_bytes": 2979893760,
+      "progress_sha256": "625d1f6a6cb9f4bc23257ae338501862553bd41308dc268272f3f1452006e12f"
+    },
+    "fixed_equal_blend": {
+      "rule": "0.5 * pe_probability + 0.5 * dinov2_probability",
+      "weights_searched": false,
+      "clean_auc": 0.9142795138888888,
+      "pooled_robust_auc": 0.890288758720632,
+      "official_style_score": 0.9022841363047605,
+      "worst_individual_condition_auc": 0.8345389660493827,
+      "clean_auc_drop_from_coco": 0.0732301311728395,
+      "official_style_drop_from_coco": 0.0787476541927429,
+      "result_sha256": "94758c1c2e409246ac5c5defc728bcdf0f364c0eb28557b86f71780bb58219c2"
+    }
+  },
+  "interpretation": {
+    "pe_core": "The small predeclared COCO-to-Open-Images drop is evidence against a simple COCO-only real-source shortcut, but does not prove hidden transfer because Open Images is one additional collection and the fake identities were reused.",
+    "dinov2_control": "The large drop is a material real-source-dependence alarm. DINOv2 is not a universally safe representation hedge.",
+    "fixed_equal_blend": "Equal blending materially harms PE on this source rotation even though it helped on matched-source low-resolution CIFAKE. Complementarity is distribution-dependent."
+  },
+  "decision_boundary": "This gate was frozen as diagnostic-only. It may not train, tune, calibrate, reweight, select or promote a model. It updates the risk register and motivates separately frozen checks only.",
+  "hidden_set_claim": false
+}

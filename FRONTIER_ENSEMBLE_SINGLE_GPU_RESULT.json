@@ -1,0 +1,45 @@
+{
+  "completed": true,
+  "scope": "complete already-open 576-image clean Qwen holdout",
+  "arithmetic_contract": "one GPU; physical batch 64; sigmoid and 75/25 blend in FP16; FP32 conversion only after blend",
+  "rows": 576,
+  "manifest_sha256": "d584b32c5b023a7a88bd1e6455a9dbc9bef852eb4b1fbd1fb5e35039120d98d1",
+  "promotion_package_inventory_sha256": "b1b8e5b4c9882b3e807c368a60633f1d5f971e7b0d81b2390fe3d08227dca02f",
+  "v6_checkpoint_sha256": "48ea50773fbd1b7247fff25fde6f985183e29f2eb517b5ac0f6319c1fe38b644",
+  "v9_checkpoint_sha256": "dd6b26c7849489447c7e96823f5b5e87c31623ca8ae0d28a5b162bb2dcb65075",
+  "checkpoint_bytes": {
+    "v6": 631645967,
+    "v9": 1263202267
+  },
+  "load_seconds": 16.143464613000106,
+  "saved_prediction_comparison": {
+    "v6": {
+      "max_absolute_score_drift": 0,
+      "mean_absolute_score_drift": 0,
+      "auc_drift": 0,
+      "max_rank_displacement": 0
+    },
+    "blend": {
+      "max_absolute_score_drift": 0,
+      "mean_absolute_score_drift": 0,
+      "auc_drift": 0,
+      "max_rank_displacement": 0
+    }
+  },
+  "run": {
+    "count": 576,
+    "physical_batch_size": 64,
+    "batches": 9,
+    "input_tensor_sha256": "beac1b5cf272ced96d3c0c607721bf211939e036d8db98bae5108f0090caad77",
+    "v6_auc": 0.933274257330247,
+    "blend_auc": 0.9571578414351852,
+    "wall_seconds_including_decode_and_input_hash": 26.02118683200024,
+    "model_forward_seconds": 13.804975138998998,
+    "images_per_forward_second": 41.7240881783845,
+    "cuda_peak_allocated_bytes": 4275770368
+  },
+  "passes": true,
+  "torch": "2.8.0+cu126",
+  "cuda_runtime": "12.6",
+  "gpu": "Tesla T4"
+}

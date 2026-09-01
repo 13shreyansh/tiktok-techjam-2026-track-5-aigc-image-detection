@@ -1,0 +1,101 @@
+{
+  "status": "completed",
+  "completed_date_sgt": "2026-08-31",
+  "gate": {
+    "rows": 288,
+    "real_rows": 144,
+    "fake_rows": 144,
+    "semantic_pairs": 144,
+    "prompts": 8,
+    "modern_generator_labels": 18,
+    "training_allowed_rows": 0,
+    "organizer_demo_rows": 0,
+    "v12_rows_compared_for_identity": 15574,
+    "source_identity_overlap": 0,
+    "canonical_identity_overlap": 0,
+    "package_sha256": "52f6749bed16015a1511e6cc6e9e7072d50350b3755148e1c3bea6d645288d69",
+    "inventory_sha256": "86da500fcbbfe76730940bbbf82d789d6773e90086b3f48ab0889adb29ad8496",
+    "manifest_sha256": "8f3372c1e37d0b508e2333e72ee65de18a18fa97b5270c751a07cb2f8368a792"
+  },
+  "frozen_policy": {
+    "candidate_scores_seen_before_freeze": false,
+    "blend": "0.5 * pe_core_probability + 0.5 * dinov2_control_probability",
+    "blend_weights_searched": false,
+    "training_tuning_calibration_or_selection_allowed": false,
+    "floors": {
+      "clean_auc": 0.7,
+      "paired_accuracy": 0.65,
+      "worst_prompt_auc": 0.55,
+      "official_style_score": 0.65,
+      "worst_individual_transform_auc": 0.55
+    }
+  },
+  "results": {
+    "pe_core": {
+      "checkpoint_sha256": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+      "clean_auc": 0.9982397762345679,
+      "paired_accuracy": 1.0,
+      "worst_prompt_auc": 0.9938271604938271,
+      "worst_generator_auc_diagnostic_only": 0.96875,
+      "pooled_robust_auc": 0.994108430264868,
+      "official_style_score": 0.996174103249718,
+      "worst_individual_condition_auc": 0.9848090277777778,
+      "worst_condition": "resize_0.25",
+      "passes_all_frozen_floors": true,
+      "elapsed_seconds": 119.84978818893433,
+      "cuda_peak_allocated_bytes": 2895338496,
+      "progress_bytes": 72403,
+      "progress_sha256": "7285b1e3ebefc1092619f560508e4245c028ec17996d291d13792d8c33af91a5"
+    },
+    "dinov2_control": {
+      "checkpoint_sha256": "db07f30cbc94e4972f4a8c72c95bbe5df0dcd40b2dbd494ad82dc324cc1e2b5b",
+      "clean_auc": 0.8427613811728395,
+      "paired_accuracy": 0.8819444444444444,
+      "worst_prompt_auc": 0.7021604938271605,
+      "worst_generator_auc_diagnostic_only": 0.640625,
+      "pooled_robust_auc": 0.8115367629142299,
+      "official_style_score": 0.8271490720435347,
+      "worst_individual_condition_auc": 0.765528549382716,
+      "worst_condition": "jpeg_q50",
+      "passes_all_frozen_floors": true,
+      "elapsed_seconds": 107.86530756950378,
+      "cuda_peak_allocated_bytes": 2979893760,
+      "progress_bytes": 76875,
+      "progress_sha256": "47dd3a833c475c9b6f5ff5b3034640a3100bfae7399d1d4eb91d2311a3a65967"
+    },
+    "fixed_equal_blend": {
+      "clean_auc": 0.9875096450617283,
+      "paired_accuracy": 1.0,
+      "worst_prompt_auc": 0.95679012345679,
+      "worst_generator_auc_diagnostic_only": 0.921875,
+      "pooled_robust_auc": 0.9745539359332785,
+      "official_style_score": 0.9810317904975034,
+      "worst_individual_condition_auc": 0.9495081018518519,
+      "worst_condition": "resize_0.25",
+      "passes_all_frozen_floors": true,
+      "result_bytes": 13756,
+      "result_sha256": "b182c6ca1deda3ee92af06e97c22586a40069546d52ca5f051e91b13746f39d1"
+    }
+  },
+  "runtime": {
+    "gpus": ["Tesla T4", "Tesla T4"],
+    "torch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "parallel_processes": 2,
+    "conditions_per_candidate": 20
+  },
+  "preservation": {
+    "checkpoint_recovery_after_session_restart": "both recovered checkpoints matched their frozen SHA-256 values",
+    "kaggle_dataset_title": "Track 5 Semantic Modern V12 One Shot Audit",
+    "visibility_readback": "Private",
+    "submission_or_publication": false
+  },
+  "decision": {
+    "gate_consumed": true,
+    "may_tune_or_select_from_this_gate": false,
+    "blend_status": "remains the predeclared leading representation hedge from the prior matched-source CIFAKE comparison",
+    "hidden_set_claim": false
+  },
+  "caveat": "All fake rows still come from Qwen Image Bench and all real rows from fresh COCO train2017. Content pairing and identical JPEG canonicalization cannot rule out a collection-level source signature. Each generator diagnostic contains only eight pairs.",
+  "boundary": "One-shot audit only. No row may be used for training, tuning, calibration, preprocessing selection, blend weighting or model selection."
+}

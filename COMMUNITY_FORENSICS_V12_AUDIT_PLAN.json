@@ -1,0 +1,50 @@
+{
+  "status": "corrected_and_refrozen_before_v12_scoring",
+  "created_date_sgt": "2026-08-31",
+  "purpose": "independent synthetic-model breadth diagnostic for the exact v12 candidates",
+  "gate": {
+    "source_rows": 624,
+    "rows": 593,
+    "real_rows": 281,
+    "fake_rows": 312,
+    "fake_model_variants": 78,
+    "fake_rows_per_model": 4,
+    "fake_source": "OwensLab/CommunityForensics-Small pinned revision 6c539a534c07917307c381f5af4053c6091b5278",
+    "fake_family_boundary": "78 named latent-diffusion variants, not 78 independent architectures",
+    "real_sources": 5,
+    "training_allowed": false,
+    "organizer_demo_rows": 0,
+    "v12_train_rows_compared": 13574,
+    "v12_eval_rows_compared": 2000,
+    "initial_canonical_only_overlap_check": 0,
+    "initial_check_defect": "the first quick comparison omitted v12 source_image_sha256 identities",
+    "source_identity_overlap_found_before_scoring": 31,
+    "excluded_overlap_rows": 31,
+    "excluded_overlap_labels": {"0": 31},
+    "excluded_overlap_real_sources": {"CIFAKE-CIFAR10": 3, "SID_Set": 28},
+    "v12_train_identity_overlap_after_filter": 0,
+    "v12_eval_identity_overlap_after_filter": 0,
+    "package_sha256": "123a0e4bb8ae484a804a6a39a9f20063e62116e260fef813efe44824cc11a084",
+    "package_inventory_sha256": "5b345de1d57badd4a9bbc6b33876a29f2660c9cd173cff54aa9a379038578943",
+    "source_manifest_sha256": "2d770ff99f781320a10a9a15fa03de79d2cab40929b09fb1b4db7e759848398c",
+    "derived_disjoint_manifest_sha256": "5496fd110f73873c1d01f520ae3cf44893d3b036c3ab66f65ce4ef3ef04881d5"
+  },
+  "frozen_candidates": {
+    "pe_core": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+    "dinov2_control": "db07f30cbc94e4972f4a8c72c95bbe5df0dcd40b2dbd494ad82dc324cc1e2b5b"
+  },
+  "evaluation": {
+    "conditions": "clean plus the 19 individually applied workshop transformations",
+    "codec_contract": "each condition is followed by label-independent JPEG q96 normalization",
+    "fixed_blend": "0.5 * pe_probability + 0.5 * dinov2_probability",
+    "blend_weights_searched": false,
+    "floors": {
+      "clean_auc": 0.85,
+      "official_style_score": 0.8,
+      "worst_individual_condition_auc": 0.7,
+      "pooled_worst_fake_model_auc": 0.5
+    }
+  },
+  "interpretation": "A pass is evidence of transfer to a v12-identity-disjoint latent-diffusion-heavy source. A failure is a breadth alarm. Four fakes per named model make per-model values high variance; the mixed real side includes sources not eligible for submission training. The class counts are unequal after overlap removal, which does not change ROC AUC but does change threshold-based summaries, so no threshold metric is used.",
+  "decision_boundary": "This previously opened external source remains audit-only. It may not train, calibrate, tune blend weights or support a hidden-score claim. The v12 comparison is diagnostic and no extra blend weights may be tried."
+}

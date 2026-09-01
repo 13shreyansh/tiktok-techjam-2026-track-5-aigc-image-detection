@@ -1,0 +1,24 @@
+{
+  "status": "reproducible_gate_accepted_before_scoring",
+  "accepted_build": "semantic_matched_modern_gate_v6",
+  "rebuild": "semantic_matched_modern_gate_v7_reprocheck",
+  "accepted_manifest_sha256": "6becce907305f64778d6b6b645f36fd14eb9d43870eafbe4d254e8f5144731f9",
+  "rebuild_manifest_sha256": "fdad67bb6e3c99893ddfac158e1737700c836be208475eada504afe2ff5a1f65",
+  "manifest_hash_explanation": "The JSONL path field contains the output directory, so builds in different directories intentionally have different whole-file hashes.",
+  "path_independent_checks": {
+    "fake_feature_sha256_equal": true,
+    "fake_feature_sha256": "724e6fe98f55d8be2b7583d1c548f493198b70af7d4dbfb14de6c6f0777b96df",
+    "real_feature_sha256_equal": true,
+    "real_feature_sha256": "2adff8b115d2d0c4bb38daead0f931b0d4d3e3ad87709a548bc4be9f9ceb89d5",
+    "pair_label_source_sha256_derivative_sha256_cosine_rows_equal": true,
+    "row_count": 288,
+    "derivative_inventory_sha256_equal": true,
+    "derivative_inventory_sha256": "a4fa93940cf0b3df3ec42cb7f673f009917fb703663b9a9edb0258a71f0e79ee"
+  },
+  "rejected_builds": {
+    "versions": "v3-v5",
+    "reason": "The earlier timm vision-only loading route changed features and 65 of 144 real assignments across nominally identical runs.",
+    "candidate_detector_scores_observed": false
+  },
+  "boundary": "Reproducibility establishes a stable audit input. It does not establish absence of bias, hidden-set representativeness, or detector quality."
+}

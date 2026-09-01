@@ -1,0 +1,143 @@
+{
+  "status": "promotion_gates_passed_feasibility_pending",
+  "observed_at": "2026-08-30 SGT",
+  "evidence_source": "/kaggle/working/track5-frontier-ensemble-promotion/summary.json",
+  "evaluator_sha256": "10c258e251b3bb2f866a722700772502982cd17ba041a9e6d8ca0bfaf0d564c4",
+  "command_returncode": 0,
+  "completed": true,
+  "passes_all_promotion_gates": true,
+  "blend": {
+    "v6_probability_weight": 0.75,
+    "v9_probability_weight": 0.25,
+    "total_parameters": 631552002,
+    "v6_checkpoint_sha256": "48ea50773fbd1b7247fff25fde6f985183e29f2eb517b5ac0f6319c1fe38b644",
+    "v9_checkpoint_sha256": "dd6b26c7849489447c7e96823f5b5e87c31623ca8ae0d28a5b162bb2dcb65075"
+  },
+  "gates": {
+    "qwen_prompt_holdout": {
+      "rows": 576,
+      "manifest_sha256": "d584b32c5b023a7a88bd1e6455a9dbc9bef852eb4b1fbd1fb5e35039120d98d1",
+      "v6": {
+        "clean_auc": 0.933274257330247,
+        "pooled_robust_auc": 0.8902949872663812,
+        "official_score": 0.9117846222983141,
+        "clean_worst_pair_auc": 0.6433189655172414,
+        "pooled_worst_pair_auc": 0.5567732710860636,
+        "noise_sigma_0.10_auc": 0.7163025655864198
+      },
+      "blend": {
+        "clean_auc": 0.9571578414351852,
+        "pooled_robust_auc": 0.920319399826015,
+        "official_score": 0.9387386206306001,
+        "clean_worst_pair_auc": 0.7273706896551724,
+        "pooled_worst_pair_auc": 0.6140704102588594,
+        "noise_sigma_0.10_auc": 0.7551601080246914
+      },
+      "delta_blend_minus_v6": {
+        "clean_auc": 0.023883584104938183,
+        "pooled_robust_auc": 0.03002441255963373,
+        "official_score": 0.026953998332285956,
+        "clean_worst_pair_auc": 0.08405172413793094,
+        "pooled_worst_pair_auc": 0.057297139172795886,
+        "noise_sigma_0.10_auc": 0.03885754243827155
+      }
+    },
+    "ntire_shard5_full_audit": {
+      "rows": 512,
+      "manifest_sha256": "8327cb6ed314e9693c107719a875e4c6caf9825734206e3419d6c8c1e573a444",
+      "v6": {
+        "clean_auc": 0.9830856323242188,
+        "pooled_robust_auc": 0.9611169281428541,
+        "official_score": 0.9721012802335365,
+        "clean_worst_pair_auc": 0.9830856323242188,
+        "pooled_worst_pair_auc": 0.9611169281428541,
+        "noise_sigma_0.10_auc": 0.7534332275390625
+      },
+      "blend": {
+        "clean_auc": 0.9827651977539062,
+        "pooled_robust_auc": 0.9611752370057675,
+        "official_score": 0.9719702173798368,
+        "clean_worst_pair_auc": 0.9827651977539062,
+        "pooled_worst_pair_auc": 0.9611752370057675,
+        "noise_sigma_0.10_auc": 0.7556686401367188
+      },
+      "delta_blend_minus_v6": {
+        "clean_auc": -0.0003204345703125,
+        "pooled_robust_auc": 0.000058308862913358794,
+        "official_score": -0.00013106285369968163,
+        "clean_worst_pair_auc": -0.0003204345703125,
+        "pooled_worst_pair_auc": 0.000058308862913358794,
+        "noise_sigma_0.10_auc": 0.00223541259765625
+      }
+    },
+    "internal_3071": {
+      "rows": 3071,
+      "manifest_sha256": "cf869ce92e19a6f4881ab1b5a522f42a1dcb29019f420b947d23e85aa2943a0b",
+      "v6": {
+        "clean_auc": 0.9910834860206297,
+        "pooled_robust_auc": 0.9781003381114259,
+        "official_score": 0.9845919120660278,
+        "clean_worst_pair_auc": 0.8418329261672095,
+        "pooled_worst_pair_auc": 0.7423179585825956,
+        "noise_sigma_0.10_auc": 0.8680213422909882
+      },
+      "blend": {
+        "clean_auc": 0.990605914087948,
+        "pooled_robust_auc": 0.9781049994445171,
+        "official_score": 0.9843554567662325,
+        "clean_worst_pair_auc": 0.8381514657980457,
+        "pooled_worst_pair_auc": 0.7391623976257291,
+        "noise_sigma_0.10_auc": 0.8703752714440826
+      },
+      "delta_blend_minus_v6": {
+        "clean_auc": -0.0004775719326817196,
+        "pooled_robust_auc": 0.000004661333091182662,
+        "official_score": -0.00023645529979532398,
+        "clean_worst_pair_auc": -0.003681460369163836,
+        "pooled_worst_pair_auc": -0.003155560956866532,
+        "noise_sigma_0.10_auc": 0.002353929153094403
+      }
+    },
+    "community_forensics_624": {
+      "rows": 624,
+      "manifest_sha256": "2d770ff99f781320a10a9a15fa03de79d2cab40929b09fb1b4db7e759848398c",
+      "v6": {
+        "clean_auc": 0.9926086867192636,
+        "pooled_robust_auc": 0.9721271770467381,
+        "official_score": 0.9823679318830009,
+        "clean_worst_pair_auc": 0.9784289784289785,
+        "pooled_worst_pair_auc": 0.9169850937510218,
+        "noise_sigma_0.10_auc": 0.7947896120973045
+      },
+      "blend": {
+        "clean_auc": 0.9930144641683103,
+        "pooled_robust_auc": 0.9727456678750495,
+        "official_score": 0.9828800660216799,
+        "clean_worst_pair_auc": 0.9806674806674807,
+        "pooled_worst_pair_auc": 0.9200408381502565,
+        "noise_sigma_0.10_auc": 0.7966079059829061
+      },
+      "delta_blend_minus_v6": {
+        "clean_auc": 0.0004057774490466848,
+        "pooled_robust_auc": 0.0006184908283113355,
+        "official_score": 0.0005121341386790101,
+        "clean_worst_pair_auc": 0.0022385022385021935,
+        "pooled_worst_pair_auc": 0.0030557443992347277,
+        "noise_sigma_0.10_auc": 0.0018182938856016184
+      }
+    }
+  },
+  "execution": {
+    "torch": "2.8.0+cu126",
+    "cuda_runtime": "12.6",
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ],
+    "final_resume_elapsed_seconds": 4.507209539413452,
+    "full_matrix_elapsed_seconds": null,
+    "full_matrix_peak_allocated_bytes": null,
+    "note": "The final zero-return summary resumed all 80 saved conditions. Its elapsed time and peak-memory values describe the summary-only resume, not the earlier full inference process, whose final reporting crashed after all condition files were saved. Feasibility timing and peak memory remain pending."
+  },
+  "decision_boundary": "All predeclared statistical gates passed. Promotion to the runnable artifact remains pending batch-consistency, packaging, latency and peak-memory verification. The v6 artifact remains the immediate fallback."
+}

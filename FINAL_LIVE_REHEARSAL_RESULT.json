@@ -1,0 +1,37 @@
+{
+  "status": "final_live_rehearsal_passed_after_managed_sandbox_mps_denial",
+  "observed_date_sgt": "2026-09-01",
+  "selected_checkpoint_sha256": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+  "checkpoint_hash_verification": {
+    "command": "shasum -a 256 -c SELECTED_CHECKPOINT.sha256",
+    "return_code": 0,
+    "result": "models/v12_pe_core.pt: OK"
+  },
+  "managed_sandbox_attempt": {
+    "device": "mps",
+    "return_code": 1,
+    "inference_started": false,
+    "failure_stage": "model_to_device",
+    "reason": "The managed shell denied the Metal backend and reported MPS unavailable."
+  },
+  "approved_device_run": {
+    "command": "PYTHON_EXECUTABLE=.venv/bin/python AIGC_DEVICE=mps AIGC_V12_MODE=pe_core AIGC_BATCH_SIZE=1 ./run_v12.sh artifacts/demo-rehearsal-input <temporary-output>",
+    "return_code": 0,
+    "mode": "pe_core",
+    "device": "mps",
+    "batch_size": 1,
+    "images": 4,
+    "total_parameters": 315776001,
+    "elapsed_seconds": 3.02065625,
+    "output_bytes": 464,
+    "output_sha256": "767096b0c1ffb963fe12947e1038f1f5b1416521aaa42d5c637532ae09419157",
+    "probabilities_exactly_match_frozen_default_run": true,
+    "scores_in_filename_order": [
+      0.15488167107105255,
+      0.37695014476776123,
+      0.7343368530273438,
+      0.9728322625160217
+    ]
+  },
+  "boundary": "This is a final local checkpoint-integrity and Apple-MPS run-contract rehearsal. It is not accuracy, throughput, calibration, public-download or hidden-score evidence."
+}

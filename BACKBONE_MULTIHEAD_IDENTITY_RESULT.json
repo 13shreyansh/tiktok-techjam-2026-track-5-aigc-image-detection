@@ -1,0 +1,48 @@
+{
+  "status": "verified_for_fp16_shared_backbone_inference",
+  "observed_on": "2026-08-31",
+  "model_name": "vit_pe_core_large_patch14_336",
+  "image_size": 224,
+  "backbone_tensors": 308,
+  "v9_v10_full_precision": {
+    "exactly_equal": true,
+    "raw_sha256": "9dbe9740d698ff3e32d4026f74ea0ed758c0cf9afe12d7011d7943e4da1f8615",
+    "float32_canonical_sha256": "765fb4ba72cb86df852f77baae09ccd964aeb60aafb6d5bbf6dd8f1a2d6ff9d1"
+  },
+  "v6_inference_export_vs_v9": {
+    "v6_dtype": "torch.float16",
+    "v9_dtype": "torch.float32",
+    "v6_equals_v9_cast_to_fp16_for_all_backbone_tensors": true,
+    "unequal_tensors_after_cast": 0,
+    "maximum_absolute_difference_before_cast": 0.007038116455078125,
+    "boundary": "This proves exact equality for the verified FP16 inference representation. It does not reconstruct or prove byte equality to an unavailable full-precision v6 source checkpoint."
+  },
+  "heads": {
+    "v6": {
+      "dtype": "torch.float16",
+      "weight_sha256": "857ee0606f87c0240d07650f02031754176e068724d22a09ad63cb0a9f779e44",
+      "bias_sha256": "53ead0dd22c3b46b956e6975f1b95aa634d5ee124a1b3fecdc4c68d48e02b09f"
+    },
+    "v9": {
+      "dtype": "torch.float32",
+      "weight_sha256": "6db7aeb37d5bb9815fd0982a61548c901dffd3dd4485189ce27e639d244a0505",
+      "bias_sha256": "f7110296d0f6cc8baa2e6f6a0133a8a90b2c1b7bae5db5653132d6fe1795478d"
+    },
+    "v10": {
+      "dtype": "torch.float32",
+      "weight_sha256": "ab3a54ee0a6b9a8da181c8c65af366a270017412a5b0d629dd95da18d0026bf0",
+      "bias": -0.038503024727106094,
+      "source_checkpoint_sha256": "633d6e0dada31dc1bf3e97e1cf1b534b7a54a21d3c0f7bd3aee9609e8c5f71f9",
+      "ignored_head_export_bytes": 6181,
+      "ignored_head_export_sha256": "822aa20dad25199744a99c737c337bb15f5108b3b5c84f0154dbf6719f05ae2e"
+    }
+  },
+  "parameter_accounting": {
+    "one_backbone_with_one_head": 315776001,
+    "each_additional_head": 1025,
+    "one_backbone_with_three_heads": 315778051,
+    "under_2b_limit": true
+  },
+  "organizer_demo_resources_used": false,
+  "hidden_score_claimed": false
+}

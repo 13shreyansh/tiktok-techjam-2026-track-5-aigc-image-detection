@@ -1,0 +1,59 @@
+{
+  "completed": true,
+  "purpose": "Post-hoc failure localization on frozen clean and Gaussian-noise predictions; no training, thresholding, blend selection or calibration.",
+  "inputs": {
+    "internal_clean_sha256": "fffc750b72ffb1e8d4de23cbed837979f785bb1e619dbadcac38748185aee954",
+    "internal_noise_sigma_0_10_sha256": "ac7e246be9ad8c9d6979753db6a4b1bce3d07879805f8f115a770308e327f3dd",
+    "community_clean_sha256": "29c13933acc8caa4724074115be58e56850a4707e7c7ce6c46ef7f975b12ac62",
+    "community_noise_sigma_0_10_sha256": "f756fbecb39879682be8955e1c2d1d5c805bbc09eff717b4d45893981589cb8d",
+    "qwen_clean_sha256": "26372ace7f11ae079d0fe88c8cc0eefd91aa975992b3b51a6f75e595de7da8be",
+    "qwen_noise_sigma_0_10_sha256": "58e9768f356ccd3f7ca078c84002aa41ade8eeb5934cd040a23001e38818e931"
+  },
+  "overall_blend_auc": {
+    "internal": {"rows": 3071, "clean": 0.990605914087948, "noise_sigma_0_10": 0.8703752714440826},
+    "community_forensics": {"rows": 624, "clean": 0.9930144641683103, "noise_sigma_0_10": 0.7966079059829061},
+    "qwen": {"rows": 576, "clean": 0.9571578414351852, "noise_sigma_0_10": 0.7551601080246914}
+  },
+  "critical_real_source_failure": {
+    "source": "CIFAKE-CIFAR10",
+    "internal_noise_all_fakes_auc": 0.529290513029316,
+    "community_noise_all_fakes_auc": 0.417989417989418,
+    "qwen_noise_all_fakes_auc": 0.3864343869731801,
+    "internal_blend_real_mean": 0.8275911908972924,
+    "internal_blend_fake_mean": 0.8030986984570821,
+    "community_blend_real_mean": 0.8267492869543651,
+    "community_blend_fake_mean": 0.7185472830747947,
+    "qwen_blend_real_mean": 0.8323616817079741,
+    "qwen_blend_fake_mean": 0.6749589840571085,
+    "interpretation": "Under sigma-0.10 Gaussian noise, the low-resolution authentic CIFAKE rows receive higher AI scores on average than the fake pools in all three gates. Strong overall noise AUC therefore hides a source-specific ranking inversion."
+  },
+  "worst_stable_size_pairs": {
+    "internal": {
+      "pair": "Imagen || CIFAKE-CIFAR10",
+      "fake_rows": 192,
+      "real_rows": 307,
+      "noise_blend_auc": 0.13034405537459284
+    },
+    "qwen": {
+      "pair": "Seedream-4.5 || CIFAKE-CIFAR10",
+      "fake_rows": 16,
+      "real_rows": 58,
+      "noise_blend_auc": 0.2737068965517242
+    }
+  },
+  "small_sample_warning": "Community Forensics has only four fake images per named model. Its zero-AUC individual-model/source pairs localize examples but are too small for stable model-level estimates.",
+  "blend_boundary": {
+    "internal_clean_delta_vs_v6": -0.0004775719326817196,
+    "internal_noise_delta_vs_v6": 0.002353929153094403,
+    "community_clean_delta_vs_v6": 0.0004057774490466848,
+    "community_noise_delta_vs_v6": 0.0018182938856016184,
+    "qwen_clean_delta_vs_v6": 0.023883584104938183,
+    "qwen_noise_delta_vs_v6": 0.03885754243827155
+  },
+  "decision": "The candidate is retained but not promoted by this consumed diagnosis. Any low-resolution/noise intervention requires new disjoint lawful training data and a separately frozen gate; these rows cannot be reused for promotion.",
+  "ignored_full_report": {
+    "path": "outputs/deadline-adversarial/frozen-group-failure-audit.json",
+    "bytes": 642843,
+    "sha256": "91f3bec083d17b19f34449a41c91ca5868f7a1426842bd075b24ff9ec7f0e46e"
+  }
+}

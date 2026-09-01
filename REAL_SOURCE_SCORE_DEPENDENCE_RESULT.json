@@ -1,0 +1,36 @@
+{
+  "completed": true,
+  "purpose": "Frozen selected-v6 real-source score-dependence diagnosis after identical JPEG-q96 and stretch preprocessing; not model selection.",
+  "checkpoint_sha256": "48ea50773fbd1b7247fff25fde6f985183e29f2eb517b5ac0f6319c1fe38b644",
+  "model": "vit_pe_core_large_patch14_336",
+  "rows": {"real": 288, "fake": 288, "real_sources": 5},
+  "real_source_score_variance_share": 0.3396937227889061,
+  "permutation_test": {
+    "permutations": 10000,
+    "seed": 20260831,
+    "p_value_plus_one_correction": 0.00009999000099990002
+  },
+  "real_sources": [
+    {"real_source": "CIFAKE-CIFAR10", "count": 58, "mean_ai_score": 0.35620123841639223, "auc_against_second_qwen_fake_set": 0.8250718390804598, "fraction_false_positive_at_0.5": 0.25862068965517243},
+    {"real_source": "SID_Set", "count": 58, "mean_ai_score": 0.1608418901450932, "auc_against_second_qwen_fake_set": 0.9276819923371648, "fraction_false_positive_at_0.5": 0.05172413793103448},
+    {"real_source": "WildFake-LAION5B", "count": 57, "mean_ai_score": 0.09815297943229477, "auc_against_second_qwen_fake_set": 0.9515107212475633, "fraction_false_positive_at_0.5": 0.05263157894736842},
+    {"real_source": "FFHQ-validation", "count": 58, "mean_ai_score": 0.07518220035126433, "auc_against_second_qwen_fake_set": 0.9697677203065134, "fraction_false_positive_at_0.5": 0.017241379310344827},
+    {"real_source": "WildFake-LSUN-Church", "count": 57, "mean_ai_score": 0.03362604209401628, "auc_against_second_qwen_fake_set": 0.990557992202729, "fraction_false_positive_at_0.5": 0.0}
+  ],
+  "visual_inspection": {
+    "scope": "Four highest or representative authentic scores; bounded qualitative diagnosis.",
+    "observations": [
+      "The highest-scoring LAION real is a watermarked anatomical stock render rather than an ordinary camera photograph.",
+      "The second-highest LAION real is abstract artwork in a frame.",
+      "The highest-scoring CIFAKE reals inspected are tiny 32 by 32 animal photographs enlarged for inference.",
+      "A high-scoring SID real is a low-contrast parking-lot photograph with glare and heavy cloud cover."
+    ],
+    "boundary": "These examples suggest low-resolution, non-photographic and ambiguous-authentic content weaknesses. They do not prove the causal feature used by the model."
+  },
+  "ignored_full_report": {
+    "path": "outputs/deadline-adversarial/qwen-holdout-v6-real-source-dependence.json",
+    "bytes": 3103,
+    "sha256": "1b8fe5ceff83bfc8e9fc7043e211aaf33d53e1a6910de819166c1f5330d6d6da"
+  },
+  "boundary": "The repeated first and second Qwen gates use the same 288 authentic rows, so identical real-source score statistics are confirmation of file reuse, not an independent real-side replication. A high variance share proves source-dependent scores, not a metadata shortcut or hidden-set failure."
+}

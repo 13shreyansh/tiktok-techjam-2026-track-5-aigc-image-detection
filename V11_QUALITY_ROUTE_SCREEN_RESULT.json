@@ -1,0 +1,74 @@
+{
+  "status": "passed_consumed_gate_screen_before_fresh_gate",
+  "observed_on": "2026-08-31",
+  "candidate": "v11-quality-routed-multihead",
+  "router_threshold": 0.055,
+  "general_weights": {
+    "v6": 0.75,
+    "v9": 0.25
+  },
+  "shared_logit_check": {
+    "v6_exact": true,
+    "v9_exact": true,
+    "v10_exact": true,
+    "maximum_absolute_logit_difference": 0.0
+  },
+  "gates": {
+    "internal": {
+      "rows": 13349,
+      "clean_general_auc": 0.9814145405504571,
+      "clean_routed_auc": 0.9814145405504571,
+      "clean_route_rate": 0.00007491197842535021,
+      "noise_general_auc": 0.8426313418893019,
+      "noise_routed_auc": 0.8845935219831429,
+      "noise_route_rate": 1.0,
+      "noise_mean_score_inversion": false
+    },
+    "ntire": {
+      "rows": 512,
+      "clean_general_auc": 0.9829788208007812,
+      "clean_routed_auc": 0.9829788208007812,
+      "clean_route_rate": 0.0,
+      "noise_general_auc": 0.7618331909179688,
+      "noise_routed_auc": 0.7922134399414062,
+      "noise_route_rate": 1.0,
+      "noise_mean_score_inversion": false
+    },
+    "community": {
+      "rows": 624,
+      "clean_general_auc": 0.9930401462853385,
+      "clean_routed_auc": 0.9930401462853385,
+      "clean_route_rate": 0.0,
+      "noise_general_auc": 0.7930124095989481,
+      "noise_routed_auc": 0.8196139464168309,
+      "noise_route_rate": 1.0,
+      "noise_mean_score_inversion": false
+    }
+  },
+  "predeclared_checks": {
+    "internal_clean_non_regression": true,
+    "internal_noise_non_regression": true,
+    "internal_clean_route_rate": true,
+    "internal_noise_route_rate": true,
+    "ntire_clean_non_regression": true,
+    "ntire_noise_non_regression": true,
+    "ntire_clean_route_rate": true,
+    "ntire_noise_route_rate": true,
+    "community_clean_non_regression": true,
+    "community_noise_non_regression": true,
+    "community_clean_route_rate": true,
+    "community_noise_route_rate": true,
+    "all_pass": true
+  },
+  "screen_report": {
+    "ignored_path": "outputs/audits/v11-quality-route-screen-report.json",
+    "bytes": 6771,
+    "sha256": "afc5b67c2e9d467c9dea49f12f00e8e6c330fbc6f6a6abf42c0d0d2902394813"
+  },
+  "cuda_peak_allocated_bytes": 1284220928,
+  "first_invocation_failure": "missing helper module before model loading or scoring; unchanged script reran after exact dependencies were supplied",
+  "decision": "The candidate may open the frozen fresh gate once. Passing this screen is not promotion.",
+  "fresh_gate_opened_or_scored_by_this_result": false,
+  "organizer_demo_rows": 0,
+  "hidden_score_claimed": false
+}

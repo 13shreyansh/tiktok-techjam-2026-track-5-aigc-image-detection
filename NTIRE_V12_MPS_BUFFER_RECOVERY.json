@@ -1,0 +1,29 @@
+{
+  "status": "frozen_before_any_condition_score",
+  "created_date_sgt": "2026-09-01",
+  "failed_attempt": {
+    "candidate": "pe_core",
+    "batch_size": 8,
+    "data_loader_workers": 4,
+    "return_code": 134,
+    "score_produced": false,
+    "output_file_produced": false,
+    "error": "MPSNDArray buffer is not large enough; 20 leaked semaphore objects reported during process abort"
+  },
+  "recovery": {
+    "batch_size": 1,
+    "data_loader_workers": 0,
+    "justification": "the exact four-image PE v12 MPS contract already returned zero with batch size 1; removing worker processes also removes the leaked-semaphore path",
+    "unchanged": [
+      "gate rows and identities",
+      "candidate checkpoints",
+      "float32 arithmetic",
+      "20 workshop conditions",
+      "JPEG q96 normalization",
+      "random seeds",
+      "blend weights",
+      "final arbitration thresholds"
+    ]
+  },
+  "boundary": "This is execution recovery after a pre-score runtime abort, not a change based on detector performance."
+}

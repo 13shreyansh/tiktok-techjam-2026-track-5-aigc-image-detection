@@ -1,0 +1,24 @@
+{
+  "completed": true,
+  "passes": true,
+  "rows": 576,
+  "wrapper_sha256": "bf5baf73849e03fa596554ca96a2a11d575a328f3215a419340263afad758e54",
+  "command": [
+    "/kaggle/working/ensemble_candidate_v2/run_ensemble.sh",
+    "/kaggle/working/ensemble_candidate_v2/e2e_input_full_v2",
+    "/kaggle/working/ensemble_candidate_v2/wrapper_predictions_v1.json",
+    "/kaggle/input/private-v6-checkpoint/model.pt",
+    "/kaggle/working/track5-v9-frontier-capped-candidate/vit_pe_core_large_patch14_336/model.pt"
+  ],
+  "environment": {
+    "PYTHON_EXECUTABLE": "/usr/bin/python3",
+    "AIGC_DEVICE": "cuda:0"
+  },
+  "returncode": 0,
+  "elapsed_seconds_including_checkpoint_hash_load_decode_inference_and_json": 48.66634230800082,
+  "stdout": "{\"images\": 576, \"total_parameters\": 631552002, \"device\": \"cuda:0\", \"physical_batch_size\": 64, \"weights\": {\"v6\": 0.75, \"v9\": 0.25}, \"arithmetic\": \"sigmoid_and_probability_blend_in_cuda_fp16\"}",
+  "stderr": "",
+  "output_sha256": "ec170d9619b276240aef84db03812aa05623656314eac042723a7f2587a13fe4",
+  "expected_output_sha256": "ec170d9619b276240aef84db03812aa05623656314eac042723a7f2587a13fe4",
+  "private_account_path_redacted_from_release_tree": true
+}

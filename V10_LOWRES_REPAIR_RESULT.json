@@ -1,0 +1,111 @@
+{
+  "status": "rejected_by_predeclared_promotion_rules",
+  "candidate": "v10-lowres-paired",
+  "completed_on": "2026-08-31",
+  "training": {
+    "completed": true,
+    "rows": 29534,
+    "epochs": 1,
+    "steps": 462,
+    "final_loss": 0.28972992242056667,
+    "total_parameters": 315776001,
+    "trainable_parameters": 1025,
+    "checkpoint_bytes": 1263202267,
+    "checkpoint_sha256": "633d6e0dada31dc1bf3e97e1cf1b534b7a54a21d3c0f7bd3aee9609e8c5f71f9",
+    "combined_manifest_sha256": "02a09d816ce386a25ea94fdfafd87901dce5ee79ed01523f8d71c7945f1d8d69",
+    "frozen_gate_content_overlap": 0,
+    "organizer_demo_rows": 0,
+    "hardware": "Kaggle Tesla T4",
+    "cuda_peak_allocated_bytes": 2322498048,
+    "elapsed_seconds": 648.5384979248047
+  },
+  "fixed_blend": {
+    "v6_weight": 0.75,
+    "v10_weight": 0.25,
+    "parameter_total": 631552002,
+    "arithmetic": "one GPU; physical batch 64; sigmoid and blend in CUDA FP16; FP32 conversion after blend"
+  },
+  "internal_screen_before_fresh_gate": {
+    "passed": true,
+    "v6": {
+      "selection_clean_auc": 0.981815256083573,
+      "selection_worst_pair_auc": 0.8724173307418823,
+      "content_clean_auc": 0.9943499482985589,
+      "content_worst_pair_auc": 0.9697296649712854
+    },
+    "blend": {
+      "selection_clean_auc": 0.9873156483836867,
+      "selection_worst_pair_auc": 0.912474513053894,
+      "content_clean_auc": 0.9956254726067421,
+      "content_worst_pair_auc": 0.9769221480174732
+    },
+    "fresh_promotion_gate_opened_during_screen": false
+  },
+  "fresh_gate": {
+    "rows": {
+      "new_cifar100_authentic": 1000,
+      "new_qwen_fake": 144
+    },
+    "package_sha256": "1dd7d460a8a9096d17499dd79cc74d7c4aa7bf0cb63a30435fd6d3e709b32cbf",
+    "inventory_sha256": "b2357d4487faad00e41084329ecbd0c52a284fd61291de675039efcccf3efac2",
+    "clean": {
+      "v6_auc": 0.9252569444444445,
+      "blend_auc": 0.9376423611111111,
+      "blend_worst_generator_auc": 0.7899375000000001,
+      "blend_worst_prompt_auc": 0.8523888888888889,
+      "blend_real_mean": 0.29945220947265627,
+      "blend_fake_mean": 0.8314166598849826
+    },
+    "noise_sigma_0_10": {
+      "v6_auc": 0.39121875,
+      "blend_auc": 0.4629791666666667,
+      "blend_auc_improvement": 0.07176041666666672,
+      "blend_worst_generator_auc": 0.284125,
+      "blend_worst_prompt_auc": 0.14302777777777778,
+      "blend_real_mean": 0.7251721801757812,
+      "blend_fake_mean": 0.6830897861056857,
+      "blend_real_fraction_at_or_above_0_5": 0.914,
+      "mean_score_inversion": true
+    }
+  },
+  "promotion_checks": {
+    "fresh_clean_auc_drop_from_v6_at_most_0_01": true,
+    "fresh_noise_auc_at_least_0_60": false,
+    "fresh_noise_auc_improvement_over_v6_at_least_0_05": true,
+    "fresh_noise_authentic_mean_not_above_fake_mean": false,
+    "all_four_existing_internal_non_regression_checks": true,
+    "passes_all_frozen_rules": false
+  },
+  "post_hoc_diagnosis_not_for_selection": {
+    "purpose": "Explain the frozen failure only. These consumed predictions cannot select, tune, calibrate, threshold or rescue v10.",
+    "v10_standalone_clean": {
+      "auc": 0.9583402777777778,
+      "real_mean": 0.3172869873046875,
+      "fake_mean": 0.9021360677083333,
+      "real_fraction_at_or_above_0_5": 0.233
+    },
+    "v10_standalone_noise_sigma_0_10": {
+      "auc": 0.6873159722222222,
+      "real_mean": 0.662198974609375,
+      "fake_mean": 0.7743557942708333,
+      "real_fraction_at_or_above_0_5": 0.797,
+      "mean_score_inversion": false
+    },
+    "interpretation": "The matched low-resolution update changed the linear head in the intended direction, but the predeclared 75/25 blend diluted that gain and still failed the absolute gate. This is mechanism evidence only; v10 remains rejected."
+  },
+  "decision": "Reject v10 and its fixed blend. Do not tune, calibrate, threshold or select another blend using this consumed fresh gate. Retain the earlier verified candidate and v6 fallback.",
+  "evidence": {
+    "training_report_sha256": "4a2b8d0bd0ca171cf21076d10f136e8cdcf73c493dae94176890e3c9517011d5",
+    "internal_screen_report_sha256": "344975a6803ad3804b7df0da688a15df1da3120d4efe90c9fc1d37b849018bb1",
+    "promotion_report_sha256": "75e04e559a9e85388bc499873ef0517acf43354ba6326f2065c00c8c131850ac",
+    "clean_predictions_sha256": "eace72e29899025f907d77be15eda6af38f41c55730ca93d86fc27a483942013",
+    "noise_predictions_sha256": "54034c3ed133c23b7b52222eb467e2bf14086823b88008cf5d50a61a689d027d",
+    "rejected_evidence_zip": {
+      "bytes": 2734215,
+      "sha256": "6e71f5d3a8c281c960c7c3f3563cbff2a9c7914449ad6a890d1bca7579772ed",
+      "model_weights_included": false
+    }
+  },
+  "forbidden_demo_resources_used": false,
+  "hidden_score_claimed": false
+}

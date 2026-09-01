@@ -1,0 +1,75 @@
+{
+  "status": "failed_predeclared_stability_gate",
+  "observed_at": "2026-08-30 SGT",
+  "evidence_source": "/kaggle/working/track5-frontier-ensemble-batch-stability.json",
+  "audit_script_sha256": "0317965adaeafb373c70ff161649f8291fc427526eed9dd8e7264fc79d135c82",
+  "command_returncode": 0,
+  "completed": true,
+  "passes": false,
+  "scope": "already-open Qwen clean holdout only",
+  "rows": 576,
+  "manifest_sha256": "d584b32c5b023a7a88bd1e6455a9dbc9bef852eb4b1fbd1fb5e35039120d98d1",
+  "input_tensors_identical": true,
+  "input_tensor_sha256": "beac1b5cf272ced96d3c0c607721bf211939e036d8db98bae5108f0090caad77",
+  "tolerances": {
+    "max_absolute_score_drift": 0.0001,
+    "max_auc_drift": 0.000001,
+    "max_rank_displacement": 1
+  },
+  "batch_runs": {
+    "64": {
+      "v6_auc": 0.933274257330247,
+      "blend_auc": 0.9571578414351851,
+      "wall_seconds_including_decode_and_input_hash": 20.270274763999623,
+      "paired_model_forward_seconds": 8.072594224991917,
+      "images_per_forward_second": 71.35252732222853,
+      "cuda_peak_allocated_bytes_per_gpu": 2380880896
+    },
+    "128": {
+      "v6_auc": 0.9332863136574074,
+      "blend_auc": 0.9571457851080247,
+      "wall_seconds_including_decode_and_input_hash": 19.464344915000765,
+      "paired_model_forward_seconds": 7.0587798099986685,
+      "images_per_forward_second": 81.60050539954563,
+      "cuda_peak_allocated_bytes_per_gpu": 2893503488
+    }
+  },
+  "batch_64_vs_128": {
+    "v6": {
+      "max_absolute_score_drift": 0.00048828125,
+      "mean_absolute_score_drift": 0.00003954768180847168,
+      "auc_drift": 0.0000120563271603924,
+      "max_rank_displacement": 2
+    },
+    "blend": {
+      "max_absolute_score_drift": 0.00048828125,
+      "mean_absolute_score_drift": 0.00003538653254508972,
+      "auc_drift": 0.0000120563271603924,
+      "max_rank_displacement": 1
+    }
+  },
+  "batch_128_vs_saved_clean": {
+    "v6": {
+      "max_absolute_score_drift": 0.00048828125,
+      "mean_absolute_score_drift": 0.00003954768180847168,
+      "auc_drift": 0.0000120563271603924,
+      "max_rank_displacement": 2
+    },
+    "blend": {
+      "max_absolute_score_drift": 0.000732421875,
+      "mean_absolute_score_drift": 0.00010551346672905816,
+      "auc_drift": 0.000012056327160503422,
+      "max_rank_displacement": 5
+    }
+  },
+  "environment": {
+    "torch": "2.8.0+cu126",
+    "cuda_runtime": "12.6",
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ]
+  },
+  "interpretation": "Identical transformed tensors produced small batch-shape-dependent FP16 score and rank drift. The statistical promotion result remains the observed result from its saved predictions, but ensemble feasibility is not promoted. The predeclared tolerances are not relaxed after inspection.",
+  "next_test": "Verify a fixed physical batch of 64 with deterministic padding across logical request sizes before changing the runnable artifact."
+}

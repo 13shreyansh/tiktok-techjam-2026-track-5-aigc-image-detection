@@ -1,0 +1,140 @@
+{
+  "completed": true,
+  "scope": "64 balanced rows from the already-open Qwen clean holdout",
+  "rows": 64,
+  "selected_rows_sha256": "8e05c80d9e69e8bf289008bdd7f8e5a46897eafd733a7a2bbd35f38a8f194545",
+  "manifest_sha256": "d584b32c5b023a7a88bd1e6455a9dbc9bef852eb4b1fbd1fb5e35039120d98d1",
+  "promotion_package_inventory_sha256": "b1b8e5b4c9882b3e807c368a60633f1d5f971e7b0d81b2390fe3d08227dca02f",
+  "v6_checkpoint_sha256": "48ea50773fbd1b7247fff25fde6f985183e29f2eb517b5ac0f6319c1fe38b644",
+  "v9_checkpoint_sha256": "dd6b26c7849489447c7e96823f5b5e87c31623ca8ae0d28a5b162bb2dcb65075",
+  "checkpoint_bytes": {
+    "v6": 631645967,
+    "v9": 1263202267
+  },
+  "load_seconds": 16.55499437099934,
+  "physical_batch_size": 64,
+  "logical_batch_sizes": [
+    1,
+    17,
+    64
+  ],
+  "tolerances": {
+    "max_absolute_score_drift": 0.000001,
+    "max_auc_drift": 0,
+    "max_rank_displacement": 0
+  },
+  "original_input_tensors_identical": true,
+  "input_tensor_sha256": "b1ef68c7ddba3bc0be9aabb5e3033ccceb91ec6cc1faac7a351376e4f24f686d",
+  "logical_batch_vs_native_64": {
+    "1": {
+      "v6": {
+        "max_absolute_score_drift": 0,
+        "mean_absolute_score_drift": 0,
+        "auc_drift": 0,
+        "max_rank_displacement": 0
+      },
+      "blend": {
+        "max_absolute_score_drift": 0,
+        "mean_absolute_score_drift": 0,
+        "auc_drift": 0,
+        "max_rank_displacement": 0
+      }
+    },
+    "17": {
+      "v6": {
+        "max_absolute_score_drift": 0,
+        "mean_absolute_score_drift": 0,
+        "auc_drift": 0,
+        "max_rank_displacement": 0
+      },
+      "blend": {
+        "max_absolute_score_drift": 0,
+        "mean_absolute_score_drift": 0,
+        "auc_drift": 0,
+        "max_rank_displacement": 0
+      }
+    },
+    "64": {
+      "v6": {
+        "max_absolute_score_drift": 0,
+        "mean_absolute_score_drift": 0,
+        "auc_drift": 0,
+        "max_rank_displacement": 0
+      },
+      "blend": {
+        "max_absolute_score_drift": 0,
+        "mean_absolute_score_drift": 0,
+        "auc_drift": 0,
+        "max_rank_displacement": 0
+      }
+    }
+  },
+  "native_64_vs_saved_clean_subset": {
+    "v6": {
+      "max_absolute_score_drift": 0,
+      "mean_absolute_score_drift": 0,
+      "auc_drift": 0,
+      "max_rank_displacement": 0
+    },
+    "blend": {
+      "max_absolute_score_drift": 0.0003662109375,
+      "mean_absolute_score_drift": 0.00008767843246459961,
+      "auc_drift": 0,
+      "max_rank_displacement": 0
+    }
+  },
+  "runs": {
+    "1": {
+      "logical_batch_size": 1,
+      "physical_batch_size": 64,
+      "physical_batches": 64,
+      "count": 64,
+      "input_tensor_sha256": "b1ef68c7ddba3bc0be9aabb5e3033ccceb91ec6cc1faac7a351376e4f24f686d",
+      "v6_auc": 0.7705078125,
+      "blend_auc": 0.826171875,
+      "wall_seconds_including_decode_and_input_hash": 55.58909371200025,
+      "paired_model_forward_seconds": 52.17163612200966,
+      "cuda_peak_allocated_bytes": {
+        "0": 2380880896,
+        "1": 2380880896
+      }
+    },
+    "17": {
+      "logical_batch_size": 17,
+      "physical_batch_size": 64,
+      "physical_batches": 4,
+      "count": 64,
+      "input_tensor_sha256": "b1ef68c7ddba3bc0be9aabb5e3033ccceb91ec6cc1faac7a351376e4f24f686d",
+      "v6_auc": 0.7705078125,
+      "blend_auc": 0.826171875,
+      "wall_seconds_including_decode_and_input_hash": 4.607264370999474,
+      "paired_model_forward_seconds": 3.33825779000108,
+      "cuda_peak_allocated_bytes": {
+        "0": 2380880896,
+        "1": 2380880896
+      }
+    },
+    "64": {
+      "logical_batch_size": 64,
+      "physical_batch_size": 64,
+      "physical_batches": 1,
+      "count": 64,
+      "input_tensor_sha256": "b1ef68c7ddba3bc0be9aabb5e3033ccceb91ec6cc1faac7a351376e4f24f686d",
+      "v6_auc": 0.7705078125,
+      "blend_auc": 0.826171875,
+      "wall_seconds_including_decode_and_input_hash": 2.001858331001131,
+      "paired_model_forward_seconds": 0.8229536099988763,
+      "cuda_peak_allocated_bytes": {
+        "0": 2380225024,
+        "1": 2380225024
+      }
+    }
+  },
+  "passes": false,
+  "torch": "2.8.0+cu126",
+  "cuda_runtime": "12.6",
+  "gpus": [
+    "Tesla T4",
+    "Tesla T4"
+  ]
+}

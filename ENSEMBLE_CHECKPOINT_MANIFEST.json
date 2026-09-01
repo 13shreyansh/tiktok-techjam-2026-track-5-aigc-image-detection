@@ -1,0 +1,71 @@
+{
+  "status": "verified_locally_and_on_kaggle_but_not_published",
+  "model_name": "vit_pe_core_large_patch14_336",
+  "ensemble_total_parameters": 631552002,
+  "organizer_parameter_limit_exclusive": 2000000000,
+  "inference_contract": {
+    "v6_probability_weight": 0.75,
+    "v9_probability_weight": 0.25,
+    "physical_batch_size": 64,
+    "cuda_autocast_dtype": "float16",
+    "blend_location_dtype": "cuda_float16",
+    "score_conversion": "float32_after_blend"
+  },
+  "checkpoints": {
+    "v6": {
+      "filename": "model.pt",
+      "bytes": 631645967,
+      "sha256": "48ea50773fbd1b7247fff25fde6f985183e29f2eb517b5ac0f6319c1fe38b644",
+      "local_repository_state": "present_but_gitignored",
+      "private_preservation": {
+        "state": "attached_private_kaggle_dataset_input",
+        "account_locator_redacted_from_release_tree": true,
+        "publicly_accessible": false
+      },
+      "distribution_url": null
+    },
+    "v9": {
+      "filename": "model_v9.pt",
+      "bytes": 1263202267,
+      "sha256": "dd6b26c7849489447c7e96823f5b5e87c31623ca8ae0d28a5b162bb2dcb65075",
+      "state_dict_tensor_bytes": 1263104004,
+      "optimizer_state_present": false,
+      "local_repository_state": "present_but_gitignored",
+      "private_preservation": {
+        "state": "successful_private_kaggle_version_output",
+        "version_name": "Preserve exact v9 checkpoint dd6b26c",
+        "account_locator_redacted_from_release_tree": true,
+        "observed_output_entries": [
+          "000_model_v9_exact_dd6b26c.pt",
+          "model_v9_exact_dd6b26c.pt"
+        ],
+        "observed_ui_size": "1.26 GB",
+        "pre_save_sha256_verified": true,
+        "post_save_download_and_sha256_verified": true,
+        "post_save_verified_filename": "000_model_v9_exact_dd6b26c.pt",
+        "post_save_verified_bytes": 1263202267,
+        "post_save_verified_sha256": "dd6b26c7849489447c7e96823f5b5e87c31623ca8ae0d28a5b162bb2dcb65075",
+        "publicly_accessible": false
+      },
+      "rejected_fp16_storage_ablation": {
+        "sha256": "85094e995c17cca25c1e5367a580d88f5ceb927045fc978e52d4ba1b1c845c45",
+        "bytes": 631625115,
+        "exact_clean_qwen_screen_passed": false,
+        "maximum_score_drift": 0.00390625,
+        "maximum_rank_displacement": 4
+      },
+      "distribution_url": null
+    }
+  },
+  "combined_checkpoint_bytes": 1894848234,
+  "backbone_upstream": {
+    "source": "https://huggingface.co/timm/vit_pe_core_large_patch14_336.fb",
+    "license": "Apache-2.0"
+  },
+  "publication_blockers": [
+    "No immutable public distribution URL exists for either exact checkpoint; private preservation is not public distribution.",
+    "The v9 checkpoint is over 99.99% FP32 tensor bytes, so metadata stripping cannot materially reduce it without changing the verified weights.",
+    "The repository remains private and no publication or submission is authorized yet.",
+    "Final code and weight licensing must preserve all recorded upstream dataset and model restrictions."
+  ]
+}

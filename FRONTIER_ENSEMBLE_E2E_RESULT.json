@@ -1,0 +1,32 @@
+{
+  "completed": true,
+  "passes": true,
+  "rows": 576,
+  "runner_sha256": "a1341afc3c62afa07f6d887c982394605c1fae5da427d486364863fab1b0d33b",
+  "source_archive_sha256": "9dec87af70455a797c76181a8faf0846baf932f0c2dcd4ab6cdb3bb57faca301",
+  "manifest_sha256": "d584b32c5b023a7a88bd1e6455a9dbc9bef852eb4b1fbd1fb5e35039120d98d1",
+  "v6_checkpoint_sha256": "48ea50773fbd1b7247fff25fde6f985183e29f2eb517b5ac0f6319c1fe38b644",
+  "v9_checkpoint_sha256": "dd6b26c7849489447c7e96823f5b5e87c31623ca8ae0d28a5b162bb2dcb65075",
+  "command": [
+    "/usr/bin/python3",
+    "-m",
+    "aigc_detector.predict_ensemble",
+    "/kaggle/working/ensemble_candidate_v2/e2e_input_full_v2",
+    "--v6-checkpoint",
+    "/kaggle/input/private-v6-checkpoint/model.pt",
+    "--v9-checkpoint",
+    "/kaggle/working/track5-v9-frontier-capped-candidate/vit_pe_core_large_patch14_336/model.pt",
+    "--output",
+    "/kaggle/working/ensemble_candidate_v2/e2e_predictions_v2.json",
+    "--device",
+    "cuda:0"
+  ],
+  "returncode": 0,
+  "elapsed_seconds_including_checkpoint_hash_load_decode_and_inference": 47.51038428500033,
+  "stdout": "{\"images\": 576, \"total_parameters\": 631552002, \"device\": \"cuda:0\", \"physical_batch_size\": 64, \"weights\": {\"v6\": 0.75, \"v9\": 0.25}, \"arithmetic\": \"sigmoid_and_probability_blend_in_cuda_fp16\"}",
+  "output_sha256": "ec170d9619b276240aef84db03812aa05623656314eac042723a7f2587a13fe4",
+  "max_absolute_score_drift_vs_saved_promotion": 0,
+  "mean_absolute_score_drift_vs_saved_promotion": 0,
+  "finite_probabilities_in_unit_interval": true,
+  "private_account_path_redacted_from_release_tree": true
+}

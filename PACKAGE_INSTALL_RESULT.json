@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-08-31T07:50:23Z",
+  "purpose": "Verify that a wheel built from the current source installs, exposes the prediction CLI and performs v6 CPU inference in a clean temporary environment.",
+  "base_commit": "206e834",
+  "source_state_note": "The wheel includes the dependency metadata changes committed together with this report; it was built before that commit existed.",
+  "wheel": {
+    "path_ignored": "artifacts/wheels/techjam_aigc_detector-0.1.0-py3-none-any.whl",
+    "bytes": 24463,
+    "sha256": "80669d3b3493ce655129405a5256355c0607e3667944bd2201bd71b2125deebd",
+    "published": false
+  },
+  "commands": [
+    {
+      "command": ".venv/bin/python -m pip wheel . --no-deps --wheel-dir artifacts/wheels",
+      "return_code": 0,
+      "result": "Wheel built successfully."
+    },
+    {
+      "command": "/tmp/track5-wheel-venv/bin/python -m pip install artifacts/wheels/techjam_aigc_detector-0.1.0-py3-none-any.whl --no-deps",
+      "return_code": 0,
+      "result": "Package-only installation succeeded; importing aigc_detector resolved to the temporary environment. Importing torch failed as expected because dependencies were deliberately omitted."
+    },
+    {
+      "command": "/tmp/track5-wheel-venv/bin/python -m pip install artifacts/wheels/techjam_aigc_detector-0.1.0-py3-none-any.whl",
+      "return_code": 0,
+      "result": "All declared runtime dependencies installed successfully."
+    },
+    {
+      "command": "/tmp/track5-wheel-venv/bin/python -c \"import aigc_detector, torch, timm, torchvision, sklearn, pyarrow, PIL\"",
+      "return_code": 0,
+      "result": {
+        "aigc_detector": "/private/tmp/track5-wheel-venv/lib/python3.9/site-packages/aigc_detector/__init__.py",
+        "torch": "2.8.0",
+        "timm": "1.0.19",
+        "torchvision": "0.23.0",
+        "scikit_learn": "1.6.1",
+        "pyarrow": "21.0.0",
+        "pillow": "11.3.0"
+      }
+    },
+    {
+      "command": "cd /tmp && /tmp/track5-wheel-venv/bin/python -m aigc_detector.predict --help",
+      "return_code": 0,
+      "result": "The installed directory-to-JSON prediction CLI loaded and displayed its required image_directory, --checkpoint and --output arguments."
+    },
+    {
+      "command": "installed-wheel aigc_detector.predict over the frozen four-image rehearsal directory with the exact v6 checkpoint and --device cpu; local paths redacted from the release-facing record",
+      "return_code": 0,
+      "result": {
+        "images": 4,
+        "total_parameters": 315776001,
+        "device": "cpu",
+        "scores_in_manifest_order": [
+          0.06717691570520401,
+          0.16384485363960266,
+          0.5458109974861145,
+          0.9861177802085876
+        ],
+        "output_sha256": "2350ba493c30b1d15ab54298e145578aa0824dba822bd9a8c944992d81ad938f",
+        "matches_prior_source_checkout_scores_exactly": true
+      }
+    }
+  ],
+  "failed_timing_wrapper": {
+    "return_code": 1,
+    "detector_completed_and_wrote_matching_output": true,
+    "failure_after_detector": "macOS /usr/bin/time -lp could not read sysctl kern.clockrate in the managed shell",
+    "interpretation": "The combined timing command is not counted as a successful run; the unchanged detector command was rerun without the restricted wrapper and returned zero."
+  },
+  "limitations": [
+    "The inference check uses four preselected rehearsal images and is not an accuracy or hidden-set result.",
+    "The wheel contains code only; checkpoints remain external and unpublished.",
+    "The temporary environment was local CPU macOS, not organizer hardware.",
+    "No dataset, model weight, generated output, secret, publication or submission is included."
+  ],
+  "decision": "pass"
+}

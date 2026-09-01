@@ -1,0 +1,47 @@
+{
+  "status": "frozen_before_any_v12_score_on_this_gate",
+  "frozen_date_sgt": "2026-08-31",
+  "purpose": "one-shot arbitration between the predeclared v12 equal blend and PE-only runtime default",
+  "gate": {
+    "dataset": "deepfakesMSU/NTIRE-RobustAIGenDetection-train shard 5",
+    "source_revision": "700b6d08a3268b1e7a191306dec7321dd953b12f",
+    "kaggle_private_dataset": "shreyanshag13/track5-ntire-v11-quality-route-gate",
+    "package_sha256": "5c68565fbf6a02242af5481e4720dd435b0145ae09306ff4fa80e00c30eeb8c9",
+    "package_inventory_sha256": "7b9801315bfef184820bf6eef216fd6d11e8dcaf1361387bb6fb9a536db665b6",
+    "manifest_sha256": "cab0d1347bcd78ba2fa8dd09caa0025a181c929ad1ce20fd245af8fd27e8d329",
+    "rows": 1024,
+    "real_rows": 512,
+    "fake_rows": 512,
+    "generator_identity_available": false,
+    "training_tuning_calibration_allowed": false,
+    "organizer_demo_rows": 0,
+    "license_boundary": "the pinned dataset card states no reusable licence; evaluation only and do not redistribute",
+    "prior_use_boundary": "the pixels were consumed by the historical v11 quality-router experiment, but neither exact v12 candidate has been scored on them",
+    "required_v12_train_identity_overlap": 0,
+    "required_v12_eval_identity_overlap": 0
+  },
+  "candidates": {
+    "pe_core": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+    "dinov2_control": "db07f30cbc94e4972f4a8c72c95bbe5df0dcd40b2dbd494ad82dc324cc1e2b5b",
+    "fixed_equal_blend": "0.5 * pe_probability + 0.5 * dinov2_probability"
+  },
+  "evaluation": {
+    "conditions": "clean plus the 19 individually applied workshop transformations",
+    "codec_contract": "each condition is followed by label-independent JPEG q96 normalization",
+    "primary_metric": "0.5 * clean ROC AUC + 0.5 * pooled transformed ROC AUC",
+    "blend_weights_searched": false
+  },
+  "frozen_default_decision": {
+    "choose_pe_core_as_default_only_if_all": {
+      "pe_official_minus_blend_official_at_least": 0.02,
+      "pe_clean_minus_blend_clean_at_least": -0.005,
+      "pe_worst_condition_minus_blend_worst_condition_at_least": -0.03,
+      "pe_clean_auc_at_least": 0.8,
+      "pe_official_style_score_at_least": 0.75
+    },
+    "otherwise": "retain the fixed equal blend as default",
+    "fallback": "PE-only remains a separately runnable fallback regardless of the decision",
+    "forbidden_after_opening": "no threshold, preprocessing, candidate or blend-weight search on these rows"
+  },
+  "interpretation": "This gate is class-balanced, all-JPEG, source-coherent and generator-blind, so it is a useful final tie-breaker. It is from a different competition and was previously opened by another lineage, so it is not a fresh hidden-set estimate or evidence that every unseen generator is covered."
+}

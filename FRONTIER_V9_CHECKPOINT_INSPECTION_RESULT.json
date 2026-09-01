@@ -1,0 +1,24 @@
+{
+  "completed": true,
+  "command_returncode": 0,
+  "scope": "read-only checkpoint structure inspection in isolated Kaggle Python",
+  "checkpoint_sha256": "dd6b26c7849489447c7e96823f5b5e87c31623ca8ae0d28a5b162bb2dcb65075",
+  "file_bytes": 1263202267,
+  "state_dict_tensor_bytes": 1263104004,
+  "state_dict_tensors": 310,
+  "non_tensor_overhead_bytes": 98263,
+  "checkpoint_keys": [
+    "format_version",
+    "state_dict",
+    "model_name",
+    "image_size",
+    "normalization_mean",
+    "normalization_std",
+    "preprocess_mode",
+    "parameters",
+    "seed"
+  ],
+  "optimizer_state_present": false,
+  "training_history_present": false,
+  "conclusion": "The exact checkpoint is almost entirely FP32 model tensors. Metadata stripping cannot materially reduce its size; reducing precision would change the verified artifact and require new exact and promotion validation."
+}

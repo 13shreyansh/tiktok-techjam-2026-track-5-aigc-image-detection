@@ -1,0 +1,59 @@
+{
+  "status": "frozen_before_detector_scoring",
+  "purpose": "causal real-collection rotation diagnostic",
+  "created_date_sgt": "2026-08-31",
+  "question": "Do the frozen v12 detectors still distinguish the same 144 modern Qwen Image Bench fakes when COCO train2017 reals are replaced by independently acquired Open Images V7 validation photographs?",
+  "design": {
+    "fake_rows": 144,
+    "fake_identity_policy": "Reuse the exact already-consumed modern fake identities to hold the fake side constant; this makes the audit unsuitable as a fresh promotion or selection gate.",
+    "real_rows": 144,
+    "real_pool_rows": 1000,
+    "real_source": "Open Images V7 validation via the public CVDF S3 mirror",
+    "semantic_pairs": 144,
+    "prompts": 8,
+    "generators": 18,
+    "matching": "globally unique individual-image OpenCLIP assignment",
+    "canonicalization": "exif_transpose_center_square_resize336_jpeg_q96_subsampling0",
+    "v12_train_and_eval_rows_compared": 15574,
+    "source_identity_overlap": 0,
+    "organizer_demo_rows": 0,
+    "training_allowed_rows": 0
+  },
+  "provenance": {
+    "official_download_url": "https://storage.googleapis.com/openimages/web/download_v7.html",
+    "official_description_url": "https://storage.googleapis.com/openimages/web/factsfigures_v7.html",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "license_boundary": "Open Images lists images under CC BY 2.0 but disclaims a per-image warranty; individual upstream landing-page verification was not performed.",
+    "openimages_listing_images": 41620,
+    "openimages_listing_pages": 42,
+    "openimages_selection_seed": 20260901,
+    "openimages_key_inventory_sha256": "1c602591ae6cb394e271fc32357b2b67e87613482acd94966ae322f36903ada5",
+    "openimages_content_inventory_sha256": "9f9663d1ca43ceb9abb8fb5d7c7fcb21bcfc5ae72050d85766a0dfcd48f0e56a",
+    "openimages_pool_manifest_sha256": "a14c7fde768a8b4e28ed49860f0ead421dd7cc42a46f64ef04bae8823d5d33af",
+    "semantic_matcher": "open_clip_torch==2.32.0 RN50-quickgelu",
+    "semantic_matcher_revision": "ec3d92cf63a5f9d591f0d611b736895966c73076",
+    "semantic_matcher_weight_sha256": "da0baa37fb2211eee5729ab69ed587eb10d48f5b7076ceeed01552fc3d4cb4ee",
+    "local_gate_manifest_sha256": "9ab50e90bc1be3da354ed6c5660294067b07cdbe2b8c798c27b267bed55bb22a",
+    "gate_derivative_inventory_sha256": "dcc4db9076f0540974ebd2083ba448881dd61946b158fa8fc9a897050809eb45",
+    "package_sha256": "c9862550a1476e60b13e9c262e751d3d75e8c582a71d60496c064185b63e4906",
+    "package_bytes": 19826987,
+    "package_inventory_sha256": "ed12e13391e84770aa3296eb1db1e13d97e74fba1d65fca480bd77cac2250382",
+    "packaged_manifest_sha256": "a696d1a781dacaa66183fb96e6a4078ebdf3dd429dedb657524ddf846b3667d6"
+  },
+  "frozen_candidates": {
+    "pe_core": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+    "dinov2_control": "db07f30cbc94e4972f4a8c72c95bbe5df0dcd40b2dbd494ad82dc324cc1e2b5b"
+  },
+  "predeclared_interpretation": {
+    "pe_clean_auc_minimum_to_avoid_immediate_source_failure": 0.85,
+    "pe_paired_accuracy_minimum_to_avoid_immediate_source_failure": 0.8,
+    "pe_official_style_minimum_to_avoid_immediate_source_failure": 0.8,
+    "pe_worst_transform_auc_minimum_to_avoid_immediate_source_failure": 0.7,
+    "pe_clean_auc_drop_from_coco_alarm": 0.1,
+    "pe_official_style_drop_from_coco_alarm": 0.1,
+    "coco_reference_clean_auc": 0.9982397762345679,
+    "coco_reference_official_style": 0.996174103249718,
+    "interpretation": "A small drop is evidence against a simple COCO-only real-source shortcut. A large drop is a source-dependence alarm. Neither outcome proves hidden-set performance because Open Images is still one collection and the fake identities are reused."
+  },
+  "decision_boundary": "This post-score source-rotation audit cannot train, tune, calibrate, reweight, select or promote a model. Results may update the risk register and motivate a separately frozen future experiment only."
+}

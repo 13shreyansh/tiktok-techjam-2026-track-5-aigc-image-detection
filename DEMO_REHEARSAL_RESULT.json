@@ -1,0 +1,43 @@
+{
+  "status": "portable_v6_demo_rehearsal_passed_on_cpu",
+  "observed_on": "2026-08-31",
+  "selection": {
+    "seed": 20260831,
+    "policy": "lowest role-specific SHA-256 rank before inference",
+    "images": 4,
+    "authentic": 2,
+    "generated": 2,
+    "sources": [
+      "CIFAKE-CIFAR10 authentic",
+      "CIFAKE Stable Diffusion",
+      "Qwen Image Bench FLUX.2-pro"
+    ],
+    "manifest_sha256": "b5efec0c4f2cff6472ce920eab07dce33aab53253a93025634cbab3dd04421a7",
+    "organizer_demo_rows": 0,
+    "model_selection_or_calibration": false
+  },
+  "first_attempt": {
+    "device": "mps",
+    "returncode": 1,
+    "failure_stage": "model device transfer before inference",
+    "observed_error": "managed shell did not expose a supported macOS MPS backend",
+    "score_produced": false
+  },
+  "successful_attempt": {
+    "device": "cpu",
+    "returncode": 0,
+    "images": 4,
+    "total_parameters": 315776001,
+    "output_sha256": "8e12b9a5e1f15e8e80e50f9df9334b686cf6b3d733089e2bf8810bb3eff45b4f",
+    "scores_in_filename_order": [
+      0.06717691570520401,
+      0.16384485363960266,
+      0.5458109974861145,
+      0.9861177802085876
+    ],
+    "finite_probabilities_in_unit_interval": true
+  },
+  "visual_review": "Two tiny authentic examples show a red car and a bird; the CIFAKE generated example shows an aircraft; the modern FLUX.2-pro example is a detailed science-fiction botanical city with text panels.",
+  "interpretation": "This proves a deterministic four-image rehearsal of the portable directory-to-JSON path. It is not evaluation evidence, threshold calibration, hidden-score evidence or proof that all four labels will always rank correctly.",
+  "artifacts_committed": false
+}

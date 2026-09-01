@@ -1,0 +1,36 @@
+{
+  "status": "frozen_before_any_local_v12_score",
+  "created_date_sgt": "2026-09-01",
+  "reason": "Kaggle ended the uncommitted interactive session and exhausted weekly GPU quota before arbitration outputs were preserved",
+  "score_recovered_from_kaggle": false,
+  "decision_policy": "unchanged from NTIRE_V12_FINAL_ARBITRATION_PLAN.json",
+  "gate": {
+    "local_manifest": "datasets/ntire2026/shard_5_quality_route_gate/manifest.jsonl",
+    "local_manifest_sha256": "dfd3f196106544d586a3eb32c22f94d213f0ddd0f642f07d5cfc9e1fb08e2bb6",
+    "source_filename_inventory_sha256": "a71cab43542cfbe5f95a9d14dd840bb46c94770c8b57d31e09db47493a95340d",
+    "rows": 1024,
+    "real_rows": 512,
+    "fake_rows": 512,
+    "training_tuning_calibration_allowed": false,
+    "organizer_demo_rows": 0,
+    "required_v12_train_identity_overlap": 0,
+    "required_v12_eval_identity_overlap": 0
+  },
+  "checkpoint_acquisition": {
+    "private_kaggle_archive_sha256": "b201714c0a8d996a35cd4a03461092d5667a1c77feca6ab3af5c51f2a0f73fb0",
+    "archive_integrity_test": "passed",
+    "pe_core_sha256": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+    "dinov2_control_sha256": "db07f30cbc94e4972f4a8c72c95bbe5df0dcd40b2dbd494ad82dc324cc1e2b5b"
+  },
+  "execution": {
+    "device": "Apple MPS",
+    "arithmetic": "float32 logits and sigmoid probabilities",
+    "batch_size": 8,
+    "data_loader_workers": 4,
+    "conditions": "clean plus the same 19 individually applied workshop transformations",
+    "codec_contract": "every condition ends with label-independent JPEG q96 normalization",
+    "resume_policy": "atomic predictions and progress after every completed condition",
+    "candidate_order": ["pe_core", "dinov2_control"]
+  },
+  "boundary": "The local recovery may execute the already-frozen candidates and rule exactly once. It may not alter thresholds, transformations, preprocessing, blend weights or rows after a score is observed."
+}

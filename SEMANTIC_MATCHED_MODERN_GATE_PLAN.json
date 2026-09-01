@@ -1,0 +1,74 @@
+{
+  "status": "frozen_before_candidate_scoring",
+  "frozen_at_sgt": "2026-08-31T20:03:03+08:00",
+  "purpose": "One-shot falsification audit of transfer to modern generators after controlling image content and source identity as far as feasible.",
+  "gate": {
+    "manifest": "datasets/semantic_matched_modern_gate_v6/eval_semantic_matched.jsonl",
+    "manifest_sha256": "6becce907305f64778d6b6b645f36fd14eb9d43870eafbe4d254e8f5144731f9",
+    "derivative_inventory_sha256": "a4fa93940cf0b3df3ec42cb7f673f009917fb703663b9a9edb0258a71f0e79ee",
+    "rows": 288,
+    "pairs": 144,
+    "prompts": 8,
+    "fake_generators": 18,
+    "organizer_demo_rows": 0,
+    "training_allowed_rows": 0,
+    "prior_source_identity_overlap": 0,
+    "canonicalization": "exif_transpose_center_square_resize336_jpeg_q96_subsampling0"
+  },
+  "matching": {
+    "method": "Global unique assignment from each actual fake-image embedding to one fresh COCO train2017 real image.",
+    "model": "RN50-quickgelu",
+    "implementation": "open_clip_torch==2.32.0",
+    "repository": "timm/resnet50_clip.openai",
+    "revision": "ec3d92cf63a5f9d591f0d611b736895966c73076",
+    "weight_sha256": "da0baa37fb2211eee5729ab69ed587eb10d48f5b7076ceeed01552fc3d4cb4ee",
+    "fake_feature_sha256": "724e6fe98f55d8be2b7583d1c548f493198b70af7d4dbfb14de6c6f0777b96df",
+    "real_feature_sha256": "2adff8b115d2d0c4bb38daead0f931b0d4d3e3ad87709a548bc4be9f9ceb89d5",
+    "independent_rebuild": "datasets/semantic_matched_modern_gate_v7_reprocheck",
+    "independent_rebuild_feature_hashes_equal": true,
+    "independent_rebuild_source_and_derivative_rows_equal": true,
+    "limitation": "CLIP similarity reduces content mismatch but does not prove that every pair is semantically identical or that every remaining shortcut is removed."
+  },
+  "rejected_predecessors": [
+    {
+      "versions": "v3-v5",
+      "reason": "The stripped-down timm vision loader produced different feature values and changed 65 of 144 assignments on a nominally identical rebuild.",
+      "candidate_detector_scores_observed": false
+    }
+  ],
+  "candidates": {
+    "pe_core": {
+      "checkpoint_sha256": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2"
+    },
+    "dinov2_control": {
+      "checkpoint_sha256": "db07f30cbc94e4972f4a8c72c95bbe5df0dcd40b2dbd494ad82dc324cc1e2b5b"
+    },
+    "fixed_equal_probability_blend": {
+      "formula": "0.5 * pe_core_probability + 0.5 * dinov2_control_probability",
+      "weight_selected_using_this_gate": false
+    }
+  },
+  "metrics": [
+    "clean overall ROC AUC",
+    "paired accuracy: fraction of pairs where the fake score exceeds its matched real score",
+    "per-prompt ROC AUC and paired accuracy",
+    "per-generator matched ROC AUC and paired accuracy, reported as noisy diagnostics because each has only eight pairs",
+    "ROC AUC for every one of the 19 workshop transformations",
+    "pooled transformed ROC AUC",
+    "official-style mean of clean and pooled transformed ROC AUC",
+    "worst individual transformation ROC AUC"
+  ],
+  "fixed_falsification_floors_for_the_blend": {
+    "clean_overall_roc_auc": 0.70,
+    "paired_accuracy": 0.65,
+    "worst_prompt_roc_auc": 0.55,
+    "official_style_score": 0.65,
+    "worst_individual_transform_roc_auc": 0.55
+  },
+  "decision_rule": "This is a one-shot audit, not a tuning set. Do not change blend weights, threshold, preprocessing, augmentation, or training choices using these results. Passing every floor only means the current candidate survives this audit; it is not hidden-set proof. Any failed floor remains an explicit blocker and cannot be erased by averaging.",
+  "prohibitions": [
+    "No organizer demo-only COCO val2017 or DALL-E Advanced image is present or used.",
+    "No gate row may be used for training, calibration, threshold selection, augmentation selection, or blend-weight selection.",
+    "No hidden-set performance claim may be made from this gate."
+  ]
+}

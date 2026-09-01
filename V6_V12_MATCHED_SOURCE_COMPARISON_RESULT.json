@@ -1,0 +1,74 @@
+{
+  "status": "completed",
+  "completed_at": "2026-08-31T19:15:00+08:00",
+  "plan_commit": "c3528a2",
+  "gate_rows": 2000,
+  "gate_manifest_sha256": "57178fc43a3488851b5f973cce4edeadd95eac4e17154c55e8338e4070f56656",
+  "gate_inventory_sha256": "1b62ff5df23538879a4e922a68648fcee73b73d39fc359b6db71804e69c14f5c",
+  "v6": {
+    "candidate": "preserved_v6_pe_core",
+    "checkpoint_sha256": "48ea50773fbd1b7247fff25fde6f985183e29f2eb517b5ac0f6319c1fe38b644",
+    "clean_auc": 0.8291560000000001,
+    "pooled_robust_auc": 0.7166219432132964,
+    "official_style_score": 0.7728889716066483,
+    "worst_individual_condition_auc": 0.6553495,
+    "condition_auc": {
+      "clean": 0.8291560000000001,
+      "jpeg_q90": 0.8189374999999999,
+      "jpeg_q70": 0.79806,
+      "jpeg_q50": 0.7972395,
+      "jpeg_q30": 0.7960235,
+      "blur_sigma_0.5": 0.829153,
+      "blur_sigma_1": 0.8282355,
+      "blur_sigma_2": 0.8176399999999999,
+      "resize_0.5": 0.80579,
+      "resize_0.25": 0.809233,
+      "noise_sigma_0.02": 0.7678365,
+      "noise_sigma_0.05": 0.6553495,
+      "noise_sigma_0.10": 0.6855224999999999,
+      "brightness_0.8": 0.7946860000000001,
+      "brightness_1.2": 0.8105425,
+      "contrast_0.8": 0.803491,
+      "contrast_1.2": 0.8630505000000002,
+      "saturation_0.8": 0.801643,
+      "saturation_1.2": 0.7999065000000001,
+      "center_crop_80": 0.7936645
+    },
+    "returncode": 0,
+    "elapsed_seconds": 633.7587096691132,
+    "cuda_peak_allocated_bytes": 2895338496,
+    "torch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "gpu": "Tesla T4",
+    "progress_bytes": 13893,
+    "progress_sha256": "cd2a675808e413677558ae2bae899a3a770bbcd0ebc6d60aa66c73eecbbde439"
+  },
+  "v12_equal_blend": {
+    "score_rule": "0.5 * pe_probability + 0.5 * dinov2_probability",
+    "weights_searched": false,
+    "clean_auc": 0.9456129999999999,
+    "pooled_robust_auc": 0.9301949944598338,
+    "official_style_score": 0.9379039972299168,
+    "worst_individual_condition_auc": 0.8578680000000001,
+    "result_sha256": "e4e260148cf00b437d54a9f73879b2cdd3289553f9cbc04d02cf1c95016667f4"
+  },
+  "delta_v12_blend_minus_v6": {
+    "clean_auc": 0.11645699999999981,
+    "pooled_robust_auc": 0.2135730512465374,
+    "official_style_score": 0.1650150256232685,
+    "worst_individual_condition_auc": 0.20251850000000005
+  },
+  "predeclared_decision": {
+    "official_score_floor": 0.7678889716066483,
+    "official_score_pass": true,
+    "worst_condition_floor": 0.6553495,
+    "worst_condition_pass": true,
+    "outcome": "advance_v12_equal_blend_as_representation_hedge_candidate"
+  },
+  "boundaries": [
+    "This gate was already opened before the v6 comparison and is not fresh promotion evidence.",
+    "The gate is same-source, low-resolution CIFAKE and does not test broad real sources or unseen generator families.",
+    "This result changes the leading diagnostic candidate but does not estimate the hidden score.",
+    "No organizer demo-only rows were used."
+  ]
+}

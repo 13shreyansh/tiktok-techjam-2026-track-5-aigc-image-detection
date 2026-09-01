@@ -1,0 +1,58 @@
+{
+  "status": "candidate_package_frozen_training_not_started",
+  "controlling_workshop_rule": "datasets marked non-commercial cannot be used",
+  "historical_v6_v9_submission_eligible": false,
+  "historical_v6_v9_role": "experimental controls only",
+  "coco_train2017": {
+    "rows": 6000,
+    "manifest_sha256": "43fd192e9b784edaab6c19169dcba37896db673c4e673696b2d5d6f3ee620537",
+    "content_inventory_sha256": "31dc92ce45d36b6a718899fe9e0d5ba797330ecb9a712b89c6d9f48038769b03",
+    "retained_license_counts": {
+      "4_cc_by": 3757,
+      "5_cc_by_sa": 2141,
+      "7_no_known_restrictions": 102
+    },
+    "val2017_rows": 0,
+    "noncommercial_or_noderivatives_rows": 0
+  },
+  "v12_raw": {
+    "train_rows": 13574,
+    "eval_rows": 2000,
+    "train_manifest_sha256": "b200306ae50e23ab31b41434410d54e2ae0672c863902a38c3aa9b598abb9ceb",
+    "eval_manifest_sha256": "6c1c8f7004b3fae1129c3fdd8d1645dff6c8d6a2da5eef4f43aef15166013a85",
+    "train_eval_content_overlap": 0,
+    "organizer_demo_rows": 0,
+    "recorded_noncommercial_rows": 0,
+    "metadata_probe_train_auc": 0.9689327977725641,
+    "metadata_probe_eval_auc": 0.99836,
+    "metadata_probe_eval_square_only_auc": 0.862,
+    "metadata_probe_eval_png_only_auc": 0.966,
+    "trusted_training_input": false
+  },
+  "v12_canonical": {
+    "policy": "exif_transpose_center_square_resize336_jpeg_q96_subsampling0",
+    "unique_images": 15574,
+    "derivative_bytes": 950456665,
+    "train_manifest_sha256": "8eaecdeb6b27220e4a1bff519a1a898321fb4f2577947b36af5440399e677611",
+    "eval_manifest_sha256": "d61a8575f5330bd01a7351e52c0db2d8886731dee703d49943d381843ee50bd1",
+    "derivative_inventory_sha256": "d407768b3daca652d546024a601c354bd1b7d37214fbf7c1996d0cfb5b8e6846",
+    "train_eval_overlap": 0,
+    "metadata_probe_train_auc": 0.6575544224739618,
+    "metadata_probe_eval_auc": 0.513093,
+    "metadata_probe_eval_square_only_auc": 0.5,
+    "metadata_probe_eval_png_only_auc": 0.5
+  },
+  "kaggle_package": {
+    "file_name": "permissive-mixture-v12-canonical.zip",
+    "bytes": 970978505,
+    "sha256": "6bfcb918676cef772b7a71e2fad8ad2fd0789efab9803fb028fb1302cd801447",
+    "inventory_sha256": "ec78d74e62d8e1b1f75e661f2ea3338fa95be11e96694a3ed168b463fe314fa6",
+    "private_processing_observed": true,
+    "training_observed": false
+  },
+  "tests": {
+    "passed": 134,
+    "failed": 0
+  },
+  "boundary": "The canonicalization result removes the tested file-container and original-geometry shortcut. It is not detector accuracy, hidden-set evidence, or model selection."
+}

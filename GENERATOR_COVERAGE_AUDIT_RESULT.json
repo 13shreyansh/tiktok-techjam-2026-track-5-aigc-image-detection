@@ -1,0 +1,44 @@
+{
+  "completed": true,
+  "purpose": "Manifest-only exact-generator-name and raw-family-label coverage audit; no inference, training or selection.",
+  "candidate_inventories": {
+    "v6": {"fake_rows": 9479, "exact_generator_names": 12, "raw_family_labels": 9},
+    "v9": {"fake_rows": 10055, "exact_generator_names": 30, "raw_family_labels": 10}
+  },
+  "gate_inventories": {
+    "internal": {"fake_rows": 1536, "exact_generator_names": 8, "raw_family_labels": 6},
+    "qwen_initial": {"fake_rows": 288, "exact_generator_names": 18, "raw_family_labels": 1},
+    "qwen_second": {"fake_rows": 288, "exact_generator_names": 18, "raw_family_labels": 1},
+    "community_forensics": {"fake_rows": 312, "exact_generator_names": 78, "raw_family_labels": 1},
+    "ntire": {"fake_rows": 256, "exact_generator_names": 1, "raw_family_labels": 1}
+  },
+  "key_comparisons": {
+    "v6_internal": {"unseen_exact_names": 6, "total_exact_names": 8, "unseen_fraction": 0.75, "raw_family_labels_absent": ["cascaded-diffusion"]},
+    "v9_internal": {"unseen_exact_names": 6, "total_exact_names": 8, "unseen_fraction": 0.75, "raw_family_labels_absent": ["cascaded-diffusion"]},
+    "v6_qwen": {"unseen_exact_names": 18, "total_exact_names": 18, "unseen_fraction": 1.0, "raw_family_labels_absent": ["frontier-2026-image-generation"]},
+    "v9_qwen": {"unseen_exact_names": 0, "total_exact_names": 18, "unseen_fraction": 0.0, "raw_family_labels_absent": []},
+    "v6_community_forensics": {"unseen_exact_names": 78, "total_exact_names": 78, "unseen_fraction": 1.0, "raw_family_labels_absent": ["LatDiff"]},
+    "v9_community_forensics": {"unseen_exact_names": 78, "total_exact_names": 78, "unseen_fraction": 1.0, "raw_family_labels_absent": ["LatDiff"]},
+    "ntire_for_both": {"unseen_exact_names": 1, "total_exact_names": 1, "boundary": "The manifest value is NTIRE-2026-shard-5-undisclosed, not an identified generator; novelty cannot be established."}
+  },
+  "score_context_from_completed_frozen_gates": {
+    "v6_qwen_initial_clean_auc": 0.933274257330247,
+    "v6_qwen_second_clean_auc": 0.9324122299382716,
+    "blend_qwen_initial_clean_auc": 0.9571578414351852,
+    "blend_qwen_second_clean_auc": 0.9546380690586419,
+    "blend_community_forensics_official_style_score": 0.9828800660216799,
+    "blend_ntire_official_style_score": 0.9719702173798368
+  },
+  "interpretation": [
+    "V6's two Qwen results are exact-generator-name holdouts and support transfer to those 18 unseen names.",
+    "V9 trained on the same 18 Qwen generator names, so the blend's Qwen gains demonstrate prompt/pixel transfer within known generator names, not unseen-generator transfer.",
+    "Community Forensics supplies 78 unseen exact model names, but its LatDiff label is semantically related to latent diffusion despite differing from the training label spelling; do not claim a wholly unseen family.",
+    "Raw family labels are not a canonical taxonomy, and coverage alone is not performance.",
+    "NTIRE family identity remains unknown."
+  ],
+  "ignored_full_report": {
+    "path": "outputs/deadline-adversarial/generator-coverage-audit.json",
+    "bytes": 21002,
+    "sha256": "7424d54dfbebe6b1c4aef47aafa19d012a8266c994d780370c6f1d86a6341ed4"
+  }
+}

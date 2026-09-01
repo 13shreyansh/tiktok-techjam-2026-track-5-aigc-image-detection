@@ -1,0 +1,57 @@
+{
+  "status": "pe_core_mps_contract_passed",
+  "observed_date_sgt": "2026-09-01",
+  "hardware": {
+    "machine": "MacBook Pro Mac17,9",
+    "chip": "Apple M5 Pro",
+    "cpu_cores": 18,
+    "gpu_cores": 20,
+    "unified_memory_gb": 64,
+    "macos": "26.6.2 build 25G83"
+  },
+  "environment": {
+    "python": "3.9.6",
+    "torch": "2.8.0",
+    "mps_built": true,
+    "mps_available_in_managed_shell": false,
+    "mps_available_outside_managed_shell": true
+  },
+  "checkpoint": {
+    "candidate": "pe_core",
+    "parameters": 315776001,
+    "sha256": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2"
+  },
+  "input": {
+    "images": 4,
+    "organizer_demo_rows": 0,
+    "purpose": "previously frozen rehearsal only"
+  },
+  "attempts": [
+    {
+      "surface": "managed shell",
+      "device": "mps",
+      "batch_size": 1,
+      "return_code": 1,
+      "score_produced": false,
+      "error": "PyTorch reported that the MPS backend was unavailable through the managed shell"
+    },
+    {
+      "surface": "unsandboxed local process",
+      "device": "mps",
+      "mode": "pe_core",
+      "batch_size": 1,
+      "return_code": 0,
+      "elapsed_seconds": 2.6812275419999994,
+      "output_bytes": 464,
+      "output_sha256": "767096b0c1ffb963fe12947e1038f1f5b1416521aaa42d5c637532ae09419157",
+      "scores_in_filename_order": [
+        0.15488167107105255,
+        0.37695014476776123,
+        0.7343368530273438,
+        0.9728322625160217
+      ],
+      "finite_probabilities_in_unit_interval": true
+    }
+  ],
+  "interpretation": "The exact PE v12 directory-to-JSON contract is fast and runnable on Apple MPS when MPS is exposed. Four selected rehearsal rows prove only portability and deterministic output structure; they are not an accuracy, calibration or hidden-set result."
+}

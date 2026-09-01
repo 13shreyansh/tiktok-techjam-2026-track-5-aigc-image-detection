@@ -1,0 +1,44 @@
+{
+  "status": "completed_returncode_zero",
+  "purpose": "Falsify the source-confounded v12 clean gate with one dataset that supplies both labels.",
+  "source": "CIFAKE official test split",
+  "source_license": "MIT",
+  "selection": {
+    "rows_per_label": 1000,
+    "policy": "lowest source SHA-256 after excluding every locally recorded CIFAKE JSONL identity",
+    "canonicalization": "exif_transpose_center_square_resize336_jpeg_q96_subsampling0",
+    "train_eval_use": "evaluation only; never train, tune, calibrate or threshold on these rows"
+  },
+  "frozen_artifacts": {
+    "rows": 2000,
+    "unique_source_images": 2000,
+    "unique_canonical_images": 2000,
+    "excluded_recorded_cifake_hashes": 21504,
+    "source_manifest_sha256": "079f72e5f7839c7ea0bf88d9dfa68acd2a845da1229bfaf739132859dd6e9d8f",
+    "source_derivative_inventory_sha256": "0e0bcbac4fa5c69f4055d21e85a2283e531db172f33ece46a189d5ad02b6e46c",
+    "packaged_manifest_sha256": "57178fc43a3488851b5f973cce4edeadd95eac4e17154c55e8338e4070f56656",
+    "package_inventory_sha256": "1b62ff5df23538879a4e922a68648fcee73b73d39fc359b6db71804e69c14f5c",
+    "package_bytes": 50966812,
+    "package_sha256": "b91363fef08bceb3c72f86ca4e5d4fce8b0c0a530d79e56b431dfa8a0087d383"
+  },
+  "candidates": [
+    "vit_pe_core_large_patch14_336 v12 checkpoint f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+    "vit_large_patch14_dinov2.lvd142m v12 checkpoint db07f30cbc94e4972f4a8c72c95bbe5df0dcd40b2dbd494ad82dc324cc1e2b5b"
+  ],
+  "evaluation": {
+    "evaluator_path": "scripts/kaggle_evaluate_cifake_matched_v12_gate.py",
+    "evaluator_sha256": "ea1d65120274927d20678cf25583a735efb21c0eae031b68231b26695d7df70b",
+    "evaluator_bytes": 12768,
+    "conditions": "clean plus the 19 individually applied workshop conditions",
+    "primary": "clean matched-source ROC AUC",
+    "secondary": "0.5 clean AUC + 0.5 pooled transformed AUC, worst individual condition AUC",
+    "clean_interpretation": {
+      "at_least_0.80": "useful within-source evidence, still not broad transfer proof",
+      "0.65_to_below_0.80": "material source/content dependence warning",
+      "below_0.65": "reject the representation as a trusted primary candidate"
+    },
+    "minimum_transformed_floor": 0.60
+  },
+  "organizer_demo_rows": 0,
+  "boundary": "The gate contains only low-resolution CIFAKE content and cannot establish performance on broad real photography or unseen generator families."
+}

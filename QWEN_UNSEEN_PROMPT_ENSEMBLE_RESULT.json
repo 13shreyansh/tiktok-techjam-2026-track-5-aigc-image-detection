@@ -1,0 +1,67 @@
+{
+  "completed": true,
+  "scope": "second 16-prompt by 18-generator clean Qwen holdout, unseen before v6 baseline",
+  "source_revision": "d2493deb153b020cf169c7e3f57d15e4dd697038",
+  "prompt_ids": [22, 183, 309, 327, 338, 420, 488, 536, 568, 631, 721, 772, 838, 859, 896, 900],
+  "rows": 576,
+  "real_hash_inventory": "985d0842c9f38a4771cb247cf48753edf6b9564f9d41eb2b1fdc7bf0af85e0c7",
+  "fake_hash_inventory": "c7f565e333aa09954243d0c41e90fb447c02045a8d57df513ff711b1e7c1caaa",
+  "sealed_package_inventory_sha256": "b1b8e5b4c9882b3e807c368a60633f1d5f971e7b0d81b2390fe3d08227dca02f",
+  "v6_checkpoint_sha256": "48ea50773fbd1b7247fff25fde6f985183e29f2eb517b5ac0f6319c1fe38b644",
+  "v9_checkpoint_sha256": "dd6b26c7849489447c7e96823f5b5e87c31623ca8ae0d28a5b162bb2dcb65075",
+  "arithmetic_contract": "one GPU; physical batch 64; sigmoid and 75/25 blend in FP16; FP32 conversion only after blend",
+  "preprocessing": "both labels JPEG q96 then full-frame stretch",
+  "candidates": {
+    "v6": {
+      "auc": 0.9324122299382716,
+      "worst_generator_auc": 0.8502604166666666,
+      "worst_real_source_auc": 0.8248922413793104,
+      "worst_pair_auc": 0.6411637931034483,
+      "dependence": {
+        "score_mean": 0.7216373549567329,
+        "sum_of_squares_share": {"prompt": 0.6143647936902114, "generator": 0.10862511707899455, "interaction": 0.2770100892307941},
+        "worst_prompts": [
+          {"prompt_id": 900, "mean_score": 0.22770606146918404, "auc_against_all_reals": 0.7041859567901234},
+          {"prompt_id": 721, "mean_score": 0.1827426486545139, "auc_against_all_reals": 0.7097800925925927},
+          {"prompt_id": 838, "mean_score": 0.5579867892795138, "auc_against_all_reals": 0.8987268518518519},
+          {"prompt_id": 536, "mean_score": 0.6066623263888888, "auc_against_all_reals": 0.9053819444444445},
+          {"prompt_id": 309, "mean_score": 0.6652119954427084, "auc_against_all_reals": 0.9268904320987654}
+        ]
+      }
+    },
+    "blend": {
+      "auc": 0.9546380690586419,
+      "worst_generator_auc": 0.8953993055555556,
+      "worst_real_source_auc": 0.874161877394636,
+      "worst_pair_auc": 0.722521551724138,
+      "dependence": {
+        "score_mean": 0.7618868086073134,
+        "sum_of_squares_share": {"prompt": 0.585939856067665, "generator": 0.11688228448629075, "interaction": 0.29717785944604436},
+        "worst_prompts": [
+          {"prompt_id": 900, "mean_score": 0.3392198350694444, "auc_against_all_reals": 0.8075810185185185},
+          {"prompt_id": 721, "mean_score": 0.3160332573784722, "auc_against_all_reals": 0.8195408950617284},
+          {"prompt_id": 838, "mean_score": 0.6293267144097222, "auc_against_all_reals": 0.9310378086419754},
+          {"prompt_id": 536, "mean_score": 0.6765001085069444, "auc_against_all_reals": 0.9422260802469136},
+          {"prompt_id": 309, "mean_score": 0.7050815158420138, "auc_against_all_reals": 0.9454089506172839}
+        ]
+      }
+    }
+  },
+  "delta_blend_minus_v6": {
+    "auc": 0.02222583912037035,
+    "worst_generator_auc": 0.04513888888888895,
+    "worst_pair_auc": 0.08135775862068972,
+    "worst_prompt_auc": 0.10339506172839508
+  },
+  "elapsed_seconds_including_download_load_decode_and_inference": 88.58237981796265,
+  "cuda_peak_allocated_bytes": 4275770368,
+  "torch": "2.8.0+cu126",
+  "cuda_runtime": "12.6",
+  "gpu": "Tesla T4",
+  "exact_kaggle_report": {
+    "path": "/kaggle/working/track5-qwen-unseen-prompt-ensemble.json",
+    "bytes": 7401,
+    "sha256": "9946c2f320df3d972c3e584d3e30fde22f39e7f2d78077cd023ce1f54600acc1"
+  },
+  "boundary": "This holdout was consumed for candidate confirmation and prompt-dependence diagnosis. It is excluded from training and must not be reused to choose a content-specific intervention. The exact full report remains in the private Kaggle working output; this committed file is its compact evidence record."
+}

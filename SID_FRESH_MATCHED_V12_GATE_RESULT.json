@@ -1,0 +1,128 @@
+{
+  "status": "completed_returncode_zero_with_source_confound_alarm",
+  "observed_at": "2026-08-31",
+  "gate_plan": "SID_FRESH_MATCHED_V12_GATE_PLAN.json",
+  "evaluator_sha256": "557714af13d4cef74d07a1f30679c9f8c4968cad46f2dc55b8ff67cc72b7d837",
+  "gate_package_sha256": "439434c4e59b3dbbd4cbe98b9b94464f9e201a3e60cb4560dd87e11ff31f74b0",
+  "runtime": {
+    "gpu_per_candidate": "Tesla T4",
+    "torch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "returncodes": {
+      "pe_core": 0,
+      "dinov2_control": 0
+    }
+  },
+  "gate_compliance": {
+    "rows": 568,
+    "labels": {
+      "0": 284,
+      "1": 284
+    },
+    "unique_source_images": 568,
+    "unique_canonical_images": 568,
+    "organizer_demo_rows": 0,
+    "training_allowed_rows": 0,
+    "source_license": "CC-BY-4.0",
+    "source_revision": "dc03ead57929879319ce30a82bfcfb8d317b10bd"
+  },
+  "identity_separation": {
+    "v12_rows_compared": 15574,
+    "source_identity_overlap": 0,
+    "canonical_identity_overlap": 0,
+    "v12_inventory_sha256": "ec78d74e62d8e1b1f75e661f2ea3338fa95be11e96694a3ed168b463fe314fa6"
+  },
+  "results": {
+    "pe_core": {
+      "checkpoint_sha256": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+      "conditions": {
+        "clean": 0.9997334358262249,
+        "jpeg_q90": 0.9998636183296965,
+        "jpeg_q70": 0.9992003074786749,
+        "jpeg_q50": 0.9985555941281491,
+        "jpeg_q30": 0.9967206407458837,
+        "blur_sigma_0.5": 0.9995970541559215,
+        "blur_sigma_1": 0.9992932949811545,
+        "blur_sigma_2": 0.9974025490974013,
+        "resize_0.5": 0.9991817099781788,
+        "resize_0.25": 0.9979976691132711,
+        "noise_sigma_0.02": 0.9937760365006943,
+        "noise_sigma_0.05": 0.9893064372148382,
+        "noise_sigma_0.10": 0.9871863221583019,
+        "brightness_0.8": 0.9998884149970244,
+        "brightness_1.2": 0.9996528466574093,
+        "contrast_0.8": 0.9996900416584011,
+        "contrast_1.2": 0.9995412616544337,
+        "saturation_0.8": 0.9997644316603849,
+        "saturation_1.2": 0.9997644316603849,
+        "center_crop_80": 0.9985865899623091
+      },
+      "clean_auc": 0.9997334358262249,
+      "pooled_robust_auc": 0.9977049516677922,
+      "official_style_score": 0.9987191937470086,
+      "worst_individual_condition_auc": 0.9871863221583019,
+      "elapsed_seconds": 215.29131531715393,
+      "cuda_peak_allocated_bytes": 2895338496,
+      "passes_frozen_numerical_gate": true
+    },
+    "dinov2_control": {
+      "checkpoint_sha256": "db07f30cbc94e4972f4a8c72c95bbe5df0dcd40b2dbd494ad82dc324cc1e2b5b",
+      "conditions": {
+        "clean": 0.8601219996032533,
+        "jpeg_q90": 0.8493602459829399,
+        "jpeg_q70": 0.8390448323745289,
+        "jpeg_q50": 0.8315500396746678,
+        "jpeg_q30": 0.826144366197183,
+        "blur_sigma_0.5": 0.8599794187661178,
+        "blur_sigma_1": 0.8577477187066059,
+        "blur_sigma_2": 0.8605559412814917,
+        "resize_0.5": 0.8498127851616744,
+        "resize_0.25": 0.8307317496528466,
+        "noise_sigma_0.02": 0.8306821563181909,
+        "noise_sigma_0.05": 0.8124008133306884,
+        "noise_sigma_0.10": 0.7889865602063082,
+        "brightness_0.8": 0.8564148978377306,
+        "brightness_1.2": 0.856024350327316,
+        "contrast_0.8": 0.8579956853798849,
+        "contrast_1.2": 0.8506372743503272,
+        "saturation_0.8": 0.8571835945248959,
+        "saturation_1.2": 0.857468756199167,
+        "center_crop_80": 0.852100277722674
+      },
+      "clean_auc": 0.8601219996032533,
+      "pooled_robust_auc": 0.8396415322334696,
+      "official_style_score": 0.8498817659183615,
+      "worst_individual_condition_auc": 0.7889865602063082,
+      "elapsed_seconds": 175.75263786315918,
+      "cuda_peak_allocated_bytes": 2979893760,
+      "passes_frozen_numerical_gate": true
+    }
+  },
+  "post_score_source_confound_alarm": {
+    "real_original_square": 11,
+    "fake_original_square": 284,
+    "real_original_jpeg": 283,
+    "real_original_other": 1,
+    "real_original_png": 0,
+    "fake_original_png": 284,
+    "fake_original_jpeg": 0,
+    "original_square_rule_auc": 0.980633802816901,
+    "original_png_rule_auc": 1.0,
+    "causal_boundary": "The image model does not receive these metadata fields directly, but original crop composition and codec lineage remain perfectly or nearly perfectly label-confounded in the pixels."
+  },
+  "comparison": {
+    "official_style_score_delta_pe_minus_dino": 0.1488374278286471,
+    "interpretation": "Both candidates pass the predeclared numerical floors. PE is near-perfect and DINO is materially weaker, but the gate has a perfect original format split and near-perfect original geometry split. The PE result is therefore a source-specific shortcut alarm, not promotion evidence.",
+    "selection_boundary": "Do not select or promote a broad hidden-set candidate from this SID gate. CIFAKE and SID disagree sharply, and SID cannot disentangle label from original codec and geometry."
+  },
+  "private_preservation": {
+    "url": "https://www.kaggle.com/datasets/shreyanshag13/track5-v12-exact-checkpoints-and-gates",
+    "staged_integrity_manifest_sha256": "75602edac15dff4ccd5e430766e4ad80a3a32c943e67f48232f368ebf8dc9141",
+    "visibility_readback": "PRIVATE",
+    "version_readback": 2,
+    "page_size_readback": "2.48 GB",
+    "page_file_count_readback": 14,
+    "status": "private_version_created_and_read_back"
+  },
+  "claim_boundary": "This is a completed high-resolution SID_Set diagnostic with a discovered source confound. It does not establish performance on unseen generators, broad real photography or the organizer hidden set."
+}

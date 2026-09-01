@@ -1,0 +1,54 @@
+{
+  "status": "frozen_before_scoring",
+  "purpose": "Determine whether the discovered Gaussian-noise failure is specific to CIFAKE-CIFAR10 authentic rows or generalizes to a new class-balanced 32x32 authentic source.",
+  "model_change": "none",
+  "threshold_or_calibration_change": "none",
+  "authentic_gate": {
+    "source": "CIFAR-100 official test split through the pinned uoft-cs/cifar100 mirror",
+    "rows": 1000,
+    "selection": "10 lowest image SHA-256 values within each of 100 fine classes",
+    "label": 0,
+    "training_allowed": false,
+    "manifest_sha256": "7e54acc25fd136bc8aa12532f8172f9c12735ccc9ff82a992cd3a5da01072fb8",
+    "selected_inventory_sha256": "02f524e80ae92218b9b4e52f08aaf14c071f05f1f8905515c91dc14280c6b241",
+    "kaggle_package_bytes": 2772682,
+    "kaggle_package_sha256": "f6520c1b36e81d04ef60ece5386927a5acc4dba0d5bdd577d43ab24b4dfde67b",
+    "packaged_manifest_sha256": "7d6cb7214641e75fb3ffdf91f15a81acdeebe8d4df04a3b03245eab9c35b0386"
+  },
+  "models": {
+    "v6_checkpoint_sha256": "48ea50773fbd1b7247fff25fde6f985183e29f2eb517b5ac0f6319c1fe38b644",
+    "v9_checkpoint_sha256": "dd6b26c7849489447c7e96823f5b5e87c31623ca8ae0d28a5b162bb2dcb65075",
+    "blend": "0.75 * v6 probability + 0.25 * v9 probability in CUDA FP16 before FP32 conversion",
+    "physical_batch_size": 64
+  },
+  "conditions": [
+    {
+      "name": "clean",
+      "definition": "Resize shorter side to 336, center crop 336x336, scale to [0,1], normalize with checkpoint mean/std"
+    },
+    {
+      "name": "noise_sigma_0.10",
+      "definition": "The same clean path plus independent Gaussian tensor noise sigma 0.10, clipped to [0,1], before normalization",
+      "seed": 20260842
+    }
+  ],
+  "fake_reference": {
+    "source": "The 288 fake rows from the already-frozen first Qwen prompt-holdout prediction files",
+    "new_fake_evidence": false,
+    "warning": "Only the authentic side is new. The comparison does not add a new generator family or independent fake acquisition pipeline."
+  },
+  "primary_diagnostic": "ROC AUC after combining the new 1000 authentic scores with the unchanged 288 frozen Qwen fake scores for the same condition",
+  "predeclared_interpretation_for_blend_noise_auc": {
+    "below_0.50": "general low-resolution authentic ranking inversion confirmed on the new source",
+    "0.50_to_below_0.70": "severe general low-resolution/noise failure",
+    "0.70_to_below_0.80": "material risk; result is inconclusive between a general failure and strong source dependence",
+    "0.80_or_above": "CIFAKE-specific or source-interaction explanation becomes more likely, but low-resolution robustness is not proved"
+  },
+  "additional_flags": {
+    "clean_auc_below_0.80": "clean low-resolution transfer is itself weak",
+    "noise_authentic_mean_above_fake_mean": "mean-score inversion regardless of the aggregate AUC band",
+    "blend_noise_auc_more_than_0.01_below_v6": "the ensemble introduces an additional low-resolution/noise risk"
+  },
+  "decision_boundary": "Diagnosis only. Never train, tune, calibrate, choose a threshold or choose a blend weight using these revealed rows. Any repair requires lawful disjoint training data and a separately frozen evaluation gate.",
+  "forbidden_resources": "The organizer demo-only 4,998 COCO plus 8,843 DALL-E Advanced resources are absent and remain prohibited for training, tuning, selection and calibration."
+}

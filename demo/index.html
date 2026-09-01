@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The falsification journey behind a robust AIGC image detector.">
+  <title>Signal survives — How we got there</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: oklch(0.96 0.01 210);
+      --muted: oklch(0.78 0.025 215);
+      --ground: oklch(0.105 0.012 235);
+      --panel: oklch(0.16 0.018 235);
+      --line: oklch(0.34 0.035 220);
+      --cyan: oklch(0.79 0.145 196);
+      --pink: oklch(0.68 0.24 10);
+      --amber: oklch(0.82 0.16 83);
+      --good: oklch(0.78 0.15 151);
+      --max: 1240px;
+      font-family: "Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      background: var(--ground);
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--ground);
+    }
+
+    a { color: var(--cyan); }
+
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 54px;
+      padding: 0 4vw;
+      background: color-mix(in oklch, var(--ground) 92%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wordmark {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .wordmark span { color: var(--cyan); }
+
+    .progress {
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    section {
+      min-height: 100svh;
+      scroll-snap-align: start;
+      display: grid;
+      align-items: center;
+      padding: clamp(5.5rem, 9vw, 8rem) 4vw clamp(3rem, 6vw, 5rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wrap {
+      width: min(100%, var(--max));
+      margin-inline: auto;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      text-wrap: balance;
+      letter-spacing: -0.035em;
+      line-height: 0.98;
+    }
+
+    h1 { font-size: clamp(3.8rem, 9vw, 6rem); max-width: 13ch; }
+    h2 { font-size: clamp(2.6rem, 6vw, 5rem); max-width: 15ch; }
+    h3 { font-size: clamp(1.35rem, 2.3vw, 2rem); line-height: 1.08; }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 1.55vw, 1.35rem);
+      line-height: 1.55;
+      text-wrap: pretty;
+      max-width: 68ch;
+    }
+
+    strong { color: var(--ink); }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+      gap: clamp(2.5rem, 8vw, 8rem);
+      align-items: end;
+    }
+
+    .hero-copy p { margin-top: 2rem; max-width: 56ch; }
+
+    .signal-mark {
+      display: flex;
+      align-items: end;
+      gap: 10px;
+      height: 270px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .signal-mark i {
+      flex: 1;
+      display: block;
+      min-width: 12px;
+      background: var(--cyan);
+      transform-origin: bottom;
+      animation: settle 900ms cubic-bezier(.16, 1, .3, 1) both;
+    }
+
+    .signal-mark i:nth-child(1) { height: 26%; }
+    .signal-mark i:nth-child(2) { height: 72%; animation-delay: 70ms; }
+    .signal-mark i:nth-child(3) { height: 42%; animation-delay: 140ms; }
+    .signal-mark i:nth-child(4) { height: 91%; background: var(--pink); animation-delay: 210ms; }
+    .signal-mark i:nth-child(5) { height: 58%; animation-delay: 280ms; }
+    .signal-mark i:nth-child(6) { height: 82%; animation-delay: 350ms; }
+    .signal-mark i:nth-child(7) { height: 35%; background: var(--pink); animation-delay: 420ms; }
+    .signal-mark i:nth-child(8) { height: 66%; animation-delay: 490ms; }
+
+    @keyframes settle {
+      from { transform: scaleY(.06); filter: blur(5px); }
+      to { transform: scaleY(1); filter: blur(0); }
+    }
+
+    .stamp {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      margin-bottom: 1.4rem;
+      padding: .5rem .8rem;
+      border: 1px solid var(--cyan);
+      border-radius: 999px;
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .stamp::before {
+      content: "";
+      width: .65rem;
+      height: .65rem;
+      border-radius: 50%;
+      background: var(--good);
+    }
+
+    .method-layout {
+      display: grid;
+      grid-template-columns: minmax(260px, .75fr) minmax(0, 1.25fr);
+      gap: clamp(2.5rem, 8vw, 7rem);
+      align-items: start;
+    }
+
+    .method-copy p { margin-top: 1.5rem; }
+
+    .pipeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .stage {
+      display: grid;
+      grid-template-columns: 3rem minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.3rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stage b {
+      color: var(--cyan);
+      font-size: 1.25rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stage span { color: var(--muted); }
+    .stage em { color: var(--ink); font-style: normal; text-align: right; }
+
+    .score-layout {
+      display: grid;
+      grid-template-columns: minmax(260px, .7fr) minmax(0, 1.3fr);
+      gap: clamp(3rem, 8vw, 8rem);
+      align-items: center;
+    }
+
+    .score-copy p { margin-top: 1.6rem; }
+
+    .bars { display: flex; flex-direction: column; gap: 1.7rem; }
+    .bar-head { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: .55rem; }
+    .bar-head span { color: var(--muted); }
+    .bar-head strong { font-size: 1.45rem; font-variant-numeric: tabular-nums; }
+    .track { height: 1.25rem; background: var(--panel); overflow: hidden; }
+    .fill { height: 100%; width: var(--value); background: var(--cyan); }
+    .blend .fill { background: var(--amber); }
+    .dino .fill { background: var(--pink); }
+
+    .delta {
+      margin-top: 2.2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .delta strong { color: var(--cyan); }
+
+    .robust-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(260px, .7fr);
+      gap: clamp(3rem, 7vw, 7rem);
+      align-items: center;
+    }
+
+    .condition-plot {
+      display: flex;
+      align-items: end;
+      gap: clamp(.55rem, 1.4vw, 1rem);
+      height: 390px;
+      padding: 1rem 0 2.8rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .condition {
+      position: relative;
+      flex: 1;
+      min-width: 24px;
+      height: var(--height);
+      min-height: 2.6rem;
+      background: var(--cyan);
+    }
+
+    .condition.weak { background: var(--pink); }
+    .condition::before {
+      content: attr(data-value);
+      position: absolute;
+      bottom: calc(100% + .5rem);
+      left: 50%;
+      transform: translateX(-50%) rotate(-90deg);
+      transform-origin: center;
+      color: var(--ink);
+      font-size: .9rem;
+    }
+
+    .condition::after {
+      content: attr(data-label);
+      position: absolute;
+      top: calc(100% + .7rem);
+      left: 50%;
+      transform: translateX(-50%) rotate(-42deg);
+      transform-origin: top center;
+      color: var(--muted);
+      font-size: .82rem;
+      white-space: nowrap;
+    }
+
+    .robust-copy p { margin-top: 1.6rem; }
+
+    .failure-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, .9fr);
+      gap: clamp(3rem, 8vw, 8rem);
+      align-items: center;
+    }
+
+    .failure-copy p { margin-top: 1.6rem; }
+
+    .confusion {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--line);
+    }
+
+    .cell { min-height: 150px; padding: 1.3rem; }
+    .cell:nth-child(1), .cell:nth-child(2) { border-bottom: 1px solid var(--line); }
+    .cell:nth-child(odd) { border-right: 1px solid var(--line); }
+    .cell b { display: block; font-size: clamp(2rem, 5vw, 4rem); line-height: 1; }
+    .cell span { display: block; margin-top: .7rem; color: var(--muted); }
+    .cell.alert b { color: var(--pink); }
+    .cell.good b { color: var(--good); }
+
+    .run-layout {
+      display: grid;
+      grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
+      gap: clamp(3rem, 8vw, 8rem);
+      align-items: center;
+    }
+
+    .run-copy p { margin-top: 1.6rem; }
+
+    pre {
+      margin: 0;
+      padding: clamp(1.2rem, 3vw, 2rem);
+      overflow-x: auto;
+      background: oklch(0.075 0.008 235);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font: 600 clamp(.85rem, 1.2vw, 1.05rem)/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+    }
+
+    .cyan { color: var(--cyan); }
+    .pink { color: var(--pink); }
+
+    .footer-note {
+      margin-top: 1.2rem;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .journey-outcome {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border: 1px solid var(--line);
+    }
+
+    .journey-outcome .cell:nth-child(2) { border-right: 0; }
+
+    @media (max-width: 820px) {
+      html { scroll-snap-type: none; }
+      section { min-height: auto; padding-block: 7rem 4rem; }
+      .hero-grid, .method-layout, .score-layout, .robust-layout,
+      .failure-layout, .run-layout { grid-template-columns: 1fr; }
+      .journey-outcome { grid-template-columns: 1fr; }
+      .journey-outcome .cell { border-right: 0; border-bottom: 1px solid var(--line); }
+      .signal-mark { height: 180px; }
+      .condition-plot { height: 300px; overflow-x: auto; }
+      .condition { flex: 0 0 36px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .signal-mark i { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wordmark">The path to <span>Signal survives</span></div>
+    <div class="progress" aria-live="polite"><span id="current">01</span> / 06</div>
+  </header>
+
+  <main>
+    <section id="problem" aria-labelledby="problem-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="stamp">Day one · the trap</div>
+          <h1 id="problem-title">Our first great score was bad news.</h1>
+          <p>A classifier that never opened the images reached <strong>0.9984
+            AUC</strong>. File type, dimensions and source fingerprints could
+            reveal the label. A detector could look brilliant while learning
+            almost nothing about authentic versus generated pixels.</p>
+        </div>
+        <div class="signal-mark" aria-label="Misleading shortcut signals of different strengths">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+    </section>
+
+    <section id="method" aria-labelledby="method-title">
+      <div class="wrap method-layout">
+        <div class="method-copy">
+          <h2 id="method-title">First, we removed ways to cheat.</h2>
+          <p>Both labels received the same orientation correction, crop,
+            resize and JPEG encoding. We wanted the easy score to collapse
+            before trusting any model score.</p>
+        </div>
+        <div class="pipeline" role="list" aria-label="Shortcut removal results">
+          <div class="stage" role="listitem"><b>01</b><span>Raw metadata-only classifier</span><em>0.9984 AUC</em></div>
+          <div class="stage" role="listitem"><b>02</b><span>Same processing for both labels</span><em>0.5131 AUC</em></div>
+          <div class="stage" role="listitem"><b>03</b><span>“PNG means fake” rule</span><em>0.5000 AUC</em></div>
+          <div class="stage" role="listitem"><b>04</b><span>Square-shape rule</span><em>0.5000 AUC</em></div>
+          <div class="stage" role="listitem"><b>05</b><span>Train/evaluation byte overlap</span><em>zero</em></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="broaden" aria-labelledby="broaden-title">
+      <div class="wrap method-layout">
+        <div class="method-copy">
+          <h2 id="broaden-title">Then, we made the world broader.</h2>
+          <p>We stopped asking whether the model knew one dataset. We asked
+            whether the same signal survived new subjects, real-image sources,
+            generator families and every workshop transformation.</p>
+        </div>
+        <div class="pipeline" role="list" aria-label="Coverage expansion journey">
+          <div class="stage" role="listitem"><b>01</b><span>Authentic scenes, people, objects, low resolution</span><em>multiple sources</em></div>
+          <div class="stage" role="listitem"><b>02</b><span>GAN, Stable Diffusion, SD3, FLUX, PixArt</span><em>old + recent</em></div>
+          <div class="stage" role="listitem"><b>03</b><span>Eligible balanced training mixture</span><em>13,574 images</em></div>
+          <div class="stage" role="listitem"><b>04</b><span>One workshop transform per training view</span><em>never chained</em></div>
+          <div class="stage" role="listitem"><b>05</b><span>Source, generator, prompt and identity holdouts</span><em>complete groups</em></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="failures" aria-labelledby="failures-title">
+      <div class="wrap method-layout">
+        <div class="method-copy">
+          <h2 id="failures-title">The attractive fixes kept failing.</h2>
+          <p>Each rejection saved us from submitting a model that looked
+            better on one slice but became worse when the source or failure
+            mode changed.</p>
+        </div>
+        <div class="pipeline" role="list" aria-label="Rejected improvement attempts">
+          <div class="stage" role="listitem"><b>v10</b><span>Low-resolution repair</span><em>hurt frozen clean checks</em></div>
+          <div class="stage" role="listitem"><b>v11</b><span>Noise-aware routing</span><em>gain below frozen minimum</em></div>
+          <div class="stage" role="listitem"><b>DINO</b><span>Second visual encoder</span><em>weak on source rotation</em></div>
+          <div class="stage" role="listitem"><b>Blend</b><span>Two-model ensemble</span><em>lost to one PE model</em></div>
+          <div class="stage" role="listitem"><b>Rule</b><span>Keep the strongest survivor</span><em>not the fanciest idea</em></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="decision" aria-labelledby="decision-title">
+      <div class="wrap failure-layout">
+        <div class="failure-copy">
+          <h2 id="decision-title">We locked the final exam before opening it.</h2>
+          <p>The selection rule, candidate hashes and five pass/fail checks were
+            frozen first. Only then did we open the untouched 1,024-image,
+            source-coherent gate. We did not search weights or thresholds after
+            seeing the answer.</p>
+        </div>
+        <div class="confusion" aria-label="Frozen final decision safeguards">
+          <div class="cell good"><b>5</b><span>precommitted selection checks passed</span></div>
+          <div class="cell good"><b>0</b><span>weights changed after opening</span></div>
+          <div class="cell good"><b>0</b><span>thresholds calibrated on the gate</span></div>
+          <div class="cell good"><b>0</b><span>organizer demo rows used</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="run" aria-labelledby="run-title">
+      <div class="wrap run-layout">
+        <div class="run-copy">
+          <div class="stamp">What survived</div>
+          <h2 id="run-title">One model, after every reason to reject it.</h2>
+          <p>The selected PE-Core-L model has <strong>315,776,001
+            parameters</strong> and a 1,025-parameter trained head. On the
+            untouched development gate it reached <strong>0.9872</strong> on
+            the workshop score, <strong>0.9837</strong> pooled after transforms,
+            and <strong>0.9308</strong> in its weakest heavy-noise condition.</p>
+        </div>
+        <div>
+          <pre aria-label="Run command"><span class="cyan">$</span> shasum -a 256 -c SELECTED_CHECKPOINT.sha256
+<span class="cyan">$</span> PYTHON_EXECUTABLE=.venv/bin/python \
+    AIGC_DEVICE=auto ./run_v12.sh \
+    INPUT_DIRECTORY predictions.json
+
+<span class="pink">✓</span> mode=pe_core · images=4 · parameters=315776001
+<span class="pink">✓</span> probabilities reproduced in a fresh environment</pre>
+          <div class="footer-note">The result is not a hidden-score estimate. At the uncalibrated 0.5 cutoff, 161/512 authentic images are false positives and 4/512 generated images are missed—so the output supports human review, not proof.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const sections = [...document.querySelectorAll('main > section')];
+    const current = document.querySelector('#current');
+    const update = () => {
+      const middle = window.scrollY + window.innerHeight / 2;
+      let index = 0;
+      sections.forEach((section, i) => {
+        if (section.offsetTop <= middle) index = i;
+      });
+      current.textContent = String(index + 1).padStart(2, '0');
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('keydown', event => {
+      if (!['ArrowDown', 'ArrowRight', 'PageDown', 'ArrowUp', 'ArrowLeft', 'PageUp'].includes(event.key)) return;
+      event.preventDefault();
+      const active = Number(current.textContent) - 1;
+      const delta = ['ArrowUp', 'ArrowLeft', 'PageUp'].includes(event.key) ? -1 : 1;
+      sections[Math.max(0, Math.min(sections.length - 1, active + delta))].scrollIntoView();
+    });
+    update();
+  </script>
+</body>
+</html>

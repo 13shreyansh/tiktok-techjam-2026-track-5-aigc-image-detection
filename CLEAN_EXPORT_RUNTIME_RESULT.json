@@ -1,0 +1,44 @@
+{
+  "status": "history_free_export_runtime_passed_with_local_checkpoint",
+  "observed_date_sgt": "2026-09-01",
+  "source_commit": "f8a11d67fef6581b499faacbafddc7535eff0bd8",
+  "source_bundle_sha256": "f4f7c70371c6d4259c2a705216f9055c025c5c0346624e6520fb2adf53a29bb9",
+  "fresh_runtime_environment": {
+    "created_in_temporary_directory": true,
+    "install_command": "<temporary-venv>/bin/pip install -r requirements-runtime.txt",
+    "install_return_code": 0,
+    "install_elapsed_seconds": 18.04490375,
+    "python": "3.9.6",
+    "Pillow": "11.3.0",
+    "timm": "1.0.19",
+    "torch": "2.8.0",
+    "torchvision": "0.23.0"
+  },
+  "command_template": "from the freshly extracted source root: PYTHON_EXECUTABLE=<verified-environment-python> AIGC_DEVICE=mps AIGC_BATCH_SIZE=1 ./run_v12.sh <frozen-rehearsal-input> <temporary-output> <selected-checkpoint>",
+  "selected_checkpoint_sha256": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+  "device": "mps",
+  "batch_size": 1,
+  "return_code": 0,
+  "observed_mode": "pe_core",
+  "total_parameters": 315776001,
+  "images": 4,
+  "elapsed_seconds": 2.425809917,
+  "output_bytes": 812,
+  "output_sha256": "719b6d757f7fa6008351fdcce074290f001a28456e0b3eae2a7c9e77b42f8921",
+  "probabilities_exactly_match_checkout_run": true,
+  "fresh_runtime_environment_run": {
+    "return_code": 0,
+    "elapsed_seconds": 2.9348713330000002,
+    "output_bytes": 812,
+    "output_sha256": "719b6d757f7fa6008351fdcce074290f001a28456e0b3eae2a7c9e77b42f8921",
+    "probabilities_exactly_match_checkout_run": true
+  },
+  "scores_in_filename_order": [
+    0.15488167107105255,
+    0.37695014476776123,
+    0.7343368530273438,
+    0.9728322625160217
+  ],
+  "output_byte_difference_explanation": "The clean-export invocation used absolute external input paths, which are preserved in image_path; all four probabilities and filename order match the checkout run exactly.",
+  "boundary": "This closes local history-free source-to-local-checkpoint runtime portability and a fresh runtime-only dependency install. It does not verify a public checkpoint URL, unauthenticated download, accuracy, throughput or hidden performance. Private absolute paths are intentionally omitted from the tracked evidence."
+}

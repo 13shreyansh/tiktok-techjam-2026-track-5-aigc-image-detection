@@ -1,0 +1,34 @@
+{
+  "status": "rejected_before_candidate_scoring",
+  "reviewed_at": "2026-08-31T19:45:00+08:00",
+  "prompt_selection_commit": "4b9cceb",
+  "prompt_selection_sha256": "d2dc654afbe366764881273cdecc1ec252b933b225f1eaf07a6be78bb1bb9288",
+  "gate_manifest_sha256": "0287a46a5a92cc0cf81d83e3bd369242ffba9d82a4fdfb1dec6c8fc6f37aceb9",
+  "gate_report_sha256": "2f7e25641dd2527999015c9d25a9e73588001ed83f32371fc7f7de72c93c2ef2",
+  "rows": 288,
+  "pairs": 144,
+  "candidate_detector_scores_read": false,
+  "build": {
+    "device": "cpu",
+    "returncode": 0,
+    "elapsed_seconds": 89.86569881439209,
+    "ru_maxrss_raw": 1627930624
+  },
+  "numerical_matching": {
+    "selected_cosine_min": 0.5436798930168152,
+    "selected_cosine_mean": 0.6800343340469731,
+    "selected_cosine_max": 0.896675169467926,
+    "real_pool_cosine_mean": 0.3496987223625183
+  },
+  "visual_review": {
+    "best_and_worst_pair_per_prompt_reviewed": true,
+    "finding": "Prompt selection improved matchability, but repeating one prompt centroid for 18 assignments still allowed visibly mismatched individual pairs.",
+    "worst_pair_examples": [
+      "cat prompt: polar bear real versus cat fake",
+      "suitcase prompt: sofa real versus luggage fake",
+      "park swing prompt: city street real versus swing fake"
+    ]
+  },
+  "decision": "Do not score any candidate on v2. Rebuild with one-to-one assignment from each actual fake-image CLIP embedding to a unique real photograph.",
+  "boundary": "The rejection occurred before PE, DINO, blend or v6 scores were computed on this gate."
+}

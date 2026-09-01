@@ -4,6 +4,8 @@ venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.cache/
+*.egg-info/
 data/
 datasets/
 models/
@@ -11,6 +13,7 @@ weights/
 checkpoints/
 outputs/
 artifacts/
+build/
+dist/
 *.log
 .DS_Store
-

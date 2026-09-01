@@ -1,0 +1,2 @@
+# Optional, audit-only semantic gate tooling. Not required by run.sh.
+open_clip_torch==2.32.0

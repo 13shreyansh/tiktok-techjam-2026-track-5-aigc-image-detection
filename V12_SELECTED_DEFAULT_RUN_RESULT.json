@@ -1,0 +1,23 @@
+{
+  "status": "selected_default_mps_contract_passed",
+  "observed_date_sgt": "2026-09-01",
+  "command": "PYTHON_EXECUTABLE=.venv/bin/python AIGC_DEVICE=mps AIGC_BATCH_SIZE=1 ./run_v12.sh artifacts/demo-rehearsal-input /private/tmp/track5-v12-selected-default-mps.json",
+  "mode_environment_override_present": false,
+  "observed_mode": "pe_core",
+  "device": "mps",
+  "batch_size": 1,
+  "images": 4,
+  "total_parameters": 315776001,
+  "checkpoint_sha256": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
+  "return_code": 0,
+  "elapsed_seconds": 2.533843167,
+  "output_bytes": 464,
+  "output_sha256": "767096b0c1ffb963fe12947e1038f1f5b1416521aaa42d5c637532ae09419157",
+  "scores_in_filename_order": [
+    0.15488167107105255,
+    0.37695014476776123,
+    0.7343368530273438,
+    0.9728322625160217
+  ],
+  "boundary": "This verifies that the public-facing default command loads only the selected PE-Core-L checkpoint and emits the frozen four-row output on Apple MPS. It is portability evidence, not an accuracy, throughput, calibration or hidden-score result."
+}

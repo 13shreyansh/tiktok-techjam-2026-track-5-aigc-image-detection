@@ -1,0 +1,41 @@
+{
+  "status": "history_free_source_bundle_verified_but_external_links_unresolved",
+  "observed_on": "2026-09-01",
+  "source_commit": "2e1b70d4b0652fbb77e150d74f5f44e513d688b2",
+  "ignored_bundle_path": "artifacts/source/track5-source-2e1b70d.zip",
+  "bytes": 716168,
+  "sha256": "38addd1edb7d3f17072672f579d70c377a16c3e495b8f81fc4331dc9fa138cec",
+  "archive_entries_including_directories": 305,
+  "archive_files": 297,
+  "successful_command": "git archive --format=zip --output artifacts/source/track5-source-2e1b70d.zip 2e1b70d",
+  "isolated_test_result": {
+    "passed": 209,
+    "failed": 0,
+    "return_code": 0,
+    "warning": "one non-failing physical-core discovery warning"
+  },
+  "isolated_tree_audit": {
+    "inventory_mode": "history_free_filesystem_tree",
+    "files": 297,
+    "required_files_present": true,
+    "run_scripts_executable": true,
+    "selected_runtime_mode": "pe_core",
+    "selected_parameters": 315776001,
+    "under_2b_parameter_limit": true,
+    "forbidden_artifact_blockers": 0,
+    "private_locator_blockers": 0,
+    "private_key_blockers": 0,
+    "unresolved_release_placeholders": 3,
+    "distribution_urls_present": false,
+    "blockers": [
+      "three unresolved public-link placeholders in DEVPOST_DRAFT.md",
+      "missing_public_checkpoint_urls"
+    ],
+    "return_code": 1
+  },
+  "includes_git_history": false,
+  "includes_model_weights_datasets_caches_or_outputs": false,
+  "published": false,
+  "submitted": false,
+  "limitation": "The ZIP is the exact history-free export of the final reviewed source commit. This evidence record necessarily postdates that archive and remains local; public URL and logged-out checkpoint installation are unresolved."
+}

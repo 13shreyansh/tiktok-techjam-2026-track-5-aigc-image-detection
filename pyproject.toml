@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "techjam-aigc-detector"
+version = "0.1.0"
+description = "TikTok TechJam 2026 Track 5 experimental harness"
+requires-python = ">=3.9"
+dependencies = [
+  "numpy==1.26.4",
+  "Pillow==11.3.0",
+  "pyarrow==21.0.0",
+  "scikit-learn==1.6.1",
+  "timm==1.0.19",
+  "torch==2.8.0",
+  "torchvision==0.23.0",
+  "tqdm==4.67.1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==8.4.2",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
