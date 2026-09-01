@@ -8,7 +8,7 @@ def test_v12_manifest_matches_sidecar_and_parameter_limit():
     for line in Path("V12_CHECKPOINTS.sha256").read_text().splitlines():
         digest, filename = line.split(maxsplit=1)
         sidecar[filename] = digest
-    assert manifest["status"] == "verified_private_not_published"
+    assert manifest["status"] == "published_public_verified"
     assert manifest["selected_runtime_mode"] == "pe_core"
     assert manifest["ensemble_total_parameters"] == 619_004_930
     assert manifest["ensemble_total_parameters"] < manifest["organizer_parameter_limit_exclusive"]
@@ -17,7 +17,13 @@ def test_v12_manifest_matches_sidecar_and_parameter_limit():
         value["filename"]: value["sha256"]
         for value in manifest["checkpoints"].values()
     }
-    assert all(value["distribution_url"] is None for value in manifest["checkpoints"].values())
+    assert manifest["checkpoints"]["pe_core"]["distribution_url"].endswith(
+        "/releases/download/v1.0.0/v12_pe_core.pt"
+    )
+    assert manifest["checkpoints"]["dinov2_control"]["distribution_url"] is None
+    assert manifest["public_release"]["repository_visibility"] == "public"
+    assert manifest["public_release"]["asset_bytes"] == 1_263_202_331
+    assert manifest["distribution_blockers"] == []
     assert manifest["training_lineage"]["organizer_demo_rows"] == 0
     assert manifest["training_lineage"]["recorded_noncommercial_rows"] == 0
     selected_digest, selected_path = Path("SELECTED_CHECKPOINT.sha256").read_text().split()

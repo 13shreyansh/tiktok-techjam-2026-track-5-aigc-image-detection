@@ -2,11 +2,12 @@
 
 ## Status
 
-Selected submission candidate. The exact checkpoint has SHA-256
+Selected public submission model. The exact checkpoint has SHA-256
 `f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2`,
-contains 315,776,001 parameters and occupies 1,263,202,331 bytes. It is locally
-and privately preserved but is not public until an immutable download URL is
-recorded and independently reverified.
+contains 315,776,001 parameters and occupies 1,263,202,331 bytes. The immutable
+selected asset is published in the
+[`v1.0.0` release](https://github.com/13shreyansh/tiktok-techjam-2026-track-5-aigc-image-detection/releases/tag/v1.0.0),
+with its exact digest pinned by `SELECTED_CHECKPOINT.sha256`.
 
 No result in this card is the organizer's hidden score.
 

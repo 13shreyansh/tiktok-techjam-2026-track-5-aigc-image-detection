@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit the Git-tracked submission tree without publishing or mutating it."""
+"""Audit the final public submission tree without mutating it."""
 
 from __future__ import annotations
 
@@ -18,33 +18,19 @@ REQUIRED = {
     "MODEL_CARD.md",
     "ROBUSTNESS_AND_ERROR_ANALYSIS.md",
     "THIRD_PARTY_NOTICES.md",
-    "SUBMISSION_READINESS.md",
-    "DEMO_SCRIPT.md",
     "demo/index.html",
-    "PRODUCT.md",
-    "DEVPOST_DRAFT.md",
-    "run.sh",
-    "run_ensemble.sh",
     "run_v12.sh",
-    "ENSEMBLE_CHECKPOINT_MANIFEST.json",
-    "CHECKPOINTS.sha256",
-    "V12_CHECKPOINT_MANIFEST.json",
-    "V12_CHECKPOINTS.sha256",
     "SELECTED_CHECKPOINT.sha256",
+    "V12_CHECKPOINT_MANIFEST.json",
     "V12_RUNNABLE_CONTRACT_RESULT.json",
     "V12_MPS_RUNNABLE_CONTRACT_RESULT.json",
     "V12_SELECTED_DEFAULT_RUN_RESULT.json",
-    "FINAL_LIVE_REHEARSAL_RESULT.json",
-    "PRIVATE_REMOTE_SYNC_RESULT.json",
-    "CLEAN_EXPORT_RUNTIME_RESULT.json",
     "NTIRE_V12_FINAL_ARBITRATION_RESULT.json",
     "V12_ERROR_ANALYSIS_RESULT.json",
     "MODEL_WEIGHTS_LICENSE.md",
     "pyproject.toml",
-    "requirements.txt",
+    "requirements-runtime.txt",
     "requirements-dev.txt",
-    "PACKAGE_INSTALL_RESULT.json",
-    "WEIGHT_RELEASE_DECISION.md",
 }
 FORBIDDEN_SUFFIXES = {
     ".ckpt",
@@ -126,7 +112,7 @@ def audit(root: Path) -> dict:
                     )
 
     executable = {}
-    for name in ("run.sh", "run_ensemble.sh", "run_v12.sh"):
+    for name in ("run_v12.sh",):
         path = root / name
         executable[name] = path.exists() and os.access(path, os.X_OK)
         if not executable[name]:
@@ -196,7 +182,7 @@ def audit(root: Path) -> dict:
 
     return {
         "status": status,
-        "purpose": "Pre-publication source-tree and deliverable audit.",
+        "purpose": "Final public source-tree and deliverable audit.",
         "inventory_mode": inventory_mode,
         "tracked_files": len(paths),
         "required_files_present": not bool(REQUIRED - relative),
@@ -221,8 +207,7 @@ def audit(root: Path) -> dict:
             else "At least one current-tree safety or completeness blocker remains."
         ),
         "history_boundary": (
-            "Earlier private commits require a clean audited export or deliberately "
-            "reviewed squash before public release; no history rewrite was performed."
+            "The public main branch is the reviewed history-free source release."
         ),
     }
 

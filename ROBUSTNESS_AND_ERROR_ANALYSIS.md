@@ -95,5 +95,6 @@ cannot prove the absence of all dataset fingerprints.
 6. Community Forensics has only four fake images per named variant.
 7. NTIRE generator identities are undisclosed, so exact-family novelty cannot
    be claimed.
-8. A public immutable checkpoint URL and logged-out installation proof remain
-   external release gates.
+8. Public packaging does not reduce the central uncertainty: only the
+   organizer's hidden evaluation can measure performance on its undisclosed
+   source and generator mixture.

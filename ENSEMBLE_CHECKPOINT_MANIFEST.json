@@ -63,9 +63,8 @@
     "license": "Apache-2.0"
   },
   "publication_blockers": [
-    "No immutable public distribution URL exists for either exact checkpoint; private preservation is not public distribution.",
+    "These historical diagnostic checkpoints are intentionally not distributed because the final selection rejected the ensemble.",
     "The v9 checkpoint is over 99.99% FP32 tensor bytes, so metadata stripping cannot materially reduce it without changing the verified weights.",
-    "The repository remains private and no publication or submission is authorized yet.",
     "Final code and weight licensing must preserve all recorded upstream dataset and model restrictions."
   ]
 }

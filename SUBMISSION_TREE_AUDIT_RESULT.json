@@ -1,12 +1,10 @@
 {
-  "status": "source_tree_safe_but_distribution_blocked",
-  "purpose": "Pre-publication source-tree and deliverable audit.",
+  "status": "source_tree_ready",
+  "purpose": "Final public source-tree and deliverable audit.",
   "inventory_mode": "git_tracked_tree",
-  "tracked_files": 298,
+  "tracked_files": 284,
   "required_files_present": true,
   "run_scripts_executable": {
-    "run.sh": true,
-    "run_ensemble.sh": true,
     "run_v12.sh": true
   },
   "selected_runtime_mode": "pe_core",
@@ -16,29 +14,10 @@
   "forbidden_tracked_weights_archives_or_large_files": 0,
   "flagged_private_or_personal_locators_in_current_tree": 0,
   "flagged_private_key_material": 0,
-  "unresolved_release_placeholders": 3,
-  "distribution_urls_present": false,
-  "blockers": [
-    {
-      "kind": "unresolved_release_placeholder",
-      "path": "DEVPOST_DRAFT.md",
-      "line": 94
-    },
-    {
-      "kind": "unresolved_release_placeholder",
-      "path": "DEVPOST_DRAFT.md",
-      "line": 95
-    },
-    {
-      "kind": "unresolved_release_placeholder",
-      "path": "DEVPOST_DRAFT.md",
-      "line": 96
-    },
-    {
-      "kind": "missing_public_checkpoint_urls"
-    }
-  ],
-  "passes": false,
-  "reason": "The source tree is mechanically ready, but external public links and immutable checkpoint distribution are not yet verified.",
-  "history_boundary": "Earlier private commits require a clean audited export or deliberately reviewed squash before public release; no history rewrite was performed."
+  "unresolved_release_placeholders": 0,
+  "distribution_urls_present": true,
+  "blockers": [],
+  "passes": true,
+  "reason": "No current-tree blocker was found.",
+  "history_boundary": "The public main branch is the reviewed history-free source release."
 }

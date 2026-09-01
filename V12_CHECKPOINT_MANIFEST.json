@@ -1,5 +1,5 @@
 {
-  "status": "verified_private_not_published",
+  "status": "published_public_verified",
   "selected_runtime_mode": "pe_core",
   "organizer_parameter_limit_exclusive": 2000000000,
   "ensemble_total_parameters": 619004930,
@@ -11,7 +11,7 @@
       "parameters": 315776001,
       "bytes": 1263202331,
       "sha256": "f37bd6b445b12257ff29a9e54946c5bf9a9184e86a45dc5490537b9ea325ddd2",
-      "distribution_url": null
+      "distribution_url": "https://github.com/13shreyansh/tiktok-techjam-2026-track-5-aigc-image-detection/releases/download/v1.0.0/v12_pe_core.pt"
     },
     "dinov2_control": {
       "filename": "models/v12_dinov2.pt",
@@ -46,11 +46,16 @@
     "train_eval_byte_overlap": 0,
     "canonicalization": "exif_transpose_center_square_resize336_jpeg_q96_subsampling0"
   },
-  "private_preservation": {
-    "dataset_title": "Track5 V12 Exact Checkpoints and Gates",
-    "visibility_readback": "Private",
-    "recovered_checkpoint_hashes_verified_after_session_restart": true,
-    "publicly_accessible": false
+  "public_release": {
+    "repository_url": "https://github.com/13shreyansh/tiktok-techjam-2026-track-5-aigc-image-detection",
+    "release_url": "https://github.com/13shreyansh/tiktok-techjam-2026-track-5-aigc-image-detection/releases/tag/v1.0.0",
+    "selected_asset_url": "https://github.com/13shreyansh/tiktok-techjam-2026-track-5-aigc-image-detection/releases/download/v1.0.0/v12_pe_core.pt",
+    "repository_visibility": "public",
+    "release_is_draft": false,
+    "release_is_prerelease": false,
+    "asset_state": "uploaded",
+    "asset_bytes": 1263202331,
+    "anonymous_http_access_verified": true
   },
   "verified_runtime": {
     "device": "Tesla T4",
@@ -71,8 +76,5 @@
     "output_sha256": "767096b0c1ffb963fe12947e1038f1f5b1416521aaa42d5c637532ae09419157"
   },
   "selection_boundary": "PE-Core-L was selected by the checksum-bound one-shot rule in NTIRE_V12_FINAL_ARBITRATION_RESULT.json. The gate is consumed and cannot authorize further weight, threshold or preprocessing search.",
-  "distribution_blockers": [
-    "PE-Core-L checkpoint has no public immutable distribution URL",
-    "logged-out public installation and run have not been verified"
-  ]
+  "distribution_blockers": []
 }

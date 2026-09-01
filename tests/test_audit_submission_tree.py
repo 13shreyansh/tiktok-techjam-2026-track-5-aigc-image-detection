@@ -1,4 +1,3 @@
-import json
 from pathlib import Path
 
 
@@ -16,26 +15,14 @@ def test_submission_tree_audit_requires_judge_facing_artifacts() -> None:
         "MODEL_CARD.md",
         "ROBUSTNESS_AND_ERROR_ANALYSIS.md",
         "THIRD_PARTY_NOTICES.md",
-        "SUBMISSION_READINESS.md",
-        "DEMO_SCRIPT.md",
         "demo/index.html",
-        "PRODUCT.md",
-        "DEVPOST_DRAFT.md",
-        "CHECKPOINTS.sha256",
-        "V12_CHECKPOINTS.sha256",
         "SELECTED_CHECKPOINT.sha256",
         "V12_CHECKPOINT_MANIFEST.json",
         "V12_RUNNABLE_CONTRACT_RESULT.json",
         "V12_SELECTED_DEFAULT_RUN_RESULT.json",
-        "FINAL_LIVE_REHEARSAL_RESULT.json",
-        "PRIVATE_REMOTE_SYNC_RESULT.json",
-        "CLEAN_EXPORT_RUNTIME_RESULT.json",
         "NTIRE_V12_FINAL_ARBITRATION_RESULT.json",
         "V12_ERROR_ANALYSIS_RESULT.json",
         "MODEL_WEIGHTS_LICENSE.md",
-        "WEIGHT_RELEASE_DECISION.md",
-        "run.sh",
-        "run_ensemble.sh",
         "run_v12.sh",
     ):
         assert name in text
@@ -80,13 +67,3 @@ def test_submission_tree_audit_preserves_explicit_safety_counts() -> None:
         "history_boundary",
     ):
         assert field in text
-
-
-def test_private_remote_sync_remains_private_and_excludes_large_artifacts() -> None:
-    result = json.loads(Path("PRIVATE_REMOTE_SYNC_RESULT.json").read_text())
-    remote = result["remote_after"]
-    assert remote["visibility"] == "private"
-    assert remote["blob_count"] == 297
-    assert set(remote["runner_modes"].values()) == {"100755"}
-    assert {"model weights", "datasets", "credentials"} <= set(result["excluded"])
-    assert "not a public repository" in result["boundary"]

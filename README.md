@@ -215,8 +215,8 @@ Key reproducibility files:
 
 - [`SELECTED_CHECKPOINT.sha256`](SELECTED_CHECKPOINT.sha256) — exact public
   checkpoint digest.
-- [`V12_CHECKPOINT_MANIFEST.json`](V12_CHECKPOINT_MANIFEST.json) — frozen model,
-  training-lineage and runtime inventory captured before publication.
+- [`V12_CHECKPOINT_MANIFEST.json`](V12_CHECKPOINT_MANIFEST.json) — final model,
+  public release, training-lineage and runtime inventory.
 - [`MODEL_CARD.md`](MODEL_CARD.md) — intended use, architecture, training,
   evaluation and limitations.
 - [`DATASETS.md`](DATASETS.md) and
